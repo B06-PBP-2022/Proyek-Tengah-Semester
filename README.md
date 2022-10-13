@@ -5,7 +5,7 @@ Griselda Neysa Sadiya - 2106751392 <br>
 Pantun Elfreddy Sihombing - 2106751612 <br>
 Rania Maharani Narendra - 2106650222 <br>
 
-## Jejakarbon
+# Jejakarbon
 Tautan aplikasi Heroku:  
 
 🌏[Halaman Utama Jejakarbon](https://jejakarbon.herokuapp.com/)🌳
