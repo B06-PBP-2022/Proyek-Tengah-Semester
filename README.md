@@ -28,23 +28,23 @@ Dengan adanya JejaKarbon, diharapkan:
 - Pengguna bisa melakukan donasi, membantu perusahaan penggerak go green untuk menghijaukan lingkungan.
 
 ## Modul yang akan diimplementasikan dalam Jejakarbon
-1) Halaman utama, Halaman login/logout, Register (post) (Rania Maharani Narendra)
+1) Halaman utama, Halaman login/logout, Register (post) (**Rania Maharani Narendra**)
 - About JejaKarbon (get)
 - Searching Donasi (get)
 - Daftar seluruh donasi yang terdaftar (get) => dari halaman penambahan
-2) Halaman input data transportasi dan perhitungan carbon footprint (
+2) Halaman input data transportasi dan perhitungan carbon footprint (**Griselda Neysa Sadiya**)
 - Form input data transportasi (post)
 - Perhitungan carbon footprint 
 - Status penghasilan carbon footprint (get)
-3) Halaman progres akun pengguna (Daffa Ilham Restupratama)
+3) Halaman progres akun pengguna (**Daffa Ilham Restupratama**)
 - Profile user (get)
 - Edit profile (post)
 - Status penghasilan carbon footprint (get) => dari input data transportasi
 - Daftar donasi yang telah dilakukan (get) => dari form ikut donasi/pembayaran
-4) Halaman penambahan project (Dipa Alhaza)
+4) Halaman penambahan project (**Dipa Alhaza**)
 - Form pembukaan donasi (post)
 - Daftar seluruh donasi yang terdaftar (get)
-5) Halaman form ikut donasi/pembayaran (Pantun)
+5) Halaman form ikut donasi/pembayaran (**Pantun Elfreddy Sihombing**)
 - Form mengikuti donasi (post)
 - Daftar donasi yang telah dilakukan user (get)
 
