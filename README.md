@@ -8,10 +8,9 @@ Rania Maharani Narendra - 2106650222 <br>
 ## Jejakarbon
 Tautan aplikasi Heroku:  
 
-🌏[Halaman Utama Jejakarbon](https://jejakarbon.herokuapp.com/)
+🌏[Halaman Utama Jejakarbon](https://jejakarbon.herokuapp.com/)🌳
 
 JejaKarbon adalah environmental web application dimana kita bisa melakukan donasi kepada perusahaan Go Green dan melakukan tracker carbon footprint yang dihasilkan oleh pengguna, khususnya tracker penggunaan transportasi. JejaKarbon akan mengembalikan jumlah perkiraan carbon footprint yang dihasilkan oleh pengguna.   
-
 
 ## Background
 Carbon Footprint atau jejak karbon adalah jumlah emisi karbon dioksida yang berkaitan dengan aktivitas dari seseorang ataupun suatu objek seperti gedung, pabrik, kendaraan, dan sebagainya. Emisi tersebut adalah hasil dari pembakaran bahan bakar fosil di bidang manufaktur, pemanasan, dan transportasi. 
@@ -29,7 +28,7 @@ Dengan adanya JejaKarbon, diharapkan:
 
 ## Modul yang akan diimplementasikan dalam Jejakarbon
 1) Halaman utama, Halaman login/logout, Register (post) (**Rania Maharani Narendra**)
-- About JejaKarbon (get)
+  - About JejaKarbon (get)
 - Searching Donasi (get)
 - Daftar seluruh donasi yang terdaftar (get) => dari halaman penambahan
 2) Halaman input data transportasi dan perhitungan carbon footprint (**Griselda Neysa Sadiya**)
@@ -48,7 +47,7 @@ Dengan adanya JejaKarbon, diharapkan:
 - Form mengikuti donasi (post)
 - Daftar donasi yang telah dilakukan user (get)
 
-### Role Pengguna dalam JejaKarbon
+## Role Pengguna dalam JejaKarbon
 1) User nonlogin:
 - Membuat akun
 - Melihat daftar donasi pada page Home (utama)
@@ -60,4 +59,4 @@ Dengan adanya JejaKarbon, diharapkan:
 - Melakukan input data transportasi dan mendapatkan data carbon footprint  
 
 Sumber Pendukung:
-https://impactful.ninja/why-is-a-carbon-footprint-bad-for-the-environment/#:~:text=Our%20carbon%20footprint%20has%20a,of%20glaciers%20and%20polar%20ice 
+[Why Is a Carbon Footprint Bad for the Environment? All You Need to Know](https://impactful.ninja/why-is-a-carbon-footprint-bad-for-the-environment/#:~:text=Our%20carbon%20footprint%20has%20a,of%20glaciers%20and%20polar%20ice)
