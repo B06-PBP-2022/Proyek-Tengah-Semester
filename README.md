@@ -29,34 +29,35 @@ Pengguna bisa melakukan donasi, membantu perusahaan penggerak go green untuk men
 
 ## Modul yang akan diimplementasikan dalam Jejakarbon
 1) Halaman utama, Halaman login/logout, Register (post) (Rania Maharani Narendra)
-about JejaKarbon (get)
-searching Donasi (get)
-daftar seluruh donasi yang terdaftar (get) => dari halaman penambahan
+- About JejaKarbon (get)
+- Searching Donasi (get)
+- Daftar seluruh donasi yang terdaftar (get) => dari halaman penambahan
 2) Halaman input data transportasi dan perhitungan carbon footprint (
-form input data transportasi (post)
-perhitungan carbon footprint 
-status penghasilan carbon footprint (get)
+- Form input data transportasi (post)
+- Perhitungan carbon footprint 
+- Status penghasilan carbon footprint (get)
 3) Halaman progres akun pengguna (Daffa Ilham Restupratama)
-profile user (get)
-edit profile (post)
-status penghasilan carbon footprint (get) => dari input data transportasi
-daftar donasi yang telah dilakukan (get) => dari form ikut donasi/pembayaran
+- Profile user (get)
+- Edit profile (post)
+- Status penghasilan carbon footprint (get) => dari input data transportasi
+- Daftar donasi yang telah dilakukan (get) => dari form ikut donasi/pembayaran
 4) Halaman penambahan project (Dipa Alhaza)
-form pembukaan donasi (post)
-daftar seluruh donasi yang terdaftar (get)
+- Form pembukaan donasi (post)
+- Daftar seluruh donasi yang terdaftar (get)
 5) Halaman form ikut donasi/pembayaran (Pantun)
-form mengikuti donasi (post)
-daftar donasi yang telah dilakukan user (get)
+- Form mengikuti donasi (post)
+- Daftar donasi yang telah dilakukan user (get)
 
 ### Role Pengguna dalam JejaKarbon
-User nonlogin:
-Membuat akun
-melihat daftar donasi pada page Home (utama)
-User login:
-Sama seperti user nonlogin (kecuali membuat akun)
-melakukan donasi
-membuka donasi
-melihat progress akun/membuka profile
-melakukan input data transportasi dan mendapatkan data carbon footprint
+1) User nonlogin:
+- Membuat akun
+- Melihat daftar donasi pada page Home (utama)
+2) User login:
+- Sama seperti user nonlogin (kecuali membuat akun)
+- Melakukan donasi
+- Membuka donasi
+- Melihat progress akun/membuka profile
+- Melakukan input data transportasi dan mendapatkan data carbon footprint  
+
 Sumber Pendukung:
 https://impactful.ninja/why-is-a-carbon-footprint-bad-for-the-environment/#:~:text=Our%20carbon%20footprint%20has%20a,of%20glaciers%20and%20polar%20ice 
