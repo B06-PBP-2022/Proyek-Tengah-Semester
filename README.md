@@ -1,12 +1,12 @@
-### Anggota Kelompok:
-Daffa Ilham Restupratama - 2106751013
-Dipa Alhaza - 2106751543
-Griselda Neysa Sadiya - 2106751392
-Pantun Elfreddy Sihombing - 2106751612
-Rania Maharani Narendra - 2106650222
+## Anggota Kelompok:
+Daffa Ilham Restupratama - 2106751013 <br>
+Dipa Alhaza - 2106751543 <br>
+Griselda Neysa Sadiya - 2106751392 <br>
+Pantun Elfreddy Sihombing - 2106751612 <br>
+Rania Maharani Narendra - 2106650222 <br>
 
 ### Jejakarbon
-Tautan aplikasi Heroku: 
+Tautan aplikasi Heroku:  
 
 [Halaman Utama Jejakarbon](https://b06-group-project.herokuapp.com/)
 
