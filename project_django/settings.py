@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'example_app',
-    'jejakarbon'
+    'calculator',
+    'user_profile',
 ]
 
 MIDDLEWARE = [
