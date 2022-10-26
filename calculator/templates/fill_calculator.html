@@ -3,31 +3,42 @@
 {% block content %}
 <div class="header"></div>
 
-<div class="plih-pemakaian">
-    <div class="form-usage">
-        <form id="choose-usage" action="" method="post">
-            <label for="usage">Jejak Karbon:</label>
-            <select name="usage" id="dropdown-usage">
-                <option value="listrik">Listrik</option>
-                <option value="mobil">Mobil</option>
-                <option value="motor">Motor</option>
-            </select>
-        </form>
-        <p>ini nyoba aja seh</p>
-    </div>
-</div>
-
-<div class="pemakaian-carbon">
-    <div class="form-carbon">
-        <form action="" method="post" id="listrik-detail"></form>
-
-        <form action="" method="post" id="mobil-detail" ></form>
+<!-- BAGIAN MAIN CONTENT -->
+<div class="main-content">
+    <div class="container">
+        <div class="headline text-center">
+    
+        </div>
+    
+        <div class="plih-pemakaian">
+            <div class="form-usage">
+                <form id="choose-usage" action="" method="post">
+                    <label for="usage">Jejak Karbon:</label>
+                    <select name="usage" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdown-usage">
+                        <option value="listrik">Listrik</option>
+                        <option value="mobil">Mobil</option>
+                        <option value="motor">Motor</option>
+                    </select>
+                </form>
+            </div>
+        </div>
         
-        <form action="" method="post" id="motor-detail"></form>
+        <div class="pemakaian-carbon">
+            <div class="form-carbon">
+                <form action="" method="post" id="listrik-detail"></form>
+        
+                <form action="" method="post" id="mobil-detail" ></form>
+                
+                <form action="" method="post" id="motor-detail"></form>
+            </div>
+        </div>
+        
+        <div class="show-offset">
+    
+        </div>
     </div>
 </div>
 
-<div class="show-offset"></div>
 
 <script>
     $(document).ready(function(data){
