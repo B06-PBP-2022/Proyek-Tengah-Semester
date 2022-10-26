@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class JejakarbonConfig(AppConfig):
+class UserAccountConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'jejakarbon'
+    name = 'user_profile'

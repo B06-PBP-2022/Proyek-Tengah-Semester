@@ -1,5 +1,5 @@
 import datetime
-from jejakarbon.models import User, DataCarbon
+from calculator.models import User, DataCarbon
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -9,11 +9,11 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect,HttpResponse
 
-from user_account.forms import EditPasswordForm, EditUsernameForm
-from user_account.models import LastEdited
+from user_profile.forms import EditPasswordForm, EditUsernameForm
+from user_profile.models import LastEdited
 
 # @login_required(login_url='/login/')
-def show_account(request):
+def show_profile(request):
     user = User.objects.get(username = request.user.username)
     data_carbon = DataCarbon.objects.filter(user = request.user)
     username_form = EditUsernameForm()
@@ -26,7 +26,7 @@ def show_account(request):
         'last_username_edited': LastEdited.objects.get(user = request.user).last_username_edited,
         'last_password_edited': LastEdited.objects.get(user = request.user).last_password_edited
     }
-    return render(request, 'user_account.html', context)
+    return render(request, 'user_profile.html', context)
 
 def change_username(request):
     if request.method == 'POST':
