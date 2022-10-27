@@ -44,7 +44,10 @@ INSTALLED_APPS = [
     'home',
     'calculator',
     'user_profile',
-    'signup'
+    'signup',
+    'form_donasi',
+
+    
 ]
 
 MIDDLEWARE = [
