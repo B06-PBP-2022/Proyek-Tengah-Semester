@@ -20,6 +20,44 @@
 </head>
 
 <body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">JejaKarbon</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Hitung Karbon</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">List Donasi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Buka Donasi</a>
+          </li>
+        </ul>
+        <class="d-flex">
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'profile:index' %}">Hi, {{user.nama}}!</a>
+            </li>
+            <li class="nav-item">
+				      <a href="#">
+					    <button type="button" class="btn">Logout</button>
+				      </a>
+			      </li>
+			    {% else %}
+            <li class='nav-item'>
+                <button type='button' class="button">Login</button>
+              <button type='button' class="button">Sign Up</button>
+            </li>
+			    {% endif %}
+      </div>
+    </div>
+  </nav>
   {% block content %}
   {% endblock content %}
 </body>
