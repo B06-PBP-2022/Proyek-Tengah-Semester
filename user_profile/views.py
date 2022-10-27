@@ -1,5 +1,5 @@
 import datetime
-from calculator.models import User, DataCarbon
+# from calculator.models import User, DataCarbon
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -14,13 +14,13 @@ from user_profile.models import LastEdited
 
 # @login_required(login_url='/login/')
 def show_profile(request):
-    user = User.objects.get(username = request.user.username)
-    data_carbon = DataCarbon.objects.filter(user = request.user)
+    # user = User.objects.get(username = request.user.username)
+    # data_carbon = DataCarbon.objects.filter(user = request.user)
     username_form = EditUsernameForm()
     password_form = PasswordChangeForm(request.user, request.POST)
     context = {
-        'user': user,
-        'data_carbon': data_carbon,
+        # 'user': user,
+        # 'data_carbon': data_carbon,
         'username_form': username_form,
         'password_form': password_form,
         'last_username_edited': LastEdited.objects.get(user = request.user).last_username_edited,
@@ -32,10 +32,10 @@ def change_username(request):
     if request.method == 'POST':
         form = EditUsernameForm(request.POST)
         if form.is_valid():
-            # Mengubah username
-            user = User.objects.get(username = request.user.username)
-            user.username = request.POST.get('username')
-            user.save()
+            # # Mengubah username
+            # user = User.objects.get(username = request.user.username)
+            # user.username = request.POST.get('username')
+            # user.save()
             # Menyimpan data kapan username terakhir kali diedit
             last_edited = LastEdited.objects.get(user = request.user)
             if last_edited is not None:
