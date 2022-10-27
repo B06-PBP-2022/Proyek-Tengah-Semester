@@ -14,7 +14,7 @@ class CarbonDetail(models.Model):
     histori_karbon = models.ForeignKey('CarbonPrintHistory', on_delete=models.CASCADE)
     date_input = models.DateField(default=timezone.now)
     usage = models.CharField(max_length=10)
-    carbon_print_kendaraan = models.FloatField()
+    carbon_print = models.FloatField()
 
 class KomponenKalkulator(models.Model):
     # listrik
