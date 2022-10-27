@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('example_app.urls')),
     path('profile/', include('user_profile.urls')),
+    path('form-pembuatan-donasi/', include('form_donasi.urls')),
 ]

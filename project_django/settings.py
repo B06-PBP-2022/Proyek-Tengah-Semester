@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'example_app',
     'calculator',
     'user_profile',
+    'form_donasi',
+    
 ]
 
 MIDDLEWARE = [
