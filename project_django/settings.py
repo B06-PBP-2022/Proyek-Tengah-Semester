@@ -30,6 +30,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+AUTH_USER_MODEL = 'signup.User'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,10 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'example_app',
+    'home',
     'calculator',
     'user_profile',
-    'form_donasi',
+    'form_donasi'
     
 ]
 

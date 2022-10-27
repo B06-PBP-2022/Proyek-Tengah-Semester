@@ -54,9 +54,11 @@ Dengan adanya JejaKarbon, diharapkan:
 2) User login:
 - Sama seperti user nonlogin (kecuali membuat akun)
 - Melakukan donasi
-- Membuka donasi
 - Melihat progress akun/membuka profile
 - Melakukan input data transportasi dan mendapatkan data carbon footprint  
+3) Organisasi:
+- Membuka donasi
+- Melihat daftar donasi pada page Home (utama)
 
 Sumber Pendukung:
 [Why Is a Carbon Footprint Bad for the Environment? All You Need to Know](https://impactful.ninja/why-is-a-carbon-footprint-bad-for-the-environment/#:~:text=Our%20carbon%20footprint%20has%20a,of%20glaciers%20and%20polar%20ice)
