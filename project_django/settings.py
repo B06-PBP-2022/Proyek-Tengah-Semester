@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'home',
     'calculator',
     'user_profile',
-    'form_donasi'
+    'signup',
+    'form_donasi',
+
     
 ]
 
