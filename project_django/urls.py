@@ -23,5 +23,6 @@ urlpatterns = [
     path('form-pembuatan-donasi/', include('form_donasi.urls')),
     path('register/', include('register.urls')),
     path('login/', include('login.urls')),
-    path('logout/', include('logout.urls'))
+    path('logout/', include('logout.urls')),
+    path('faq/', include('faq.urls')),
 ]
