@@ -1,0 +1,22 @@
+.navbar {
+    background: rgba(117, 194, 112, 1);
+}
+
+.navbar a, .navbar a:link, .navbar a:visited {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.navbar li {
+    list-style: none;
+}
+
+.button {
+    background: #FFFFFF;    
+    box-shadow: -4px -4px 4px rgba(0, 0, 0, 0.03), 4px 4px 4px rgba(0, 0, 0, 0.13);
+    border-radius: 10px;
+    border: 0px;
+    padding: 10px 24px;
+    color: rgba(117, 194, 112, 1);
+    margin-left: 8px;
+}
