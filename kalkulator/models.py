@@ -10,12 +10,6 @@ class UserTemp(models.Model):
 class CarbonPrintHistory(models.Model):
     carbon_print_total = models.PositiveIntegerField(default=0)  
 
-class CarbonDetail(models.Model):
-    histori_karbon = models.ForeignKey('CarbonPrintHistory', on_delete=models.CASCADE)
-    date_input = models.DateField(default=timezone.now)
-    usage = models.CharField(max_length=10)
-    carbon_print = models.FloatField()
-
 class KomponenKalkulator(models.Model):
     # listrik
     tagihan_listrik_rupiah = models.IntegerField(default=0)
@@ -24,3 +18,19 @@ class KomponenKalkulator(models.Model):
     fuel_type = models.CharField(max_length=10)
     kilometer_jarak = models.FloatField(default=1)
     litre_per_km = models.FloatField(default=1.2)
+
+class CarbonDetail(models.Model):
+    histori_karbon = models.ForeignKey(
+        CarbonPrintHistory, 
+        on_delete=models.CASCADE
+        )
+    date_input = models.DateField(default=timezone.now)
+    usage = models.CharField(max_length=10)
+    carbon_print = models.FloatField()
+    komponen_kalkulasi = models.OneToOneField(
+        KomponenKalkulator, 
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+        )
+
