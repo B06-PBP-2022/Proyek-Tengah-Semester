@@ -14,19 +14,19 @@ from user_profile.models import LastEdited
 
 # @login_required(login_url='/login/')
 def show_profile(request):
-    user = User.objects.get(username = request.user.username)
-    data_carbon = DataCarbon.objects.filter(user = request.user)
-    username_form = EditUsernameForm()
-    password_form = PasswordChangeForm(request.user, request.POST)
-    context = {
-        'user': user,
-        'data_carbon': data_carbon,
-        'username_form': username_form,
-        'password_form': password_form,
-        'last_username_edited': LastEdited.objects.get(user = request.user).last_username_edited,
-        'last_password_edited': LastEdited.objects.get(user = request.user).last_password_edited
-    }
-    return render(request, 'user_profile.html', context)
+    # user = User.objects.get(username = request.user.username)
+    # data_carbon = DataCarbon.objects.filter(user = request.user)
+    # username_form = EditUsernameForm()
+    # password_form = PasswordChangeForm(request.user, request.POST)
+    # context = {
+    #     'user': user,
+    #     'data_carbon': data_carbon,
+    #     'username_form': username_form,
+    #     'password_form': password_form,
+    #     'last_username_edited': LastEdited.objects.get(user = request.user).last_username_edited,
+    #     'last_password_edited': LastEdited.objects.get(user = request.user).last_password_edited
+    # }
+    return render(request, 'user_profile.html')
 
 def change_username(request):
     if request.method == 'POST':
