@@ -24,14 +24,11 @@ from django.urls import reverse
 
 # Create your views here.
 def show_page(request):
-    
     return render(request,'form_buat_donasi.html')
-
 
 def show_json(request):
     data = OpenDonasi.objects.all()
-    task_item = data.filter(user=request.user)
-    return HttpResponse(serializers.serialize("json", task_item), content_type="application/json")
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def ajax_submit(request):
     if (request.method == 'POST'):
@@ -50,3 +47,4 @@ def ajax_submit(request):
             data["date"] = new_data.tanggal_pembuatan
             new_data.save()
             return JsonResponse(data)
+
