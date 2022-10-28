@@ -11,6 +11,11 @@
     list-style: none;
 }
 
+#button_text {
+    text-decoration: none;
+    color: rgba(117, 194, 112, 1);
+}
+
 .button {
     background: #FFFFFF;    
     box-shadow: -4px -4px 4px rgba(0, 0, 0, 0.03), 4px 4px 4px rgba(0, 0, 0, 0.13);
