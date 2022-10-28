@@ -15,7 +15,7 @@ from user_profile.models import LastEdited
 
 @login_required(login_url='/login/')
 def show_profile(request):
-    user = UserProfile.objects.get(username = request.user.username)
+    user = UserProfile.objects.get(user = request.user)
     # data_carbon = DataCarbon.objects.filter(user = request.user)
     # username_form = EditUsernameForm()
     # password_form = PasswordChangeForm(request.user, request.POST)
