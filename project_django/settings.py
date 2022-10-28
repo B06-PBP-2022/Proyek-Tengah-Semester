@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'login',
     'logout',
     'faq',
+    'berdonasi',
 ]
 
 MIDDLEWARE = [
