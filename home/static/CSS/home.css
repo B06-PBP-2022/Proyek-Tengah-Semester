@@ -57,3 +57,7 @@
 .container-top2-button {
     margin-top: 16px;
 }
+
+.image-application {
+    max-width: 450px;
+}
