@@ -19,7 +19,6 @@
   {% block meta %}
   {% endblock meta %}
 </head>
-
 <body>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg">
@@ -40,27 +39,33 @@
             <a class="nav-link" href="#">Buka Donasi</a>
           </li>
         </ul>
-        <class="d-flex">
-          {% if user.is_authenticated %}
+        <ul class="navbar-nav right-section d-flex justify-content-end"></ul>
+          {% if user.userprofile.organization %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'profile:index' %}">Hi, {{user.nama}}!</a>
+              <a class="nav-link" href="{% url 'user_profile:show_profile' %}">Hi, {{user.username}}!</a>
             </li>
             <li class="nav-item">
-				      <a href="#">
-					    <button type="button" class="btn">Logout</button>
+				      <a href="{% url 'logout:logout' %}">
+					    <button type="button" class="button">Logout</button>
 				      </a>
 			      </li>
 			    {% else %}
             <li class='nav-item'>
+              <a href="{% url 'login:login_user' %}">
                 <button type='button' class="button">Login</button>
-              <button type='button' class="button">Sign Up</button>
+              </a>
+              <a href="{% url 'register:register' %}">
+                <button type='button' class="button">Sign Up</button>
+              </a>
             </li>
+          </ul>
 			    {% endif %}
       </div>
     </div>
   </nav>
   {% block content %}
   {% endblock content %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 
 </html>
