@@ -30,8 +30,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-AUTH_USER_MODEL = 'signup.User'
-
 # Application definition
 
 INSTALLED_APPS = [
