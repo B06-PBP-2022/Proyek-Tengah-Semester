@@ -26,7 +26,7 @@ from .forms import OpenDonasiForm
 
 
 # Create your views here.
-@login_required(login_url='/login/')
+@login_required(login_url='/login')
 def show_page(request):
     return render(request,'form_buat_donasi.html')
 
