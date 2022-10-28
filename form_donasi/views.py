@@ -1,3 +1,4 @@
+import imp
 from django.shortcuts import render
 from .models import OpenDonasi
 
@@ -19,29 +20,29 @@ import datetime
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core import serializers
 from django.urls import reverse
+
+from .forms import OpenDonasiForm
 # ======================================================================================
 
 
 # Create your views here.
+@login_required(login_url='/login/')
 def show_page(request):
-    
     return render(request,'form_buat_donasi.html')
-
 
 def show_json(request):
     data = OpenDonasi.objects.all()
-    task_item = data.filter(user=request.user)
-    return HttpResponse(serializers.serialize("json", task_item), content_type="application/json")
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def ajax_submit(request):
     if (request.method == 'POST'):
         user = request.user
         data = {}
-        form = forms.TodoListForm(request.POST or None)
+        form = forms.OpenDonasiForm(request.POST or None)
         if (form.is_valid()):
-            tema_kegiatan = form.cleaned_data['title']
-            deskripsi = form.cleaned_data['description']
-            target_donasi = form.cleaned_data['isFinished']
+            tema_kegiatan = form.cleaned_data['tema_kegiatan']
+            deskripsi = form.cleaned_data['deskripsi']
+            target_donasi = form.cleaned_data['target_donasi']
             new_data = OpenDonasi.objects.create(user=user, tema_kegiatan=tema_kegiatan, target_donasi=target_donasi, total_donasi_terkumpul=0)
             data["tema_kegiatan"] = tema_kegiatan
             data["deskripsi"] = deskripsi
@@ -50,3 +51,7 @@ def ajax_submit(request):
             data["date"] = new_data.tanggal_pembuatan
             new_data.save()
             return JsonResponse(data)
+        else:
+            print("Tidak Valid")
+        
+
