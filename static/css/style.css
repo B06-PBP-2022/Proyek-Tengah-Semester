@@ -11,7 +11,7 @@
     list-style: none;
 }
 
-.button {
+.btn-white {
     background: #FFFFFF;    
     box-shadow: -4px -4px 4px rgba(0, 0, 0, 0.03), 4px 4px 4px rgba(0, 0, 0, 0.13);
     border-radius: 10px;
@@ -19,4 +19,39 @@
     padding: 10px 24px;
     color: rgba(117, 194, 112, 1);
     margin-left: 8px;
+    font-weight: bold;
+}
+
+.btn-green {
+    color: #FFFFFF;    
+    box-shadow: -4px -4px 4px rgba(0, 0, 0, 0.03), 4px 4px 4px rgba(0, 0, 0, 0.13);
+    border-radius: 10px;
+    border: 0px;
+    padding: 10px 24px;
+    background: rgba(117, 194, 112, 1);
+    margin-left: 8px;
+    font-weight: bold;
+}
+
+.btn-white:hover, .btn-white:focus {
+    background: #c9efc7;
+    transform: scale(1.02);
+    transition: 0.3s;
+}
+
+.btn-green:hover, .btn-green:focus {
+    background: #4A9745;;
+    transform: scale(1.02);
+    transition: 0.3s;
+}
+
+.form-control:focus {
+    border-color: #4A9745;
+    box-shadow: 0 0 0 0.2rem #75C270;
+} 
+
+.form-control{
+    border-color: #4A9745;
+    border-width: 2px;
+    border-radius: 10px;
 }

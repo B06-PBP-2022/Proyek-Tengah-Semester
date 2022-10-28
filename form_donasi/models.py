@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -9,7 +10,7 @@ class OpenDonasi(models.Model):
     tema_kegiatan = models.CharField(max_length=100)
     tanggal_pembuatan = models.DateTimeField(auto_now_add=True)
     deskripsi = models.TextField(null=True, blank=True)
-    total_donasi_terkumpul = models.IntegerField(null=True, blank=True)
+    total_donasi_terkumpul = models.IntegerField(default=0, blank=True)
     target_donasi = models.PositiveIntegerField(default=0, blank=True)
    
     def __str__(self):

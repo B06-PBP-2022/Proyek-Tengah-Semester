@@ -29,8 +29,8 @@ Dengan adanya JejaKarbon, diharapkan:
 ## Modul yang akan diimplementasikan dalam Jejakarbon
 1) Halaman utama, Halaman login/logout, Register (post) (**Rania Maharani Narendra**)
 - About JejaKarbon
-- Daftar frequently asked question
-- form faq
+- Daftar frequently asked question (get)
+- form faq (post)
 - Daftar seluruh donasi yang terdaftar (get) => dari halaman penambahan
 2) Halaman input data transportasi dan perhitungan carbon footprint (**Griselda Neysa Sadiya**)
 - Form input data transportasi (post)
