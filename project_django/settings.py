@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'form_donasi',
     'register',
     'login',
-    'logout'
+    'logout',
+    
 ]
 
 MIDDLEWARE = [
