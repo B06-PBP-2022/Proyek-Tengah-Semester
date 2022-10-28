@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'register',
     'login',
     'logout',
+    'faq',
+
     
 ]
 
