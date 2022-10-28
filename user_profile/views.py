@@ -1,5 +1,6 @@
 import datetime
-from calculator.models import User, DataCarbon
+from calculator.models import DataCarbon
+from register.models import UserProfile
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -12,21 +13,21 @@ from django.http import HttpResponseRedirect,HttpResponse
 from user_profile.forms import EditPasswordForm, EditUsernameForm
 from user_profile.models import LastEdited
 
-# @login_required(login_url='/login/')
+@login_required(login_url='/login/')
 def show_profile(request):
-    # user = User.objects.get(username = request.user.username)
+    user = UserProfile.objects.get(username = request.user.username)
     # data_carbon = DataCarbon.objects.filter(user = request.user)
     # username_form = EditUsernameForm()
     # password_form = PasswordChangeForm(request.user, request.POST)
-    # context = {
-    #     'user': user,
+    context = {
+        'user': user,
     #     'data_carbon': data_carbon,
     #     'username_form': username_form,
     #     'password_form': password_form,
     #     'last_username_edited': LastEdited.objects.get(user = request.user).last_username_edited,
     #     'last_password_edited': LastEdited.objects.get(user = request.user).last_password_edited
-    # }
-    return render(request, 'user_profile.html')
+    }
+    return render(request, 'user_profile.html', context)
 
 def change_username(request):
     if request.method == 'POST':
