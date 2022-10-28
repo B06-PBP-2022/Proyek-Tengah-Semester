@@ -1,0 +1,61 @@
+@import "style.css";
+
+.container {
+    margin-top: 100px;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.about-application{
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+#motto {
+    margin-top: 24px;
+}
+
+.application{
+    padding: 0 15px;
+    margin: 0 auto 0;
+}
+
+#logo-top {
+    max-width:400px;
+    display: block;
+    margin: auto;
+    padding-bottom: 16px;
+}
+
+.subtitle {
+    color: rgba(117, 194, 112, 1);
+    font-weight: bold;
+    text-align: center;
+}
+
+.feature-img {
+    max-height: 200px;
+}
+
+#donate-img {
+    max-width: 220px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 8px;
+}
+
+#calculate-img {
+    max-width: 300px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 8px;
+}
+
+.feature {
+    margin-top: 36px;
+}
+
+.container-top2-button {
+    margin-top: 16px;
+}
