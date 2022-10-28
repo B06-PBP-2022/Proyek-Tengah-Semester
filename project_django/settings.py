@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'login',
     'logout',
     'faq',
+
+    
 ]
 
 MIDDLEWARE = [
