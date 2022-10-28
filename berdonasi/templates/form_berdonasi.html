@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -104,65 +105,12 @@
         color: #fff;
       }
 
-     
-     
-
-
-  
     </style>
     {% block meta %}
     {% endblock meta %}
   </head>
-   
   <body>
-   
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home:index' %}"><img src="{% static 'image/logo.png' %}" style="max-height: 50px"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Hitung Karbon</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">List Donasi</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Buka Donasi</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Faq</a>
-            </li>
-          </ul>
-          <ul class="navbar-nav right-section d-flex justify-content-end"></ul>
-            {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'user_profile:show_profile' %}">Hi, {{user.username}}!</a>
-              </li>
-              <li class="nav-item">
-                <a href="{% url 'logout:logout' %}">
-                <button type="button" class="btn-white">Logout</button>
-                </a>
-              </li>
-             
-            {% else %}
-              <li class='nav-item'>
-                <a href="{% url 'login:login_user' %}">
-                  <button type='button' class="btn-white">Login</button>
-                </a>
-                <a href="{% url 'register:register' %}">
-                  <button type='button' class="btn-white">Register</button>
-                </a>
-              </li>
-            {% endif %}
-        </div>
-      </div>
-    </nav>
-    {% block content %}
-    {% endblock content %}
+    
     <div class="main-block">
       <h1>Masukkan Nominal Donasi &#x1F4B8</h1>
       
