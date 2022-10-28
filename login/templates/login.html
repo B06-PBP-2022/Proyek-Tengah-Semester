@@ -9,6 +9,17 @@
 
 {% block content %}
 
+{% if messages %}
+<ul>
+    {% for message in messages %}
+      <div class="success">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <p class="message-login">{{ message }}</p>
+      </div>
+    {% endfor %}
+</ul>
+{% endif %}  
+
 <div class = "login">
     <h1 class="title">Login</h1>
     <form method="POST" action="">
@@ -29,16 +40,8 @@
             </table>
         </div>
     </form>
-
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
         
-    <p>Belum mempunyai akun? <strong><a href="{% url 'register:register' %}">Buat Akun</a></strong><p>
+    <p id="to-register">Belum mempunyai akun? <strong><a href="{% url 'register:register' %}">Buat Akun</a></strong><p>
 
 </div>
 
