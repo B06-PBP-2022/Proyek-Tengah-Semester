@@ -15,6 +15,5 @@ class OpenDonasi(models.Model):
    
     def __str__(self):
         return self.tema_kegiatan
-
-
+    
    
