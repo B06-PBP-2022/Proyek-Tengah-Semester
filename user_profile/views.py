@@ -1,5 +1,5 @@
 import datetime
-from calculator.models import DataCarbon
+# from kalkulator.models import DataCarbon
 from register.models import UserProfile
 
 from django.contrib.auth.decorators import login_required
