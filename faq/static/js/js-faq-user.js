@@ -28,7 +28,7 @@ function showFaq() {
                         ${faq.fields.question}
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapse${count}" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingO${count}">
+                <div id="panelsStayOpen-collapse${count}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingO${count}">
                     <div class="accordion-body">
                         ${faq.fields.answer}
                     </div>
