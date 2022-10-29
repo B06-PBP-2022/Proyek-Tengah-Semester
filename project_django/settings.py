@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'example_app',
-    'home'
-    'calculator',
+    'home',
     'user_profile',
     'form_donasi',
     'register',
