@@ -1,0 +1,64 @@
+.closebtn {
+    margin-left: 15px;
+    color: black;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.alert {
+    padding: 20px;
+    background-color: #EBFBEA;
+    color: black;
+    margin-bottom: 15px;
+    display: block;
+    margin: 0 auto;
+    padding-left: 0px;
+    max-width: 450px;
+}
+
+.title {
+    color: #75C270;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: block;
+    margin: 0 auto;
+    max-width: 400px;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control {
+    margin-bottom: 20px;
+    width: 400px;
+}
+
+ul {
+    list-style: none;
+}
+
+.btn-green {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+
+.form-switch {
+    margin-bottom: 16px;
+}
+
+#to-login {
+    margin-top: 16px;
+    text-align: center;
+}
+
+.form-check-input:checked {
+    background-color: #75C270;
+}

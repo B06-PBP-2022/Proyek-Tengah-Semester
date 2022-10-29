@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>JejaKarbon</title>
+<link rel="stylesheet" href="{% static 'CSS/home.css' %}">
+{% endblock meta %}
+
+{% block content %}
+  <div class="container" id="container-top">
+    <div class="row">
+      <div class="col application">
+        <img class="image-application" src="{% static 'image/mainImage.png' %}">
+      </div>
+      <div class="col about-application">
+          <div class="row">
+            <img id="logo-top" src="{% static 'image/logo_1.png' %}" >
+          </div>
+          <div class="row">
+            <h4 class="text-center">Track your Carbon Footprint and donate to nature for a better future!</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="container-top1">
+    <h1 class="subtitle">Fitur JejaKarbon</h1>
+    <div class="row feature">
+      <div class="col">
+        <div class="row"> 
+          <img class="feature-img" id="calculate-img" src="{% static 'image/calculating.png' %}">
+        </div>
+        <div class="row">
+          <h4>Calculate Carbon Footprint</h4>
+        </div>
+      </div>
+      <div class="col">
+        <div class="row">
+          <img class="feature-img" id="donate-img" src="{% static 'image/donating.png' %}">
+        </div>
+        <div class="row">
+          <h4>Donate to Nature</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container" id="container-top2">
+    {% if not user.is_authenticated %}
+    <h1 class="subtitle">Tertarik Untuk Bergabung?</h1>
+    <a href="{% url 'register:register' %}">
+      <button type="button" class="btn-green container-top2-button">Register</button>
+    </a>
+    {% elif user.userprofile.organization %}
+    <h1 class="subtitle">Ingin Membuka Donasi?</h1>
+    <a href="{% url 'form_donasi:open_donasi' %}">
+      <button type="button" class="btn-green container-top2-button">Buka Donasi</button>
+    </a>
+    {% else %}
+    <h1 class="subtitle">Track Your Carbon Footprint!</h1>
+    <a href="#">
+      <button type="button" class="btn-green container-top2-button">Calculate!</button>
+    </a>
+    {% endif %}
+  </div>
+{% endblock content %}
