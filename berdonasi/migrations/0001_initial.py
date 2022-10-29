@@ -12,11 +12,9 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Faq',
+            name='ikutdonasi',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('question', models.CharField(blank=True, max_length=250)),
-                ('answer', models.TextField(blank=True)),
             ],
         ),
     ]
