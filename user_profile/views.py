@@ -33,10 +33,10 @@ def change_username(request):
     if request.method == 'POST':
         form = EditUsernameForm(request.POST)
         if form.is_valid():
-            # # Mengubah username
-            # user = User.objects.get(username = request.user.username)
-            # user.username = request.POST.get('username')
-            # user.save()
+            # Mengubah username
+            user = UserProfile.objects.get(user = request.user)
+            user.username = request.POST.get('username')
+            user.save()
             # Menyimpan data kapan username terakhir kali diedit
             last_edited = LastEdited.objects.get(user = request.user)
             if last_edited is not None:

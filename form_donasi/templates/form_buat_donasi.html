@@ -18,6 +18,34 @@
   
   {% block content %}
 
+<!-- Modal -->
+
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:#75C270;color:#fff">
+        <h5 id="title" class="modal-title" id="exampleModalLongTitle"></h5>
+        <button type="button" class="close btn-white" data-dismiss="modal" aria-label="Close" style="border: 0px; border-radius:10px">
+          <span aria-hidden="true">Tutup
+          </span>
+        </button>
+      </div>
+
+      <div class="modal-body m-4">
+          <h6 class="card-subtitle mb-2 text-muted" id="tanggal_pembuatan"></h6>
+          <p class="card-text" id="deskripsi"></p>
+          <p class="card-text" id="total-donasi-terkumpul"></p> 
+
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- modal -->
+
   <main class="d-flex flex-wrap flex-xl-nowrap flex-md-nowrap flex-sm-nowrap mt-5" id="main">
     <div class="righ w-100 m-5" >
       {% if user.userprofile.organization %}
@@ -43,7 +71,7 @@
         </div>
   
         <div class="d-flex align-items-end flex-column ">
-          <button type="submit" class="btn-submit m-2 text-center"><b>Buka Donasi</b></button>
+          <button type="submit" class="btn-white m-2 text-center"><b>Buka Donasi</b></button>
 
         </div>
         
