@@ -6,9 +6,7 @@ from django.core import serializers
 
 # Create your views here.
 def show_faq(request):
-    form = FormFaq()
-    faq = Faq.objects.all()
-    context = { "faq" : faq, "form" : form }
+    context = { }
     return render(request, 'faq.html', context)
 
 def get_json(request):
@@ -17,15 +15,13 @@ def get_json(request):
 
 def add_question(request):
     if request.method == 'POST':
-        form = FormFaq(request.POST)
+        question = request.POST.get('question')
 
-        if form.is_valid():
-            question = request.POST.get('question')
-            faq = Faq(question=question)
-            faq.save()
-            return HttpResponse(b"CREATED")
-
+        faq = Faq(question=question, answer="")
+        faq.save()
+        return HttpResponse(b"CREATED")
     return HttpResponseNotFound()
+
 
 def add_answer(request ,pk):
     if request.method == "POST":

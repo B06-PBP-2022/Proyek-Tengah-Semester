@@ -55,3 +55,10 @@
     border-width: 2px;
     border-radius: 10px;
 }
+
+.title {
+    color: #75C270;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
