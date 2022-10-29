@@ -1,3 +1,4 @@
+from random import choices
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
@@ -15,7 +16,15 @@ class KomponenKalkulator(models.Model):
     tagihan_listrik_rupiah = models.IntegerField(default=0)
     kilowatt_hour = models.FloatField(default=0)
     # kendaraan
-    fuel_type = models.CharField(max_length=10)
+    FUEL_TYPE_CHOICES = [
+        ('bensin', 'Bensin'),
+        ('diesel', 'Diesel')
+    ]
+    fuel_type = models.CharField(
+        max_length=10, 
+        choices=FUEL_TYPE_CHOICES, 
+        blank=False,
+        default='Unspecified')
     kilometer_jarak = models.FloatField(default=1)
     litre_per_km = models.FloatField(default=1.2)
 
