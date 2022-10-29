@@ -10,9 +10,13 @@
         <div class="headline text-center">
             <h1>Carbon Print Calculator</h1>
             <h3>for</h3>
+            <form method="POST" class="form-control" id="usage-post">
+                <!-- {% csrf_token %} -->
+                {{form_detail.usage}}
+            </form>
         </div>
    
-        <!-- Dropdown pilihan form -->
+        <!-- Dropdown pilihan form
         <div class="plih-pemakaian">
             <div class="form-usage">
                 <form id="choose-usage" action="" method="post">
@@ -24,18 +28,55 @@
                     </select>
                 </form>
             </div>
-        </div>
+        </div> -->
        
-        <div class="pemakaian-carbon">
+        <div class="container pemakaian-carbon">
             <div class="form-carbon">
-                <form action="" method="post" id="listrik-detail"></form>
+                  <!-- <button type="submit" class="btn btn-primary">Sign in</button> -->
+                <!-- FORM LISTRIK -->
+                <form action="" method="post" class="form-control" id="listrik-form">
+                    <div class="row mb-3">
+                        <label for="usage" class="col-sm-2 col-form-label">Pemakaian Listrik</label>
+                        <div class="input group col-sm-4">
+                          {{form_listrik.kilowatt_hour}}
+                          <span class="input-group-text">kWh/bulan</span>
+                        </div>
+                    </div>
+                </form>
        
-                <form action="" method="post" id="mobil-detail" ></form>
-               
-                <form action="" method="post" id="motor-detail"></form>
+                <!-- FORM KENDARAAN-->
+                <form action="" method="post" class="form-control" id="kendaraan-form">
+                  <!-- input fuel_type -->
+                  <fieldset class="row mb-3">
+                    <label for="usage" class="col-sm-2 col-form-label">Jenis Kendaraan</label>
+                    <div class="col-sm-10">
+                      {{form_kendaraan.fuel_type}}
+                    </div>
+                  </fieldset>
+                  <!-- input kilometer_jarak -->
+                  <div class="row mb-3">
+                    <label for="kilometer_jarak" class="col-sm-2 col-form-label">Jarak Tempuh</label>
+                    <div class="input group col-sm-4">
+                      {{form_kendaraan.kilometer_jarak}}
+                      <span class="input-group-text">km</span>
+                    </div>
+                  </div>
+                  
+                  <div class="row mb-3">
+                    <label for="litre_per_km" class="col-sm-2 col-form-label">Konsumsi BBM</label>
+                    <div class="input group col-sm-4">
+                      {{form_kendaraan.litre_per_km}}
+                      <span class="input-group-text">km/liter</span>
+                    </div>
+                  </div>
+                </form>
             </div>
         </div>
-       
+
+        <div class="container text-center mt-5">
+          <button type="button" class="btn btn-primary" id="calculate-btn">Calculate</button>
+        </div>
+
         <div class="show-offset">
    
         </div>
@@ -43,10 +84,52 @@
 </div>
  
  
-<!-- <script>
+<script>
     $(document).ready(function(data){
-        var usage = $('#dropdown-usage').val();
+        // ('#kendaraan-form').hide()
+        $("#usage").change(function(){
+            usage_type = $('#usage option:selected').val()
+            alert(usage_type)
+            if (usage_type != 'listrik'){
+                $('#listrik-form').hide()
+                $('#kendaraan-form').show()
+            } else {
+                $('#listrik-form').show()
+                $('#kendaraan-form').hide()
+            }
+        })
+        $("#calculate-btn").click(function(){
+          usage_type = $('#usage option:selected').val()
+            if (usage_type != 'listrik'){
+                $.post(
+                  '/kalkulator-karbon/calculate-kendaraan/',
+                  {
+                    usage: $('#usage option:selected').val(),
+                    fuel_type: $('.fuel-type-class:checked').val(),
+                    kilometer_jarak: $('#kilometer_jarak').val(),
+                    litre_per_km: $('#litre_per_km').val()
+                  },
+                  function(data){
+                    alert(usage)
+                    // alert($('.fuel-type-class:checked').val())
+                  }
+                  )
+                  $("#kendaraan-form")[0].reset()
+            } else {
+              $.post(
+                  '/kalkulator-karbon/calculate-listrik/',
+                  {
+                    usage: $('#usage option:selected').val(),
+                    kilowatt_hour: $('#kilowatt_hour').val()
+                  },
+                  function(data){
+                    alert($('.fuel-type-class:checked').val())
+                  }
+                  )
+                  $("#listrik-form")[0].reset()
+            }
+        })
  
     })
-</script> -->
+</script>
 {% endblock content %}
