@@ -2,18 +2,19 @@ from random import choices
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
- 
-# ambil usernya nanti dari modelsnya rania
-class UserTemp(models.Model):
-    user_logged_in = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+from register.models import UserProfile
  
 # tiap user punya 1 carbon print history yg isinya >1 detail2 carbonnya
 class CarbonPrintHistory(models.Model):
-    carbon_print_total = models.PositiveIntegerField(default=0)  
+    user = models.OneToOneField(
+        UserProfile,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True)
+    carbon_print_total = models.FloatField(default=0)  
 
 class KomponenKalkulator(models.Model):
     # listrik
-    tagihan_listrik_rupiah = models.IntegerField(default=0)
     kilowatt_hour = models.FloatField(default=0)
     # kendaraan
     FUEL_TYPE_CHOICES = [
