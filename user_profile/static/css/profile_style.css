@@ -10,6 +10,10 @@
   color: white;
 }
 
+.nav-link:hover {
+  color: #4A9745;
+}
+
 .nav-pills .nav-link.active {
   background-color: #4A9745;
 }
