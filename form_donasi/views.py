@@ -45,12 +45,15 @@ def ajax_submit(request):
             tema_kegiatan = form.cleaned_data['tema_kegiatan']
             deskripsi = form.cleaned_data['deskripsi']
             target_donasi = form.cleaned_data['target_donasi']
-            new_data = OpenDonasi.objects.create(user=user, tema_kegiatan=tema_kegiatan, target_donasi=target_donasi, total_donasi_terkumpul=0, deskripsi=deskripsi)
+            new_data = OpenDonasi.objects.create(user=user, pencetus_donasi = user.username , tema_kegiatan=tema_kegiatan, target_donasi=target_donasi, total_donasi_terkumpul=0, deskripsi=deskripsi)
             data["tema_kegiatan"] = tema_kegiatan
-            data["deskripsi"] = deskripsi
-            data["target_donasi"] = target_donasi
+            data["tanggal_pembuatan"] = new_data.tanggal_pembuatan
+            data["deskripsi"] = new_data.deskripsi
+            data["pencetus_donasi"] = new_data.pencetus_donasi
+            data["target_donasi"] = new_data.target_donasi
+            data["total_donasi_terkumpul"] = new_data.total_donasi_terkumpul
             data["pk"] = new_data.pk
-            data["date"] = new_data.tanggal_pembuatan
+            
             new_data.save()
             return JsonResponse(data)
         # else:
