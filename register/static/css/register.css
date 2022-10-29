@@ -53,3 +53,12 @@ ul {
 .form-switch {
     margin-bottom: 16px;
 }
+
+#to-login {
+    margin-top: 16px;
+    text-align: center;
+}
+
+.form-check-input:checked {
+    background-color: #75C270;
+}
