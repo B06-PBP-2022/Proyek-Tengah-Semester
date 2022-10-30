@@ -63,7 +63,7 @@ function popUp(id){
 
 $(document).ready(() => {
     $.get('/form-pembuatan-donasi/json', (daftar_donasi) => {
-      console.log(daftar_donasi)
+      // console.log(daftar_donasi)
       saveData(daftar_donasi)
     
       daftar_donasi.forEach((daftar) => {  
@@ -77,6 +77,20 @@ $(document).ready(() => {
               </li>
                       `)
 
+              $('.non-organisasi').append(`
+              <div class="card m-4" style="background-color:#EBFBEA;">
+                  <h5 class="card-header h-6" style="background-color:#75C270;color:#fff">Oleh: ${daftar.fields.pencetus_donasi}</h5>
+                  <div class="card-body">
+                    <h5 class="card-title h-6">${daftar.fields.tema_kegiatan}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Dibuat pada ${daftar.fields.tanggal_pembuatan}</h6>
+                    <p class="card-text">${daftar.fields.deskripsi}</p>
+    
+                    <p class="card-text">Total donasi terkumpul: ${daftar.fields.total_donasi_terkumpul} /  ${daftar.fields.target_donasi}</p>
+                    <a href="#" class="btn-green sbmit">Donasi</a>
+                  </div>
+                </div>
+                  
+                      `)
 
               $(`#info-${daftar.pk}`).click(function(){
                 popUp(daftar.pk)
@@ -86,28 +100,6 @@ $(document).ready(() => {
          
         })
   })
-
-  $.get('/form-pembuatan-donasi/json', (daftar_donasi) => {
-    console.log(daftar_donasi)
-  
-    daftar_donasi.forEach((daftar) => {  
-      
-          $('.non-organisasi').append(`
-          <div class="card m-4" style="background-color:#EBFBEA;">
-              <h5 class="card-header h-6" style="background-color:#75C270;color:#fff">Oleh: ${daftar.fields.pencetus_donasi}</h5>
-              <div class="card-body">
-                <h5 class="card-title h-6">${daftar.fields.tema_kegiatan}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Dibuat pada ${daftar.fields.tanggal_pembuatan}</h6>
-                <p class="card-text">${daftar.fields.deskripsi}</p>
-
-                <p class="card-text">Total donasi terkumpul: ${daftar.fields.total_donasi_terkumpul} /  ${daftar.fields.target_donasi}</p>
-                <a href="#" class="btn-green">Donasi</a>
-              </div>
-            </div>
-              
-                  `)
-      })
-})
 
 
   
@@ -119,9 +111,7 @@ $(document).ready(() => {
           dataType: 'json',
           data: $('#form').serialize(),
           success: (resp) => {
-              console.log(resp)
-
-              
+              // console.log(resp)      
               $('#content-list').append(`
               <li class="ml-1">
               <div data-toggle="modal" data-target="#exampleModalLong">
