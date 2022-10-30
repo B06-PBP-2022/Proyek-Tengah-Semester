@@ -46,7 +46,14 @@
       <div class="tab-pane fade" id="pills-donation" role="tabpanel" aria-labelledby="pills-donation-tab" tabindex="1">b</div>
       <div class="tab-pane fade" id="pills-carbon" role="tabpanel" aria-labelledby="pills-carbon-tab" tabindex="2">c</div>
       {% else %}
-      <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">d</div>
+      <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+        <div class="profile-tab-content">
+          <div class="username-box">
+            <p class="username-title green-jk">Username :</p>
+            <h3 class="username-text darkgreen-jk">{{user}}</h3>
+          </div>
+        </div>
+      </div>
       <div class="tab-pane fade" id="pills-history" role="tabpanel" aria-labelledby="pills-history-tab" tabindex="1">e</div>
       <div class="tab-pane fade" id="pills-carbon" role="tabpanel" aria-labelledby="pills-carbon-tab" tabindex="2">f</div>
       {% endif %}

@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
-    'calculator',
     'user_profile',
     'form_donasi',
     'register',
@@ -48,6 +47,7 @@ INSTALLED_APPS = [
     'logout',
     'faq',
     'berdonasi',
+    'kalkulator',
 ]
 
 MIDDLEWARE = [
