@@ -33,8 +33,7 @@ def show_json_carbon_detail(request):
 @login_required(login_url='/login/')
 @csrf_exempt
 def add_carbon_listrik(request):
-
-    data = ''
+    data = {}
     if request.method == "POST":
 
         print("ADD CARBON LISTRIK")
@@ -45,9 +44,7 @@ def add_carbon_listrik(request):
         komponen_kalkulasi = KomponenKalkulator(kilowatt_hour=kilowatt_hour)
         komponen_kalkulasi.save()
 
-        print("INI USERNAME")
         userprofile = UserProfile.objects.get(user=request.user)
-        print(userprofile)
 
         try:
             histori = CarbonPrintHistory.objects.get(user=userprofile)
@@ -58,6 +55,7 @@ def add_carbon_listrik(request):
         usage = request.POST.get('usage')
         carbon_print = float(kilowatt_hour)/0.794
         histori.carbon_print_total += carbon_print
+        histori.save()
 
         # make DetailCarbon instance
         detail = CarbonDetail(
@@ -70,47 +68,13 @@ def add_carbon_listrik(request):
         print(histori.carbon_print_total)
 
         # data = '{"pk" : detail.pk, "usage" : detail.usage, "detail_karbon" : detail.detail_karbon, "komponen_kalkulasi" : detail.komponen_kalkulasi, "date_input" : detail.date_input,}'
+        data = {"pk": detail.pk}
+    return JsonResponse(data)
 
-    return HTTPResponse()
-
-    
-
-
-    #     form_listrik = DetailListrikForm(request.POST)
-    #     form_detail = CarbonDetailForm(request.POST)
-    #     if all((form_listrik.is_valid(), form_detail.is_valid())):
-    #         print("ADD CARBON LISTRIK")
-    #         # set Histori
-    #         histori = get_object_or_404(CarbonPrintHistory, user=request.user)
-            
-    #         # save form
-    #         komponen_listrik = form_listrik.save()
-    #         detail = form_detail.save(commit=False)
-    #         # hitung emisi CO2
-    #         detail.komponen_kalkulasi = komponen_listrik
-    #         detail.carbon_print = detail.komponen_kalkulasi.kilowatt_hour*0.794
-    #         # form_detail.cleaned_data['kilowatt_hour']
-    #         data = {
-    #             "pk" : form_detail.pk,
-    #             "usage" : form_detail.usage,
-    #             "detail_karbon" : form_detail.detail_karbon,
-    #             "komponen_kalkulasi" : form_detail.komponen_kalkulasi,
-    #             "date_input" : form_detail.date_input,
-
-    #         }
-            
-    #         # update total carbon print user
-    #         detail.histori_karbon = histori
-    #         detail.histori_karbon.carbon_print_total = detail.histori_karbon.carbon_print_total+detail.carbon_print  
-    #         # save input form sbg object baru
-    #         form_detail.save()
-            
-    # return JsonResponse(data)
 @login_required(login_url='/login/')
 @csrf_exempt
 def add_carbon_kendaraan(request):
     data = {}
-    print("ADD CARBON KENDARAAN1111")
     if request.method == "POST":
 
         print("ADD CARBON KENDARAAN2")
@@ -126,19 +90,21 @@ def add_carbon_kendaraan(request):
             litre_per_km=litre_per_km)
         komponen_kalkulasi.save()
 
-        print("INI USERNAME")
         userprofile = UserProfile.objects.get(user=request.user)
-        print(userprofile)
 
         try:
             histori = CarbonPrintHistory.objects.get(user=userprofile)
+            print("masuk try")
         except CarbonPrintHistory.DoesNotExist:
             histori = CarbonPrintHistory(user=userprofile)
             histori.save()
+            print("masuk except")
         
         usage = request.POST.get('usage')
         carbon_print = float(kilometer_jarak)/float(litre_per_km)/0.794
+        print(histori.carbon_print_total)
         histori.carbon_print_total += carbon_print
+        histori.save()
 
         # make DetailCarbon instance
         detail = CarbonDetail(
@@ -149,45 +115,9 @@ def add_carbon_kendaraan(request):
         detail.save()
 
         print(histori.carbon_print_total)
+        print(histori.pk)
 
         # data = {"pk" : detail.pk,"usage" : detail.usage,"carbon_print" : detail.carbon_print,"komponen_kalkulasi" : detail.komponen_kalkulasi,"date_input" : detail.date_input}
+        data = {"pk": detail.pk}
+    return JsonResponse(data)
 
-    return HttpResponse()
-
-
-        # form_kendaraan = DetailKendaraanForm(request.POST)
-        # form_detail = CarbonDetailForm(request.POST)
-        
-        # if form_detail.is_valid():
-        #     print("ADD CARBON KENDARAAN1111")
-
-        # if all((form_kendaraan.is_valid(), form_detail.is_valid())):
-        #     print("ADD CARBON KENDARAAN")
-        #     # set Histori
-        #     histori = get_object_or_404(CarbonPrintHistory, user=request.user)
-            
-        #     # save form
-        #     komponen_kendaraan = form_kendaraan.save()
-        #     detail = form_detail.save(commit=False)
-        #     # hitung emisi CO2
-        #     detail.komponen_kalkulasi = komponen_kendaraan
-        #     detail.carbon_print = detail.komponen_kalkulasi.kilowatt_hour*0.794
-        #     # form_detail.cleaned_data['kilowatt_hour']
-        #     data = {
-        #         "pk" : form_detail.pk,
-        #         "usage" : form_detail.usage,
-        #         "detail_karbon" : form_detail.detail_karbon,
-        #         "komponen_kalkulasi" : form_detail.komponen_kalkulasi,
-        #         "date_input" : form_detail.date_input,
-
-        #     }
-            
-        #     # update total carbon print user
-        #     detail.histori_karbon = histori
-        #     detail.histori_karbon.carbon_print_total = detail.histori_karbon.carbon_print_total+detail.carbon_print  
-        #     # save input form sbg object baru
-        #     form_detail.save()
-
-        #     print(data["usage"])
-            
-    # return JsonResponse(data)

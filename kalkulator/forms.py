@@ -25,7 +25,7 @@ class DetailListrikForm(forms.ModelForm):
         widgets = {
             'kilowatt_hour' : forms.NumberInput(
                 attrs={
-                    'class': "form-control",
+                    'class': "form-control form-kalkulator",
                     'id': 'kilowatt_hour',
                     'name': 'kilowatt_hour'
                 }
@@ -62,14 +62,14 @@ class DetailKendaraanForm(forms.ModelForm):
             ),
             'kilometer_jarak' : forms.NumberInput(
                 attrs={
-                    'class': "form-control",
+                    'class': "form-control form-calculator",
                     'name': 'kilometer_jarak',
                     'id': 'kilometer_jarak'
                 }
             ),
             'litre_per_km' : forms.NumberInput(
                 attrs={
-                    'class': "form-control",
+                    'class': "form-control form-calculator",
                     'name': 'litre_per_km',
                     'id': 'litre_per_km'
                 }
