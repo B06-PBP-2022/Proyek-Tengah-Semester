@@ -3,14 +3,43 @@
     <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+       <style>
+        .showup {
+            width: 100px;
+            height: 100px;
+        }
+
+        .click {
+            cursor: pointer;
+            padding-bottom: 10px;
+        }
+       </style>
     </head>
     <body>
-        <div class="row">
-            <div class="col">col</div>
-            <div class="col">col</div>
-            <div class="w-100"></div>
-            <div class="col">col</div>
-            <div class="col">col</div>
-          </div>
+        
+        <<div class="click">Click me to Disable/Enable a html button</div>
+        <div class="showup">
+            <input id="Button" type="button" value=" + " style="background-color:grey" />
+            <label id="icon" for="name"><i class="fas fa-user"></i></label>
+            <input type="number" name="inputnom" id="inputnom" min="10000" placeholder="Masukkan nominal..." required/>
+        </div>
+        
+        <script>
+            // Demo using plain javascript
+            var button = document.getElementById("inputnom");
+            var clickBtn = document.getElementsByClassName('click')[0];
+
+            // Disable the button on initial page load
+            button.disabled = true;
+
+            //add event listener
+            clickBtn.addEventListener('click', function(event) {
+                button.disabled = !button.disabled;
+            });
+
+            button.addEventListener('click', function(event) {
+                alert('Enabled!');
+            });
+        </script>
     </body>
 </html>
