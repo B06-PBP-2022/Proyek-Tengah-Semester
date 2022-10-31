@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import FormFaq, AnswerFormAdmin
 from .models import Faq
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
 
@@ -20,21 +20,18 @@ def get_json(request):
 @login_required(login_url='/login/')
 def add_question(request):
     user = request.user
-    if request.method == 'POST':
-        if user.is_authenticated:
-            form = FormFaq(request.POST)
-
-            if form.is_valid():
-                question = form.cleaned_data.get('question')
-                faq = Faq(question=question, answer="", user=user, username=user)
-                faq.save()
-            return HttpResponse(b"CREATED")
+    if user.is_authenticated:
+        if request.method == 'POST':
+                form = FormFaq(request.POST)
+                if form.is_valid():
+                    question = form.cleaned_data.get('question')
+                    faq = Faq(question=question, answer="", user=user, username=user)
+                    faq.save()
+                return HttpResponse(b"CREATED")
         else:
-            return redirect('login:login_user')
-
+            form = FormFaq()
     else:
-        form = FormFaq()
-    return HttpResponseNotFound()
+        return redirect('login:login_user')
 
 @login_required(login_url='/login/')
 def edit_faq(request, pk):
@@ -47,3 +44,9 @@ def edit_faq(request, pk):
         faq.answer = new_answer
         faq.save()
         return redirect('faq:show_faq')
+
+@login_required(login_url='/login/')
+def delete_faq(request, pk):
+    faq = Faq.objects.get(id=pk)
+    faq.delete()
+    return redirect('faq:show_faq')

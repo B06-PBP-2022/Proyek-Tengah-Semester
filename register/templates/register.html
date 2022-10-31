@@ -20,7 +20,7 @@
   {% endif %}  
   <form method="POST">
     {% csrf_token %}
-    <div class="container">
+    <div class="container register-container">
       <table>
         <tr>
           <td>
@@ -64,5 +64,7 @@
       </tr>
     </form>
 
-    <p id="to-login">Sudah mempunyai akun? <strong><a href="{% url 'login:login_user' %}">Login</a></strong><p>
+    <p id="to-login">Sudah mempunyai akun? <strong><a style="text-decoration: none; color: #75C270;" href="{% url 'login:login_user' %}">Login</a></strong><p>
+
+      <div style="margin-bottom: 120px"> </div>
 {% endblock content %}
