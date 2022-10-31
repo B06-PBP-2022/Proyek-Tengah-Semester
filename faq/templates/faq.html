@@ -17,7 +17,7 @@
               <div class="fw-bold">{{quest.question}}</div>
               <strong style="color: #75C270;">jawaban: {{ quest.answer }}</strong>
               <div class="d-flex flex-row">
-                <button type="button" class="btn-green" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-bottom: 20px; margin-right: 16px;">
+                <button type="button" class="btn-green" data-bs-toggle="modal" data-bs-target=#mod{{quest.id}} style="margin-bottom: 20px; margin-right: 16px;">
                   Jawab
                 </button>
                 <a href="{% url 'faq:delete_faq' quest.id %}" style="text-decoration: none">
@@ -28,7 +28,7 @@
             <span style="background-color: #75C270;" class="badge rounded-pill">user = {{ quest.username }}</span>
           </li>
 
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id=mod{{quest.id}} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
