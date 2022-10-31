@@ -30,7 +30,8 @@ function showFaq() {
                 </h2>
                 <div id="panelsStayOpen-collapse${count}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingO${count}">
                     <div class="accordion-body">
-                        ${faq.fields.answer}
+                        <p>by ${faq.fields.username}<p>
+                        <p>${faq.fields.answer}<p>
                     </div>
                 </div>
             </div>`

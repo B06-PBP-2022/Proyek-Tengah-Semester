@@ -8,6 +8,29 @@
 
 {% block content %}
 <h1 class="title">Frequently Asked Question</h1>
+{% if user.is_superuser %}
+  <div class="container faq-list">
+    <ol class="list-group list-group-numbered">
+        {% for quest in faqs %}
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">{{quest.question}}</div>
+              {{ quest.answer }}
+              <div class="container">
+                  <form action="{% url 'faq:edit_faq' quest.id %}" method="POST" class="form-answer">
+                    {% csrf_token %}
+                    {{ form_admin.answer }}
+                    <button id="button" type="submit" class="btn-green" id="button">answer</button>
+                  </form>
+              </div>
+            </div>
+            <span class="badge bg-primary rounded-pill">{{ quest.username }}</span>
+          </li>
+        {% endfor %}
+      </div>
+  </div>
+
+{% else %}
 <div class="container faq-list">
     <div class="accordion" id="accordionPanelsStayOpenExample">
         
@@ -15,13 +38,15 @@
 </div>
 
 <div class="container form-question">
-    <p id="form-help">Pertanyaan anda tidak ada? Tanyakan pada field berikut:</p>
-    <form id="form" onsubmit="return false;">
-        {% csrf_token %}
-          <input type="text" name="question" maxlength="255" placeholder="Question" class="form-control">
-    </form>
+  <p id="form-help">Pertanyaan anda tidak ada? Tanyakan pada field berikut:</p>
+  <form id="form" onsubmit="return false;" method="POST">
+      {% csrf_token %}
+      {{ form.question }}
+  </form>
 </div>
 <button id="button" type="submit" class="btn-green" id="button">Submit</button>
+{% endif %}
+
  <!--
 <div class="container faq-list">
     <div class="accordion" id="accordionPanelsStayOpenExample">
