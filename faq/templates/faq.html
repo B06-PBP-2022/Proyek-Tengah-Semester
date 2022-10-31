@@ -8,13 +8,20 @@
 
 {% block content %}
 <h1 class="title">Frequently Asked Question</h1>
+
 {% if user.is_superuser %}
   <div class="container faq-answer">
-    <ol class="list-group list-group-numbered">
+    {% for recent in recently_answered_faq %}
+      <span style="margin-bottom: 16px;" class="badge rounded-pill text-bg-success">Recently answered question by Admin: {{ recent.question }}</span>
+    {% endfor %}
+    
+    <ol class="list-group">
         {% for quest in faqs %}
-          <li class="list-group-item d-flex justify-content-between align-items-start">
+          <li class="list-group-item  w-100 align-items-start">
             <div class="ms-2 me-auto">
-              <div class="fw-bold">{{quest.question}}</div>
+              <h5 class="fw-bold">{{quest.question}}</h5>
+              <span style="background-color: #75C270; margin-bottom: 8px;" class="badge">user = {{ quest.username }}</span>
+              <br>
               <strong style="color: #75C270;">jawaban: {{ quest.answer }}</strong>
               <div class="d-flex flex-row">
                 <button type="button" class="btn-green" data-bs-toggle="modal" data-bs-target=#mod{{quest.id}} style="margin-bottom: 20px; margin-right: 16px;">
@@ -25,7 +32,6 @@
                 </a>
               </div>
             </div>
-            <span style="background-color: #75C270;" class="badge rounded-pill">user = {{ quest.username }}</span>
           </li>
 
           <div class="modal fade" id=mod{{quest.id}} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -58,6 +64,9 @@
 
 {% else %}
 <div class="container faq-list">
+    {% for recent in recently_answered_faq %}
+      <span style="margin-bottom: 16px;" class="badge rounded-pill text-bg-success">Recently answered question by Admin: {{ recent.question }}</span>
+    {% endfor %}
     <div class="accordion" id="accordionPanelsStayOpenExample">
         
     </div>

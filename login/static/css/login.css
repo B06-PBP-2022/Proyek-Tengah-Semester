@@ -58,3 +58,10 @@ transition: 0.3s;
 color: black;
 }
 
+@media all and (max-width: 450px) {
+    .field-login {
+        margin-bottom: 20px;
+        width: 200px;
+    }
+}
+

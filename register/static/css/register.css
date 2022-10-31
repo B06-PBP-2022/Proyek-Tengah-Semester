@@ -30,7 +30,7 @@
 .register-container {
     display: block;
     margin: 0 auto;
-    max-width: 400px;
+    max-width: 450px;
     justify-content: center;
     align-items: center;
 }
@@ -61,4 +61,25 @@ ul {
 
 .form-check-input:checked {
     background-color: #75C270;
+}
+
+table {
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+  }
+
+@media all and (max-width: 450px) {
+    .form-control {
+        margin-bottom: 20px;
+        max-width: 300px;
+    }
+}
+
+@media all and (max-width: 200px) {
+    .form-control {
+        margin-bottom: 20px;
+        max-width: 100px;
+    }
 }
