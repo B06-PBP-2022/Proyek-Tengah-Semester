@@ -9,26 +9,52 @@
 {% block content %}
 <h1 class="title">Frequently Asked Question</h1>
 {% if user.is_superuser %}
-  <div class="container faq-list">
+  <div class="container faq-answer">
     <ol class="list-group list-group-numbered">
         {% for quest in faqs %}
           <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
               <div class="fw-bold">{{quest.question}}</div>
-              {{ quest.answer }}
-              <div class="container">
-                  <form action="{% url 'faq:edit_faq' quest.id %}" method="POST" class="form-answer">
-                    {% csrf_token %}
-                    {{ form_admin.answer }}
-                    <button id="button" type="submit" class="btn-green" id="button">answer</button>
-                  </form>
+              <strong style="color: #75C270;">jawaban: {{ quest.answer }}</strong>
+              <div class="d-flex flex-row">
+                <button type="button" class="btn-green" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-bottom: 20px; margin-right: 16px;">
+                  Jawab
+                </button>
+                <a href="{% url 'faq:delete_faq' quest.id %}" style="text-decoration: none">
+                  <button class="btn-green" style="margin-bottom: 20px;">Delete</button>
+                </a>
               </div>
             </div>
-            <span class="badge bg-primary rounded-pill">{{ quest.username }}</span>
+            <span style="background-color: #75C270;" class="badge rounded-pill">user = {{ quest.username }}</span>
           </li>
+
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">{{ quest.question }}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container">
+                    Ketik jawabanmu disini
+                    <form action="{% url 'faq:edit_faq' quest.id %}" method="POST" class="form-answer" style="margin-top: 20px;">
+                      {% csrf_token %}
+                      {{ form_admin.answer }}
+                </div>
+                </div>
+                <div class="modal-footer">
+                  <button id="button" type="submit" class="btn-green" id="button" style="margin-bottom: 20px" data-bs-dismiss="modal">answer</button>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
         {% endfor %}
       </div>
   </div>
+
+
 
 {% else %}
 <div class="container faq-list">
@@ -37,6 +63,7 @@
     </div>
 </div>
 
+{% if user.is_authenticated %}
 <div class="container form-question">
   <p id="form-help">Pertanyaan anda tidak ada? Tanyakan pada field berikut:</p>
   <form id="form" onsubmit="return false;" method="POST">
@@ -45,7 +72,17 @@
   </form>
 </div>
 <button id="button" type="submit" class="btn-green" id="button">Submit</button>
+{% else %}
+<div class="container form-question">
+  <p id="form-help">Pertanyaan anda tidak ada? Tanyakan dengan login terlebih dahulu</p>
+  <a href="{% url 'login:login_user' %}" style="text-decoration: none">
+    <button type="button" class="btn-green container-top2-button">Login</button>
+  </a>
 {% endif %}
+
+{% endif %}
+
+<div style="margin-bottom: 100px"> </div>
 
  <!--
 <div class="container faq-list">

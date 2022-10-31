@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from form_donasi.models import OpenDonasi
+
 
 def index(request):
-    return render(request, 'index.html')
+    data = OpenDonasi.objects.all()
+    context = {'data' : data}
+    return render(request, 'index.html', context)

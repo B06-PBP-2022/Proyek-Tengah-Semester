@@ -27,11 +27,10 @@ Dengan adanya JejaKarbon, diharapkan:
 - Pengguna bisa melakukan donasi, membantu perusahaan penggerak go green untuk menghijaukan lingkungan.
 
 ## Modul yang akan diimplementasikan dalam Jejakarbon
-1) Halaman utama, Halaman login/logout, Register (post) (**Rania Maharani Narendra**)
+1) Halaman utama, Halaman login/logout, Register, faq (**Rania Maharani Narendra**)
 - About JejaKarbon
 - Daftar frequently asked question (get)
 - form faq (post)
-- Daftar seluruh donasi yang terdaftar (get) => dari halaman penambahan
 2) Halaman input data transportasi dan perhitungan carbon footprint (**Griselda Neysa Sadiya**)
 - Form input data transportasi (post)
 - Perhitungan carbon footprint 
@@ -51,20 +50,21 @@ Dengan adanya JejaKarbon, diharapkan:
 ## Role Pengguna dalam JejaKarbon
 1) User nonlogin:
 - Membuat akun
-- melihat faq dan bertanya
+- melihat faq
 - Melihat daftar donasi pada page Home (utama)
-2) User login:
+2) User login pribadi:
 - Sama seperti user nonlogin (kecuali membuat akun)
 - Melakukan donasi
+- bertanya pada faq
 - Melihat progress akun/membuka profile
 - Melakukan input data transportasi dan mendapatkan data carbon footprint  
-3) Organisasi:
+3) User login Organisasi:
 - Membuka donasi
 - Melihat daftar donasi pada page Home (utama)
 - melihat faq dan bertanya
 4) Admin:
 - menjawab faq
-- sama seperti user login
+- sama seperti user login kecuali bertanya pada faq
 
 Sumber Pendukung:
 [Why Is a Carbon Footprint Bad for the Environment? All You Need to Know](https://impactful.ninja/why-is-a-carbon-footprint-bad-for-the-environment/#:~:text=Our%20carbon%20footprint%20has%20a,of%20glaciers%20and%20polar%20ice)
