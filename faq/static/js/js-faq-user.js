@@ -31,7 +31,8 @@ function showFaq() {
                 </h2>
                 <div id="panelsStayOpen-collapse${count}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingO${count}">
                     <div class="accordion-body">
-                        <p>by ${faq.fields.username}<p>
+                      <span style="background-color: #75C270; margin-bottom: 8px;" class="badge">asked by ${faq.fields.username}</span>
+                      <br>
                         <strong style="color: #75C270;">jawaban: ${faq.fields.answer}</strong>
                     </div>
                 </div>
