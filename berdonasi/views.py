@@ -6,6 +6,9 @@ from django.contrib import messages
 
 
 def show_masukkan_nominal(request):
+
     return render(request,'form_berdonasi.html')
 
-
+def test(request):
+    
+    return render(request,'test.html')

@@ -10,9 +10,10 @@
   <!-- Bootstrap CSS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
   
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link rel="stylesheet" href="{% static 'css/style_daftar.css' %}">
   
   <!-- JQuery AJAX -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -31,7 +32,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#">Hitung Karbon</a>
+            <a class="nav-link" href="{% url 'kalkulator:show_kalkulator' %}">Hitung Karbon</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">List Donasi</a>
@@ -70,31 +71,105 @@
   {% block content %}
   {% endblock content %}
 
-  <!-- Footer -->
-  <div class="container">
-    <hr>
-    <footer>
-      <div class="row">
-        <div class="col kontributor">
-          <p><strong>Kontributor</strong></p>
-          <p>Daffa Ilham Restupratama</p>
-          <p>Dipa Alhaza</p>
-          <p>Griselda Neysa Sadiya</p> 
-          <p>Pantun Elfreddy Sihombing</p> 
-          <p>Rania Maharani Narendra</p> 
-        </div>
-        <div class="col footer-application">
-          <div class="row">
-            <div class="col">
-              <p><strong>JejaKarbon</strong></p>
-              <p>Tugas Kelompok</p>
-              <p>Pemrograman Berbasis Platform</p>
-            </div>
+ 
+
+<footer class="text-center text-lg-start bg-white">
+  <hr style="color:#4A9745">
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 d-flex">
+          <!-- Content -->
+          <img src="{% static 'image/logo.png' %}" class="w-50 h-50">
+          <div>
+            <h6 class="text-uppercase fw-bold mb-4">
+              <a href="#">Jejak karbon</a>
+              
+            </h6>
+            <p>
+              Tugas pemograman berbasis platform
+            </p>
           </div>
         </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Website ini dibuat dengan
+          </h6>
+          <p>
+            <a href="https://docs.djangoproject.com/id/4.1/" class="text-reset" target="_blank">Django</a>
+          </p>
+          <p>
+            <a href="https://html.spec.whatwg.org/" class="text-reset" target="_blank">HTML</a>
+          </p>
+          <p>
+            <a href="https://www.w3.org/Style/CSS/specs.en.html" class="text-reset" target="_blank">CSS</a>
+          </p>
+          <p>
+            <a href="https://javascript.info/" class="text-reset" target="_blank">Javascript</a>
+          </p>
+          <p>
+            <a href="https://getbootstrap.com/" class="text-reset" target="_blank">Bootsrap</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Kontributor
+          </h6>
+          <p>
+            Daffa Ilham Restupratama
+          </p>
+          <p>
+            Dipa Alhaza 
+          </p>
+          <p>
+            Griselda Neysa Sadiya
+          </p>
+          <p>
+            Pantun Elfreddy Sihombing
+          </p>
+          <p>
+            Rania Maharani Narendra
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Kontak</h6>
+          <p><i class="bi bi-house-fill m-3"></i>Fakultas Ilmu Komputer, UI</p>
+          <p>
+            <i class="bi bi-envelope-fill m-3"></i>
+            jejakkarbon@example.com
+          </p>
+        </div>
+        <!-- Grid column -->
       </div>
-    </footer>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <hr class="m-0" style="color:#4A9745">
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+    © 2022 Copyright:
+    <a class="text-reset fw-bold" href="#">Jejak Karbon</a>
   </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
 </body>
 
 </html>
