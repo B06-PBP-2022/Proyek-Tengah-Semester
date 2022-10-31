@@ -11,17 +11,24 @@ def show_faq(request):
     form = FormFaq()
     form_admin = AnswerFormAdmin()
 
-    # session
+    # session admin
     if 'recently_answered' not in request.session:
         recently_answered_faq = None
     else:
         recently_answered_faq = Faq.objects.filter(pk__in=request.session['recently_answered'])
+
+    # session user
+    if 'recently_asked' not in request.session:
+        recently_asked_faq = None
+    else:
+        recently_asked_faq = Faq.objects.filter(pk__in=request.session['recently_asked'])
             
     context = {'form':form, 
                'username': request.user,
                'form_admin':form_admin, 
                'faqs' : faqs,
-               'recently_answered_faq' : recently_answered_faq}
+               'recently_answered_faq' : recently_answered_faq,
+               'recently_asked_faq' : recently_asked_faq}
 
     return render(request, 'faq.html', context)
 
@@ -39,6 +46,19 @@ def add_question(request):
                     question = form.cleaned_data.get('question')
                     faq = Faq(question=question, answer="", user=user, username=user)
                     faq.save()
+
+                    # session for user
+                    if 'recently_asked' in request.session:
+                        if faq.id in request.session['recently_asked']:
+                            request.session['recently_asked'].remove(faq.id)
+
+                        request.session['recently_asked'].insert(0, faq.id)
+                        if len(request.session['recently_asked']) > 1:
+                            request.session['recently_asked'].pop()
+                    else:
+                        request.session['recently_asked'] = [faq.id]
+
+                    request.session.modified = True
                 return HttpResponse(b"CREATED")
         else:
             form = FormFaq()
@@ -56,6 +76,7 @@ def edit_faq(request, pk):
         faq.answer = new_answer
         faq.save()
 
+        # session for admin
         if 'recently_answered' in request.session:
             if pk in request.session['recently_answered']:
                 request.session['recently_answered'].remove(pk)
