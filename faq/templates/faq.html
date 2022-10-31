@@ -64,8 +64,9 @@
 
 {% else %}
 <div class="container faq-list">
-    {% for recent in recently_answered_faq %}
-      <span style="margin-bottom: 16px;" class="badge rounded-pill text-bg-success">Recently answered question by Admin: {{ recent.question }}</span>
+  <!-- django session -->
+    {% for recent in recently_asked_faq %}
+      <span style="margin-bottom: 16px;" class="badge rounded-pill text-bg-success">Recently asked question by You: {{ recent.question }}</span>
     {% endfor %}
     <div class="accordion" id="accordionPanelsStayOpenExample">
         
