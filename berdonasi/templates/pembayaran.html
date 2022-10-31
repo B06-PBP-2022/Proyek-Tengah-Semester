@@ -99,12 +99,24 @@
     margin-left: 5px;
    }
 
-   input[type=radio]:checked + label {
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.25);
-    
+   
+
+   input[type=radio]:checked + label > img[id=check] {
+    visibility: visible;
     
    }
 
+   input[type=radio]:checked + label{
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.25);
+   } 
+ 
+   .checklist{
+    visibility: hidden;
+    position: absolute;
+    left: 400px;
+    top: 17px;
+
+   }
 
 </style>
 
@@ -118,42 +130,51 @@
         <label for="gopay" class="payment" >
             <i class="fa gopay" aria-hidden="true"></i>
             <img src="{% static 'image/logo-gopay-vector.png' %}" style="max-height: 30px" class="imggopay">
+            <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
         </label><br>
         <input type="radio" name="method" id="shopeepay" class="radiobut"></input>
         <label for="shopeepay" class="payment"> 
             <i class="fa shopeepay" aria-hidden="true"></i>
             <img src="{% static 'image/shopeepay.png' %}" style="max-height: 50px " class="imgspay">
+            <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
+            
         </label><br>
         <input type="radio" name="method" id="ovo" class="radiobut"></input>
         <label for="ovo" class="payment"> 
             <i class="fa shopeepay" aria-hidden="true"></i>
             <img src="{% static 'image/ovo.png' %}" style="max-height: 16px " class="imgovo">
+            <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
         </label><br>
         <input type="radio" name="method" id="linkaja" class="radiobut"></input>
         <label for="linkaja" class="payment"> 
             <i class="fa shopeepay" aria-hidden="true"></i>
             <img src="{% static 'image/linkaja.png' %}" style="max-height: 25px " class="imglinkaja">
+            <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
             
         </label><br>
         <input type="radio" name="method" id="bca" class="radiobut"></input>
         <label for="bca" class="payment"> 
             <i class="fa shopeepay" aria-hidden="true"></i>
             <img src="{% static 'image/bca.png' %}" style="max-height: 20px " class="imgbca">
+            <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
         </label><br>
         <input type="radio" name="method" id="bri" class="radiobut"></input>
         <label for="bri" class="payment"> 
             <i class="fa shopeepay" aria-hidden="true"></i>
             <img src="{% static 'image/bri.png' %}" style="max-height: 18px " class="imgbri">
+            <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
         </label><br>
         <input type="radio" name="method" id="mandiri" class="radiobut"></input>
         <label for="mandiri" class="payment"> 
             <i class="fa shopeepay" aria-hidden="true"></i>
             <img src="{% static 'image/mandiri.png' %}" style="max-height: 20px " class="imgmandiri">
+            <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
         </label><br>
         <input type="radio" name="method" id="lain" class="radiobut"></input>
         <label for="lain" class="payment"> 
             <i class="fa shopeepay" aria-hidden="true"></i>
             <img src="{% static 'image/lain.png' %}" style="max-height: 22px " class="imglain">
+            <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
         </label>
     </form>
 
@@ -171,5 +192,6 @@
     <div class="page-right">
         
     </div>
+
 </section> 
 {% endblock content %}
