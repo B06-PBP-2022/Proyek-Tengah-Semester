@@ -51,7 +51,7 @@ Dengan adanya JejaKarbon, diharapkan:
 1) User nonlogin:
 - Membuat akun
 - melihat faq
-- Melihat daftar donasi pada page Home (utama)
+- Melihat daftar donasi
 2) User login pribadi:
 - Sama seperti user nonlogin (kecuali membuat akun)
 - Melakukan donasi
@@ -60,8 +60,9 @@ Dengan adanya JejaKarbon, diharapkan:
 - Melakukan input data transportasi dan mendapatkan data carbon footprint  
 3) User login Organisasi:
 - Membuka donasi
-- Melihat daftar donasi pada page Home (utama)
+- Melihat daftar donasi
 - melihat faq dan bertanya
+- Melihat progress akun/membuka profile
 4) Admin:
 - menjawab faq
 - sama seperti user login kecuali bertanya pada faq

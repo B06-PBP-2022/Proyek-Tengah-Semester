@@ -10,7 +10,19 @@ def show_faq(request):
     faqs = Faq.objects.all()
     form = FormFaq()
     form_admin = AnswerFormAdmin()
-    context = {'form':form, 'username': request.user, 'form_admin':form_admin, 'faqs' : faqs}
+
+    # session
+    if 'recently_answered' not in request.session:
+        recently_answered_faq = None
+    else:
+        recently_answered_faq = Faq.objects.filter(pk__in=request.session['recently_answered'])
+            
+    context = {'form':form, 
+               'username': request.user,
+               'form_admin':form_admin, 
+               'faqs' : faqs,
+               'recently_answered_faq' : recently_answered_faq}
+
     return render(request, 'faq.html', context)
 
 def get_json(request):
@@ -43,6 +55,18 @@ def edit_faq(request, pk):
         new_answer = request.POST.get('answer')
         faq.answer = new_answer
         faq.save()
+
+        if 'recently_answered' in request.session:
+            if pk in request.session['recently_answered']:
+                request.session['recently_answered'].remove(pk)
+
+            request.session['recently_answered'].insert(0, pk)
+            if len(request.session['recently_answered']) > 1:
+                request.session['recently_answered'].pop()
+        else:
+            request.session['recently_answered'] = [pk]
+
+        request.session.modified = True
         return redirect('faq:show_faq')
 
 @login_required(login_url='/login/')
