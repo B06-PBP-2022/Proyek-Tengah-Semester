@@ -20,16 +20,10 @@ $(document).ready( function(){
                     username: username,
                     csrfmiddlewaretoken: CSRFtoken
                 });
-
-                    // alert("DONE")
-                    // let content = '';
-                    
-                    // content = `<h3 class="name-header">${username}</h3>`;
                     $('#id-name-header').text(username);
-                    $('#id-tes-aja').text(username);
+                    $('#id-username').val("");
+                    $('#id-username-content').text(username);
                     $('#edit-username-div').hide;
-                
-                
             } else {
                 alert('Username is not available');
             }
