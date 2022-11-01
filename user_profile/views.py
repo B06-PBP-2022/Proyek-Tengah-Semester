@@ -1,7 +1,6 @@
 import datetime
-# from kalkulator.models import DataCarbon
+from kalkulator.models import CarbonDetail, CarbonPrintHistory
 from register.models import UserProfile
-# from calculator.models import DataCarbon
 
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
@@ -18,18 +17,21 @@ from user_profile.models import LastEdited
 
 @login_required(login_url='/login/')
 def show_profile(request):
-    # # data_carbon = DataCarbon.objects.filter(user = request.user)
     username_form = EditUsernameForm()
-    # edit_account_form = EditAccountForm()
-    # password_form = PasswordChangeForm(request.user, request.POST)
+
+    profile = UserProfile.objects.get(user=request.user)
+    
+    try:
+        histori_karbon = CarbonPrintHistory.objects.get(user = profile)
+    except:
+        histori_karbon = CarbonPrintHistory(user = profile)
+        histori_karbon.save()
+
+    detail_karbon = CarbonDetail.objects.filter(histori_karbon = histori_karbon)
     context = {
         'username_form': username_form,
-        # 'edit_account_form': edit_account_form,
-    #     'data_carbon': data_carbon,
-    #     'username_form': username_form,
-    #     'password_form': password_form,
-    #     'last_username_edited': LastEdited.objects.get(user = request.user).last_username_edited,
-    #     'last_password_edited': LastEdited.objects.get(user = request.user).last_password_edited
+        'histori_karbon': histori_karbon,
+        'detail_karbon': detail_karbon,
     }
     return render(request, 'user_profile.html', context)
 
