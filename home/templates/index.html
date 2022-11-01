@@ -4,6 +4,12 @@
 {% block meta %}
 <title>JejaKarbon</title>
 <link rel="stylesheet" href="{% static 'CSS/home.css' %}">
+<style>
+  body {
+    background-image: url("{% static 'image/fall.png' %}");
+    background-repeat: no-repeat;
+}
+</style>
 {% endblock meta %}
 
 {% block content %}
@@ -53,14 +59,25 @@
     </a>
     {% elif user.userprofile.organization %}
     <h1 class="subtitle">Ingin Membuka Donasi?</h1>
-    <a href="{% url 'form_donasi:open_donasi' %}">
+    <a href="{% url 'form_donasi:show_page' %}">
       <button type="button" class="btn-green container-top2-button">Buka Donasi</button>
     </a>
     {% else %}
     <h1 class="subtitle">Track Your Carbon Footprint!</h1>
-    <a href="#">
+    <a href="{% url 'kalkulator:show_kalkulator' %}">
       <button type="button" class="btn-green container-top2-button">Calculate!</button>
     </a>
     {% endif %}
   </div>
+
+  <!-- cards -->
+  <div class="container" id="container-data">
+    <h1 class="subtitle">Donasi pada JejaKarbon</h1>
+    <div class="row row-cols-2 justify-content-center cards-donate" id="content">
+      <!-- each row has 2 cards -->
+      
+    </div>
+  </div>
+  
+<script src="{% static 'js/home.js' %}"></script>
 {% endblock content %}

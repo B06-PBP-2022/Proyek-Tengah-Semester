@@ -8,6 +8,7 @@ function addFaq() {
       method: "POST",
       body: new FormData(document.querySelector('#form'))
     }).then(showFaq)
+    document.getElementById("form").reset();
     return false
   }
 
@@ -30,7 +31,9 @@ function showFaq() {
                 </h2>
                 <div id="panelsStayOpen-collapse${count}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingO${count}">
                     <div class="accordion-body">
-                        ${faq.fields.answer}
+                      <span style="background-color: #75C270; margin-bottom: 8px;" class="badge">asked by ${faq.fields.username}</span>
+                      <br>
+                        <strong style="color: #75C270;">jawaban: ${faq.fields.answer}</strong>
                     </div>
                 </div>
             </div>`
@@ -43,5 +46,7 @@ function showFaq() {
     }
   })
   };
+
+  
 
 document.getElementById("button").onclick = addFaq

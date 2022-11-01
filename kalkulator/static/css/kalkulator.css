@@ -1,0 +1,45 @@
+.headline{
+    color:#4A9745;
+    font-weight: bold;
+}
+
+.form-select {
+    width: fit-content;
+    align-content: center;
+    text-align: center;
+    border-radius: 20px;
+    margin-bottom: 8px;
+}
+
+div.input-group {
+    margin: 0;
+    max-height: 30px;
+    max-width: 300px;
+}
+
+span.input-group-text  {
+    color: white;
+    font-weight: bold;
+    background-color: #4A9745;
+    border: 2px;
+    border-color: #4A9745;
+}
+
+fieldset {
+    margin: 0 auto;
+}
+
+select {
+    display: block;
+    margin: 0 auto;
+}
+
+.pemakaian-carbon {
+    border-radius: 10px;
+}
+
+
+.col-form-label {
+    font-weight: bold;
+    color: #4A9745;
+}
