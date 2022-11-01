@@ -14,7 +14,6 @@ class OpenDonasi(models.Model):
     total_donasi_terkumpul = models.IntegerField(default=0, blank=True)
     target_donasi = models.PositiveIntegerField(default=0, blank=True)
     username = models.CharField(max_length=100)
-   
     def __str__(self):
         return self.tema_kegiatan
     

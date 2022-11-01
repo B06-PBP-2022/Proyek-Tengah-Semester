@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-
+{% load static %}
     {% block meta %}
+   
     <title>Donasi - Jejakarbon</title>
     
 
@@ -9,7 +10,7 @@
 
     {% block content %}  
     <style>
-     
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;0,600;0,700;1,200&display=swap');
       form, input, p { 
       padding: 0;
       margin: 0;
@@ -42,13 +43,15 @@
       .main-block {
       max-width: 500px; 
       min-height: 430px; 
-      padding: 20px 0;
+      padding: 20px 2px;
       margin: auto;
       border-radius: 5px; 
       background: #ffffff; 
       }
       form {
-      margin: 0 30px;
+      margin: 0 26px;
+     
+    
       }
      
       input[type=text], input[type=number] {
@@ -91,7 +94,7 @@
 
       }
 
-      #nominal{
+      #nom{
         margin: 3px  ;
         padding: 20px ;
         background: #ffffff;
@@ -102,7 +105,7 @@
         
       }
 
-      #nominal:hover{
+      #nom:hover{
         background: #75C270;
         color: #fff;
       }
@@ -115,50 +118,208 @@
         font-weight: 500;
       }
 
+      .radiobut{
+        visibility: hidden;
+      }
+
+      .payment{
+        box-sizing: border-box;
+        width: 440px;
+        height: 48px;
+        margin-top: 0px;
+        border: 2px #2b2121;
+        background: #FFFFFF;
+        box-shadow: 0px 0.1px 1px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+      }
+
+      .imggopay{
+        margin-top: 8px;
+        margin-left: 2px;
+      }
+      .imgspay{
+        margin-left: 3px;
+      }
+
+      .imgovo {
+        margin-top: 16px;
+        margin-left: 5px;
+      }
+
+      .imglinkaja{
+        margin-top: 12px;
+        margin-left: 5px;
+      }
+
+      .imgbca{
+        margin-top: 14px;
+        margin-left: 5px;
+      }
+
+      .imgbri{
+        margin-top: 15px;
+        margin-left: 5px;
+      }
+
+      .imgmandiri{
+        margin-top: 9px;
+        margin-left: 5px;
+      }
+
+      .imglain{
+        margin-top: 14px;
+        margin-left: 5px;
+      }
+      
+      .checklist{
+        visibility: hidden;
+        position: absolute;
+        left: 400px;
+        top: 17px;
+
+      }
+
+      input[type=radio]:checked + label > img[id=check] {
+        visibility: visible;
+    
+      }
+
+      input[type=radio]:checked + label{
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.25);
+      } 
+
+      h2{
+        font-family: 'Poppins', sans-serif;
+        font-style: normal;
+        font-weight: 450;
+        font-size: 15px;
+        color: #75C270;
+      }
+
+
+
+    
+      
+
   
     </style>
 
     <div class="main-block">
       <h1>Masukkan Nominal Donasi &#x1F4B8</h1>
       
-      <form name="form" method="POST"  action="pembayaran">
+      <form id="forms" name="form" method="POST" id="post-form">
         {% csrf_token %}
      
         <div class="container-fluid">
           <div class="row">
             <div class="col">
-              <button type="button" id="nominal" onclick="document.getElementById('inputnom').value='10000'" >10.000</button>
+              <button type="button" id="nom" onclick="document.getElementById('nominal').value='10000'" >10.000</button>
             </div>
             <div class="col">
-              <button type="button" id="nominal" onclick="document.getElementById('inputnom').value='20000'" >20.000</button>
+              <button type="button" id="nom" onclick="document.getElementById('nominal').value='20000'" >20.000</button>
             </div>
             <div class="col">
-              <button type="button" id="nominal" onclick="document.getElementById('inputnom').value='50000'" >50.000</button>
+              <button type="button" id="nom" onclick="document.getElementById('nominal').value='50000'" >50.000</button>
             </div>
             <div class="col">
-              <button type="button" id="nominal" onclick="document.getElementById('inputnom').value='75000'" >75.000</button>
+              <button type="button" id="nom" onclick="document.getElementById('nominal').value='75000'" >75.000</button>
             </div>
             <div class="col">
-              <button type="button" id="nominal" onclick="document.getElementById('inputnom').value='100000'">100.000</button>
+              <button type="button" id="nom" onclick="document.getElementById('nominal').value='100000'">100.000</button>
             </div>
             <div class="col">
-              <button type="button" id="nominal" onclick="document.getElementById('inputnom').value='200000'" >200.000</button>
+              <button type="button" id="nom" onclick="document.getElementById('nominal').value='200000'" >200.000</button>
             </div>
           </div>
         </div>
         <hr>
         <p>Nominal donasi lainnya</p>
         <label id="icon" for="name"><i class="fas fa-user"></i></label>
-        <input type="number" name="inputnom" id="inputnom" min="10000" placeholder="Masukkan nominal..." required/>
+        <input type="text" name="nominal" id="nominal" min="10000" placeholder="Masukkan nominal..." required/>
         <h5>minimal donasi Rp10.000</h5>
+        
         <label id="icon" for="name"><i class="fas fa-unlock-alt"></i></label>
-        <input type="text" name="inputpesan" id="inputpesan" placeholder="Masukkan pesan..." required/>
-     
+        <input type="text" name="pesan" id="pesan" placeholder="Masukkan pesan..." required/>
+        <hr>
+
+        <h2>Metode Pemabayaran</h2>
+
+
+        <input type="radio" name="method" id="gopay" class="radiobut"></input>
+        <label for="gopay" class="payment" >
+            <i class="fa gopay" aria-hidden="true"></i>
+            <img src="{% static 'image/logo-gopay-vector.png' %}" style="max-height: 30px" class="imggopay">
+            <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
+        </label><br>
+        <input type="radio" name="method" id="shopeepay" class="radiobut"></input>
+        <label for="shopeepay" class="payment"> 
+            <i class="fa shopeepay" aria-hidden="true"></i>
+            <img src="{% static 'image/shopeepay.png' %}" style="max-height: 50px " class="imgspay">
+            <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
+            
+        </label><br>
+        <input type="radio" name="method" id="ovo" class="radiobut"></input>
+        <label for="ovo" class="payment"> 
+            <i class="fa shopeepay" aria-hidden="true"></i>
+            <img src="{% static 'image/ovo.png' %}" style="max-height: 16px " class="imgovo">
+            <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
+        </label><br>
+        <input type="radio" name="method" id="linkaja" class="radiobut"></input>
+        <label for="linkaja" class="payment"> 
+            <i class="fa shopeepay" aria-hidden="true"></i>
+            <img src="{% static 'image/linkaja.png' %}" style="max-height: 25px " class="imglinkaja">
+            <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
+            
+        </label><br>
+        <input type="radio" name="method" id="bca" class="radiobut"></input>
+        <label for="bca" class="payment"> 
+            <i class="fa shopeepay" aria-hidden="true"></i>
+            <img src="{% static 'image/bca.png' %}" style="max-height: 20px " class="imgbca">
+            <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
+        </label><br>
+        <input type="radio" name="method" id="bri" class="radiobut"></input>
+        <label for="bri" class="payment"> 
+            <i class="fa shopeepay" aria-hidden="true"></i>
+            <img src="{% static 'image/bri.png' %}" style="max-height: 18px " class="imgbri">
+            <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
+        </label><br>
+        <input type="radio" name="method" id="mandiri" class="radiobut"></input>
+        <label for="mandiri" class="payment"> 
+            <i class="fa shopeepay" aria-hidden="true"></i>
+            <img src="{% static 'image/mandiri.png' %}" style="max-height: 20px " class="imgmandiri">
+            <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
+        </label><br>
+        <input type="radio" name="method" id="lain" class="radiobut"></input>
+        <label for="lain" class="payment"> 
+            <i class="fa shopeepay" aria-hidden="true"></i>
+            <img src="{% static 'image/lain.png' %}" style="max-height: 22px " class="imglain">
+            <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
+        </label>
         <div class="btn-block">
           <button type="submit" >Lanjutkan pembayaran</button>
         </div>
+        <h2></h2>
       </form>
-      
     </div>
+
+    <script type="text/javascript">
+      $(document).on('submit', '#post-form',function(e){
+        e.preventDefault();
+
+        $.ajax({
+          type: 'POST',
+          url: '/pembayaran',
+          data:{
+            nominal:$('#nominal').val(),
+            pesan:$('#pesan').val(),
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+          },
+          success: function (data){
+            
+          }
+        });
+      });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     {% endblock content %}
 
