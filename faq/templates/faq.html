@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block meta %}
-<title>Frequently Asked Question</title>
+<title>Frequently Asked Questions</title>
 <link rel="stylesheet" href="{% static 'css/faq.css' %}">
 {% endblock meta %}
 
 {% block content %}
-<h1 class="title">Frequently Asked Question</h1>
+<h1 class="title">Frequently Asked Questions</h1>
 <img id="illustration" src="{% static 'image/ask_illust.png' %}">
 {% if user.is_superuser %}
   <div class="container faq-answer">

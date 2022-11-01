@@ -10,11 +10,24 @@
  
 <!-- BAGIAN MAIN CONTENT -->
 <div class="main-content">
+  {% if user.userprofile.organization %}
+    <div class="mb-4">
+      <div class="card-header">
+        Informasi
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p>Hanya akun bertipe non-Organisasi yang dapat menggunakan fitur kalkulator</p>
+          <footer class="blockquote-footer">Silahkan login dengan <cite title="Source Title">akun individu</cite></footer>
+        </blockquote>
+      </div>
+    </div>
+
+  {% else %}
     <div class="container">
         <!-- Judul webpage -->
         <div class="headline text-center">
             <h1>Carbon Print Calculator</h1>
-            <h3>for</h3>
             <form method="POST" id="usage-post">
                 <!-- {% csrf_token %} -->
                 {{form_detail.usage}}
@@ -27,10 +40,8 @@
                 <form action="" method="post" id="listrik-form">
                     <div class="row g-0 mb-3">
                         <label for="usage" class="col-sm-2 col-form-label">Pemakaian Listrik</label>
-                        <div class="input group col-sm-3">
+                        <div class="input-group col">
                           {{form_listrik.kilowatt_hour}}
-                        </div>
-                        <div class="input group col-sm-1">
                           <span class="input-group-text">kWh/bulan</span>
                         </div>
                     </div>
@@ -49,21 +60,17 @@
                   <!-- input kilometer_jarak -->
                   <div class="row g-0 mb-3">
                     <label for="kilometer_jarak" class="col-sm-2 col-form-label">Jarak Tempuh</label>
-                    <div class="input group col-sm-3">
+                    <div class="input-group col">
                       {{form_kendaraan.kilometer_jarak}}
-                    </div>
-                    <div class="input group col-sm-1">
                       <span class="input-group-text">km</span>
                     </div>
                   </div>
-                  
+
                   <div class="row g-0 mb-3">
                     <label for="litre_per_km" class="col-sm-2 col-form-label">Konsumsi BBM</label>
-                    <div class="input group col-sm-3">
+                    <div class="input-group col">
                       {{form_kendaraan.litre_per_km}}
-                    </div>
-                    <div class="input group col-sm-1">
-                      <span class="input-group-text">km/liter</span>
+                      <span class="input-group-text"><sup>km</sup>/<sub>liter</sub></span>
                     </div>
                   </div>
                 </form>
@@ -78,6 +85,7 @@
    
         </div>
     </div>
+    {% endif %}
 </div>
  
 

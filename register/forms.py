@@ -21,4 +21,4 @@ class ExtendedUserCreationForm(UserCreationForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('contact', 'organization')
+        fields = ('name', 'contact', 'organization')
