@@ -1,6 +1,7 @@
 import datetime
 # from kalkulator.models import DataCarbon
 from register.models import UserProfile
+# from calculator.models import DataCarbon
 
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
@@ -17,7 +18,6 @@ from user_profile.models import LastEdited
 
 @login_required(login_url='/login/')
 def show_profile(request):
-    user_profile = UserProfile.objects.get(user = request.user)
     # # data_carbon = DataCarbon.objects.filter(user = request.user)
     username_form = EditUsernameForm()
     # edit_account_form = EditAccountForm()
