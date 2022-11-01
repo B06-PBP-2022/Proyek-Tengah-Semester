@@ -2,26 +2,98 @@
 {% load static %}
 
 {% block meta %}
-<title>Frequently Asked Question</title>
+<title>Frequently Asked Questions</title>
 <link rel="stylesheet" href="{% static 'css/faq.css' %}">
 {% endblock meta %}
 
 {% block content %}
-<h1 class="title">Frequently Asked Question</h1>
+<h1 class="title">Frequently Asked Questions</h1>
+<img id="illustration" src="{% static 'image/ask_illust.png' %}">
+{% if user.is_superuser %}
+  <div class="container faq-answer">
+    {% for recent in recently_answered_faq %}
+      <span style="display: block; width: fit-content; margin: 0 auto" class="badge rounded-pill text-bg-success">Recently answered by You: {{ recent.question }}</span>
+    {% endfor %}
+    
+    <ol class="list-group" style="margin-top: 16px;">
+        {% for quest in faqs %}
+          <li class="list-group-item  w-100 align-items-start">
+            <div class="ms-2 me-auto">
+              <h5 class="fw-bold">{{quest.question}}</h5>
+              <span style="background-color: #75C270;" class="badge">user = {{ quest.username }}</span>
+              <br>
+              <strong style="color: #75C270;">jawaban: {{ quest.answer }}</strong>
+              <div class="d-flex flex-row">
+                <button type="button" class="btn-green" data-bs-toggle="modal" data-bs-target=#mod{{quest.id}} style="margin-bottom: 20px; margin-right: 16px;">
+                  Jawab
+                </button>
+                <a href="{% url 'faq:delete_faq' quest.id %}" style="text-decoration: none">
+                  <button class="btn-green" style="margin-bottom: 20px;">Delete</button>
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <div class="modal fade" id=mod{{quest.id}} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">{{ quest.question }}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container">
+                    Ketik jawabanmu disini
+                    <form action="{% url 'faq:edit_faq' quest.id %}" method="POST" class="form-answer" style="margin-top: 20px;">
+                      {% csrf_token %}
+                      {{ form_admin.answer }}
+                </div>
+                </div>
+                <div class="modal-footer">
+                  <button id="button" type="submit" class="btn-green" id="button" style="margin-bottom: 20px" data-bs-dismiss="modal">answer</button>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+  </div>
+
+
+
+{% else %}
 <div class="container faq-list">
-    <div class="accordion" id="accordionPanelsStayOpenExample">
+  <!-- django session -->
+    {% for recent in recently_asked_faq %}
+      <span style="display: block; width: fit-content; margin: 0 auto;" class="badge rounded-pill text-bg-success">Recently asked by You: {{ recent.question }}</span>
+    {% endfor %}
+    <div style="margin-top: 16px;" class="accordion" id="accordionPanelsStayOpenExample">
         
     </div>
 </div>
 
+{% if user.is_authenticated %}
 <div class="container form-question">
-    <p id="form-help">Pertanyaan anda tidak ada? Tanyakan pada field berikut:</p>
-    <form id="form" onsubmit="return false;">
-        {% csrf_token %}
-          <input type="text" name="question" maxlength="255" placeholder="Question" class="form-control">
-    </form>
+  <p id="form-help">Pertanyaan anda tidak ada? Tanyakan pada field berikut:</p>
+  <form id="form" onsubmit="return false;" method="POST">
+      {% csrf_token %}
+      {{ form.question }}
+  </form>
 </div>
 <button id="button" type="submit" class="btn-green" id="button">Submit</button>
+{% else %}
+<div class="container form-question">
+  <p id="form-help">Pertanyaan anda tidak ada? Tanyakan dengan login terlebih dahulu</p>
+  <a href="{% url 'login:login_user' %}" style="text-decoration: none">
+    <button type="button" class="btn-green container-top2-button">Login</button>
+  </a>
+{% endif %}
+
+{% endif %}
+
+<div style="margin-bottom: 100px"> </div>
+
  <!--
 <div class="container faq-list">
     <div class="accordion" id="accordionPanelsStayOpenExample">

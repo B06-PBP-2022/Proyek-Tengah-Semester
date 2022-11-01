@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Kalkulator Carbon</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/kalkulator.css' %}">
+{% endblock meta %}
+ 
+{% block content %}
+ 
+<!-- BAGIAN MAIN CONTENT -->
+<div class="main-content">
+  {% if user.userprofile.organization %}
+    <div class="mb-4">
+      <div class="card-header">
+        Informasi
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p>Hanya akun bertipe non-Organisasi yang dapat menggunakan fitur kalkulator</p>
+          <footer class="blockquote-footer">Silahkan login dengan <cite title="Source Title">akun individu</cite></footer>
+        </blockquote>
+      </div>
+    </div>
+
+  {% else %}
+    <div class="container">
+        <!-- Judul webpage -->
+        <div class="headline text-center">
+            <h1>Carbon Print Calculator</h1>
+            <form method="POST" id="usage-post">
+                <!-- {% csrf_token %} -->
+                {{form_detail.usage}}
+            </form>
+        </div>
+   
+        <div class="container pemakaian-carbon">
+            <div class="form-carbon">
+                <!-- FORM LISTRIK -->
+                <form action="" method="post" id="listrik-form">
+                    <div class="row g-0 mb-3">
+                        <label for="usage" class="col-sm-2 col-form-label">Pemakaian Listrik</label>
+                        <div class="input-group col">
+                          {{form_listrik.kilowatt_hour}}
+                          <span class="input-group-text">kWh/bulan</span>
+                        </div>
+                    </div>
+                </form>
+       
+                <!-- FORM KENDARAAN-->
+                <form action="" method="post" id="kendaraan-form" style="display:none">
+                  <!-- input fuel_type -->
+                  <!-- d-flex justify-content-center -->
+                  <fieldset class="row mb-3">
+                    <label for="usage" class="col-sm-2 col-form-label">Jenis Kendaraan</label>
+                    <div class="col-sm-10">
+                      {{form_kendaraan.fuel_type}}
+                    </div>
+                  </fieldset>
+                  <!-- input kilometer_jarak -->
+                  <div class="row g-0 mb-3">
+                    <label for="kilometer_jarak" class="col-sm-2 col-form-label">Jarak Tempuh</label>
+                    <div class="input-group col">
+                      {{form_kendaraan.kilometer_jarak}}
+                      <span class="input-group-text">km</span>
+                    </div>
+                  </div>
+
+                  <div class="row g-0 mb-3">
+                    <label for="litre_per_km" class="col-sm-2 col-form-label">Konsumsi BBM</label>
+                    <div class="input-group col">
+                      {{form_kendaraan.litre_per_km}}
+                      <span class="input-group-text"><sup>km</sup>/<sub>liter</sub></span>
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="container text-center mt-5">
+          <button type="button" class="btn-green" id="calculate-btn">Calculate</button>
+        </div>
+
+        <div class="show-offset">
+   
+        </div>
+    </div>
+    {% endif %}
+</div>
+ 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/kalkulator.js' %}"></script>
+{% endblock content %}

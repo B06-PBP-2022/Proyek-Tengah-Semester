@@ -1,0 +1,41 @@
+body{
+    box-sizing: border-box;
+}
+
+
+#aside{
+    background-color: #EBFBEA;
+    border-radius: 10px;
+    
+}
+
+.form-control:focus {
+    border-color: #4A9745;
+    box-shadow: 0 0 0 0.2rem #75C270;
+} 
+
+.form-control{
+    border-color: #4A9745;
+}
+
+
+#content{
+    margin-left: 7%;
+    color: #4A9745;
+
+}
+
+a{
+    text-decoration: none;
+    color: #75C270;
+}
+
+a:hover{
+    transition: 0.3s;
+    font-size: 102%;
+    color: #4A9745;
+}
+
+.sbmit{
+    text-decoration: none;
+}

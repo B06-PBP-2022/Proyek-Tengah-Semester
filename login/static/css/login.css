@@ -5,7 +5,7 @@
     margin-bottom: 20px;
 }
 
-.container {
+.login-container {
     display: block;
     margin: 0 auto;
     align-items: center;
@@ -56,5 +56,12 @@ transition: 0.3s;
 
 .closebtn:hover {
 color: black;
+}
+
+@media all and (max-width: 450px) {
+    .field-login {
+        margin-bottom: 20px;
+        width: 200px;
+    }
 }
 

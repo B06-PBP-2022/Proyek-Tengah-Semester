@@ -24,7 +24,7 @@
     <h1 class="title">Login</h1>
     <form method="POST" action="">
         {% csrf_token %}
-        <div class="container justify-content-center">
+        <div class="container login-container justify-content-center">
             <table>
                 <tr>
                     <td><input type="text" name="username" placeholder="Username" class="form-control field-login"></td>
@@ -41,8 +41,10 @@
         </div>
     </form>
         
-    <p id="to-register">Belum mempunyai akun? <strong><a href="{% url 'register:register' %}">Buat Akun</a></strong><p>
+    <p id="to-register">Belum mempunyai akun? <strong><a style="text-decoration: none; color: #75C270;" href="{% url 'register:register' %}">Buat Akun</a></strong><p>
 
 </div>
+
+<div style="margin-bottom: 100px"> </div>
 
 {% endblock content %}

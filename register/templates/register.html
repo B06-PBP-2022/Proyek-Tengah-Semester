@@ -20,7 +20,7 @@
   {% endif %}  
   <form method="POST">
     {% csrf_token %}
-    <div class="container">
+    <div class="container register-container justify-content-center">
       <table>
         <tr>
           <td>
@@ -34,6 +34,11 @@
         </tr>
         <tr>
           <td>
+            <input type="text" name="name" maxlength="200" required="" placeholder="name" class="form-control" id="name-field">
+          </td>
+        </tr>
+        <tr>
+          <td>
             <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1" placeholder="password" class="form-control">
           </td>
         </tr>
@@ -42,7 +47,6 @@
             <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" placeholder="re-enter password" class="form-control">
           </td>
         </tr>
-      </table>
       <tr>
         <td>
           <input type="text" name="contact" maxlength="100" required="" id="id_contact" placeholder="phone number" class="form-control" id="contact-field">
@@ -52,10 +56,11 @@
         <td>
           <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" name="organization" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Akun Organisasi</label>
+            <label class="form-check-label" for="flexSwitchCheckDefault">Daftarkan sebagai Akun Organisasi</label>
           </div>
         </td>
       </tr>
+    </table>
     </div>
       <tr>
         <td>
@@ -64,5 +69,7 @@
       </tr>
     </form>
 
-    <p id="to-login">Sudah mempunyai akun? <strong><a href="{% url 'login:login_user' %}">Login</a></strong><p>
+    <p id="to-login">Sudah mempunyai akun? <strong><a style="text-decoration: none; color: #75C270;" href="{% url 'login:login_user' %}">Login</a></strong><p>
+
+      <div style="margin-bottom: 120px"> </div>
 {% endblock content %}
