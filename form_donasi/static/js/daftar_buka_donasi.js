@@ -28,7 +28,6 @@ function getItemById(data, id) {
           return data[i];
       }
   }
-
   return undefined;
 }
 
@@ -50,7 +49,7 @@ function popUp(id){
 
 
   tema_kegiatan.innerText = spesifikData.fields.tema_kegiatan
-  pencetus_donasi.innerText = spesifikData.fields.pencetus_donasi
+  pencetus_donasi.innerText = "Dari: " + spesifikData.fields.pencetus_donasi
   tanggal_pembuatan.innerText = "Dibuat pada "+ spesifikData.fields.tanggal_pembuatan
   deskripsi.innerText = spesifikData.fields.deskripsi
   total_donasi_terkumpul.innerText = "Total donasi: " + spesifikData.fields.total_donasi_terkumpul + "/" + spesifikData.fields.target_donasi

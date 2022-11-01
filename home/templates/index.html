@@ -59,7 +59,7 @@
     </a>
     {% elif user.userprofile.organization %}
     <h1 class="subtitle">Ingin Membuka Donasi?</h1>
-    <a href="{% url 'form_donasi:open_donasi' %}">
+    <a href="{% url 'form_donasi:show_page' %}">
       <button type="button" class="btn-green container-top2-button">Buka Donasi</button>
     </a>
     {% else %}
@@ -75,6 +75,7 @@
     <h1 class="subtitle">Donasi pada JejaKarbon</h1>
     <div class="row row-cols-2 justify-content-center cards-donate" id="content">
       <!-- each row has 2 cards -->
+      
     </div>
   </div>
   

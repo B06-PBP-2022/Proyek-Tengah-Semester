@@ -2,7 +2,6 @@ $(document).ready(function(data){
     // ('#kendaraan-form').hide()
     $("#usage").change(function(){
         usage_type = $('#usage option:selected').val()
-        alert(usage_type)
         if (usage_type != 'listrik'){
             $('#listrik-form').hide()
             $('#kendaraan-form').show()
@@ -23,8 +22,6 @@ $(document).ready(function(data){
                 litre_per_km: $('#litre_per_km').val()
               },
               function(data){
-                alert(usage)
-                // alert($('.fuel-type-class:checked').val())
               }
               )
               $("#kendaraan-form")[0].reset()
@@ -36,7 +33,12 @@ $(document).ready(function(data){
                 kilowatt_hour: $('#kilowatt_hour').val()
               },
               function(data){
-                alert($('.fuel-type-class:checked').val())
+                $.get(
+                  '/kalkulator-karbon/kalkulator-json/',
+                  function(data){
+                    
+                  }
+                )
               }
               )
               $("#listrik-form")[0].reset()

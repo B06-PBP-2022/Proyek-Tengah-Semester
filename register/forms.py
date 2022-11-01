@@ -19,6 +19,8 @@ class ExtendedUserCreationForm(UserCreationForm):
         return user
 
 class UserProfileForm(forms.ModelForm):
+    name = forms.CharField(required=True)
+    
     class Meta:
         model = UserProfile
         fields = ('name', 'contact', 'organization')
