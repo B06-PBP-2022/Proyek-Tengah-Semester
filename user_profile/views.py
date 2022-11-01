@@ -19,6 +19,7 @@ from user_profile.models import LastEdited
 def show_profile(request):
     username_form = EditUsernameForm()
 
+    # todo: PERLU HANDLE SUPERUSER
     profile = UserProfile.objects.get(user=request.user)
     
     try:
