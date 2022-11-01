@@ -8,7 +8,7 @@ Rania Maharani Narendra - 2106650222 <br>
 # Jejakarbon
 Tautan aplikasi Heroku:  
 
-🌏[Halaman Utama Jejakarbon](https://jejakarbon.herokuapp.com/)🌳
+🌏[Halaman Utama Jejakarbon](https://jejakkarbon.herokuapp.com/)🌳
 
 JejaKarbon adalah environmental web application dimana kita bisa melakukan donasi kepada perusahaan Go Green dan melakukan tracker carbon footprint yang dihasilkan oleh pengguna, khususnya tracker penggunaan transportasi. JejaKarbon akan mengembalikan jumlah perkiraan carbon footprint yang dihasilkan oleh pengguna.   
 
