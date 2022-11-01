@@ -20,21 +20,50 @@
    .page{
         height: 100vh
    } 
-   .header h1 {
+   .header a {
     position: absolute;
     width: 387px;
     height: 54px;
-    left: 153px;
-    top: 140px;
+    left: 157px;
+    top: 125px;
     font-family: 'Poppins', sans-serif;
-
-
     
     font-style: normal;
     font-weight: 450;
     font-size: 30px;
     line-height: 54px;
 
+    color: #75C270;
+   }
+
+   .header h2{
+    position: absolute;
+    width: 387px;
+    height: 54px;
+    left: 157px;
+    top: 160px;
+    font-family: 'Poppins', sans-serif;
+
+    font-style: normal;
+    font-weight: 450;
+    font-size: 15px;
+    line-height: 54px;
+
+    color: #75C270;
+   }
+
+   .header h2[id="virtual"]{
+    position: absolute;
+    width: 387px;
+    height: 54px;
+    left: 157px;
+    top: 420px;
+    font-family: 'Poppins', sans-serif;
+
+    font-style: normal;
+    font-weight: 450;
+    font-size: 15px;
+    line-height: 54px;
 
     color: #75C270;
    }
@@ -48,12 +77,26 @@
         top: 120px;
         margin-top: 7px;
         border: 2px #2b2121;
-    
-
         background: #FFFFFF;
-        box-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 0.1px 1px rgba(0, 0, 0, 0.25);
         border-radius: 8px;
    }
+
+   .virtualacc{
+        box-sizing: border-box;
+        position: relative;
+        width: 430px;
+        height: 50px;
+        left: 140px;
+        top: 150px;
+        margin-top: 7px;
+        border: 2px #2b2121;
+        background: #FFFFFF;
+        box-shadow: 0px 0.1px 1px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+   }
+
+
 
    .radiobut{
     visibility: hidden;
@@ -118,12 +161,61 @@
 
    }
 
+   .square{
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    height: 300px;
+    width: 350px;
+    right: 153px;
+    top: 204px;
+    box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.25);
+   }
+
+   .roundsq{
+    position: absolute;
+   
+    height: 200px;
+    width: 280px;
+    right: 35px;
+    top: 25px;
+
+
+    background: #FFF;
+    border: 1.3px solid #DDD;
+    width: 80%; /*SPECIFY WIDTH HERE*/
+    display: inline-block;
+    border-radius: 8px;
+   }
+
+   .roundsq h2{
+
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    margin-left: 10px;
+    font-size: 18px;
+    line-height: 30px;
+    color: #4A9745;
+   }
+
+   .roundsq h3{
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    margin-left: 10px;
+    font-size: 13px;
+    line-height: 30px;
+    color: #4A9745;
+   }
+
 </style>
 
 <section class="page d-flex"> 
     <div class="page-left">
         <div class="header">
-            <h1>Metode Pembayaran</h1>
+            <a href="/berdonasi/">Metode Pembayaran</a>
+            <h2>Instant payment</h2>
+            <h2 id="virtual"> Virtual Account</h2>
         </div>
         <form action="">
         <input type="radio" name="method" id="gopay" class="radiobut"></input>
@@ -153,43 +245,45 @@
             
         </label><br>
         <input type="radio" name="method" id="bca" class="radiobut"></input>
-        <label for="bca" class="payment"> 
+        <label for="bca" class="virtualacc"> 
             <i class="fa shopeepay" aria-hidden="true"></i>
             <img src="{% static 'image/bca.png' %}" style="max-height: 20px " class="imgbca">
             <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
         </label><br>
         <input type="radio" name="method" id="bri" class="radiobut"></input>
-        <label for="bri" class="payment"> 
+        <label for="bri" class="virtualacc"> 
             <i class="fa shopeepay" aria-hidden="true"></i>
             <img src="{% static 'image/bri.png' %}" style="max-height: 18px " class="imgbri">
             <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
         </label><br>
         <input type="radio" name="method" id="mandiri" class="radiobut"></input>
-        <label for="mandiri" class="payment"> 
+        <label for="mandiri" class="virtualacc"> 
             <i class="fa shopeepay" aria-hidden="true"></i>
             <img src="{% static 'image/mandiri.png' %}" style="max-height: 20px " class="imgmandiri">
             <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
         </label><br>
         <input type="radio" name="method" id="lain" class="radiobut"></input>
-        <label for="lain" class="payment"> 
+        <label for="lain" class="virtualacc"> 
             <i class="fa shopeepay" aria-hidden="true"></i>
             <img src="{% static 'image/lain.png' %}" style="max-height: 22px " class="imglain">
             <img src="{% static 'image/checklist.png' %}" style="max-height: 15px" class="checklist" id="check">
         </label>
     </form>
-
-
-
-
-
-
     </div>
-    
- 
-    
     
 
     <div class="page-right">
+        <div class="square">
+            <div class="roundsq">
+            <h2>Total pembayaran</h2>
+            <h3>Total donasi &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Rp</h3>
+            <h3>Biaya admin &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Rp</h3>
+            <h3>Total &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Rp</h3>
+           
+            
+            </div>
+
+        </div>
         
     </div>
 
