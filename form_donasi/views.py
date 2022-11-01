@@ -41,7 +41,7 @@ def ajax_submit(request):
         
         data = {}
         form = forms.OpenDonasiForm(request.POST or None)
-        if (form.is_valid() & organization):
+        if (form.is_valid()):
             tema_kegiatan = form.cleaned_data['tema_kegiatan']
             deskripsi = form.cleaned_data['deskripsi']
             target_donasi = form.cleaned_data['target_donasi']
