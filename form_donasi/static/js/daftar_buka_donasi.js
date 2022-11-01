@@ -24,7 +24,6 @@ function saveData(data,pk) {
 function getItemById(data, id) {
   var i, len;
   for (i = 0, len = data.length; i < len; i += 1) {
-      console.log(data[i])
       if(id === data[i].pk) {
           return data[i];
       }
@@ -44,17 +43,17 @@ function popUp(id){
 
   const tema_kegiatan = document.getElementById('title')
   const tanggal_pembuatan = document.getElementById('tanggal_pembuatan')
+  const pencetus_donasi = document.getElementById('pencetus_donasi')
   const deskripsi = document.getElementById('deskripsi')
   const total_donasi_terkumpul = document.getElementById('total-donasi-terkumpul')
   
 
 
   tema_kegiatan.innerText = spesifikData.fields.tema_kegiatan
+  pencetus_donasi.innerText = spesifikData.fields.pencetus_donasi
   tanggal_pembuatan.innerText = "Dibuat pada "+ spesifikData.fields.tanggal_pembuatan
   deskripsi.innerText = spesifikData.fields.deskripsi
   total_donasi_terkumpul.innerText = "Total donasi: " + spesifikData.fields.total_donasi_terkumpul + "/" + spesifikData.fields.target_donasi
-
-
 }
 
 
@@ -79,6 +78,7 @@ $(document).ready(() => {
                   <h5 class="card-header h-6" style="background-color:#75C270;color:#fff">Oleh: ${daftar.fields.pencetus_donasi}</h5>
                   <div class="card-body">
                     <h5 class="card-title h-6">${daftar.fields.tema_kegiatan}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Dari ${daftar.fields.pencetus_donasi}</h6>
                     <h6 class="card-subtitle mb-2 text-muted">Dibuat pada ${daftar.fields.tanggal_pembuatan}</h6>
                     <p class="card-text">${daftar.fields.deskripsi}</p>
     
