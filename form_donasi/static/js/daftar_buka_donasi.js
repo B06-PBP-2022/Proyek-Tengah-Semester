@@ -1,7 +1,6 @@
 // Fungsi ini digunakan untuk memeriksa apakah localStorage didukung oleh browser atau tidak 
 const STORAGE_KEY = 'DATA_DONASI';
 
-
 function isStorageExist() /* boolean */ {
   if (typeof (Storage) === undefined) {
     alert('Browser kamu tidak mendukung local storage');
@@ -22,7 +21,6 @@ function saveData(data,pk) {
   }
 }
 
-
 function getItemById(data, id) {
   var i, len;
   for (i = 0, len = data.length; i < len; i += 1) {
@@ -34,7 +32,6 @@ function getItemById(data, id) {
 
   return undefined;
 }
-
 
 function popUp(id){
   const serializedData /* string */ = localStorage.getItem(STORAGE_KEY); // mengambil data dari localStorage
@@ -86,7 +83,7 @@ $(document).ready(() => {
                     <p class="card-text">${daftar.fields.deskripsi}</p>
     
                     <p class="card-text">Total donasi terkumpul: ${daftar.fields.total_donasi_terkumpul} /  ${daftar.fields.target_donasi}</p>
-                    <a href="#" class="btn-green sbmit">Donasi</a>
+                    <a href="donasi/" class="btn-green sbmit">Donasi</a>
                   </div>
                 </div>
                   
