@@ -82,7 +82,7 @@ $(document).ready(() => {
                     <h6 class="card-subtitle mb-2 text-muted">Dibuat pada ${daftar.fields.tanggal_pembuatan}</h6>
                     <p class="card-text">${daftar.fields.deskripsi}</p>
     
-                    <p class="card-text">Total donasi terkumpul: ${daftar.fields.total_donasi_terkumpul} /  ${daftar.fields.target_donasi}</p>
+                    <p class="card-text">Total donasi terkumpul: ${daftar.fields.total_donasi_terkumpul} / ${daftar.fields.target_donasi}</p>
                     <a href="donasi/" class="btn-green sbmit">Donasi</a>
                   </div>
                 </div>
