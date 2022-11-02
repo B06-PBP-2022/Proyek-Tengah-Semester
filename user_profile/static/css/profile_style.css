@@ -2,7 +2,15 @@
   background-color: #75C270;
 }
 
+#id-sidebar {
+  justify-content: center;
+}
+
 .name-header {
+  color: white;
+}
+
+.role-subtitle {
   color: white;
 }
 
