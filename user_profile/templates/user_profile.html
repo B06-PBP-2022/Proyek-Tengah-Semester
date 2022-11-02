@@ -13,10 +13,15 @@
 <div class="content d-flex flex-row" style="width: 100%;">
 
   <!-- Sidebar -->
-  <div class="d-flex flex-column flex-shrink-0 p-3 bg-green" style="width: 300px; height: 150vh;">
+  <div id="id-sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-green" style="width: 300px; height: 150vh;">
 
-    <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-      <h3 class="name-header" id="id-name-header">{{user}}</h3>
+    <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none flex-column">
+      <h3 class="name-header" id="id-name-header">{{user.userprofile.name}}</h3>
+      {% if user.profile.organization %}
+      <h6 class="role-subtitle" id="id-role-subtitle">Organisasi</h6>
+      {% else %}
+      <h6 class="role-subtitle" id="id-role-subtitle">Pengguna</h6>
+      {% endif %}
     </a>
     <hr>
 
