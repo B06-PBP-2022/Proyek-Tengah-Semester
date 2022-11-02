@@ -35,17 +35,18 @@ def show_json(request):
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def ajax_submit(request):
+    form = forms.OpenDonasiForm()
     if (request.method == 'POST'):
         user = request.user
         organization = user.userprofile.organization
         
         data = {}
         form = forms.OpenDonasiForm(request.POST or None)
-        if (form.is_valid()):
+        if (form.is_valid() & organization):
             tema_kegiatan = form.cleaned_data['tema_kegiatan']
             deskripsi = form.cleaned_data['deskripsi']
             target_donasi = form.cleaned_data['target_donasi']
-            new_data = OpenDonasi.objects.create(user=user, pencetus_donasi = user.username , tema_kegiatan=tema_kegiatan, target_donasi=target_donasi, total_donasi_terkumpul=0, deskripsi=deskripsi)
+            new_data = OpenDonasi.objects.create(user=user, pencetus_donasi = user.userprofile.name, username = user.username , tema_kegiatan=tema_kegiatan, target_donasi=target_donasi, total_donasi_terkumpul=0, deskripsi=deskripsi)
             data["tema_kegiatan"] = tema_kegiatan
             data["tanggal_pembuatan"] = new_data.tanggal_pembuatan
             data["deskripsi"] = new_data.deskripsi
@@ -55,8 +56,9 @@ def ajax_submit(request):
             data["pk"] = new_data.pk
             
             new_data.save()
-            return JsonResponse(data)
+            
         # else:
         #     messages.info(request, 'Untuk dapat membuat forum donasi, akun harus merupakan akun organisasi!!!')
+        return JsonResponse(data)
         
 
