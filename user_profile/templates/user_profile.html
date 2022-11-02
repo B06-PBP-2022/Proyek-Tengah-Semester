@@ -51,13 +51,16 @@
       <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
         <div class="profile-tab-content" style="padding: 30px;">
 
-          <div class="username-box">
+          <!-- Username div -->
+          <div class="username-box" style="margin: 0px 0px 30px 0px;">
             <p class="username-title green-jk">Username :</p>
             <h3 id="username-content" class="username-text darkgreen-jk">{{user}}</h3>
             <!-- Edit username button -->
             <button id="edit-username-button" type="button" class="btn btn-primary" onclick="edit_username_button()">Edit Username</button>
             <!-- End edit username button -->
           </div>
+          <!-- End username div -->
+
           <!-- Edit username div -->
           <div id="edit-username-div" style="display:none">
             <div class="edit-username-content">
@@ -75,10 +78,10 @@
             </div>
           </div>
           <!-- End edit username div -->
-          <p class="tes-aja" id="id-tes-aja">tes aja</p>
+          <!-- <p class="tes-aja" id="id-tes-aja">tes aja</p> -->
 
           <!-- Contact div -->
-          <div class="contact-box">
+          <div class="contact-box" style="margin: 30px 0px 30px 0px;">
             <p class="contact-title green-jk">Contact :</p>
             <h3 id="contact-content" class="contact-text darkgreen-jk">{{user.userprofile.contact}}</h3>
             <!-- Edit contact button -->
@@ -87,8 +90,26 @@
           </div>
           <!-- End contact div -->
 
+          <!-- Edit contact div -->
+          <div id="edit-contact-div" style="display:none">
+            <div class="edit-contact-content">
+              <div class="edit-contact-header">
+                <button type="button" class="btn-close" aria-label="Close" onclick="close_edit_contact()"></button>
+              </div>
+              <div class="edit-contact-body">
+                <form action="" method="POST">
+                  {% csrf_token %}
+                    <label for="contact" class="form-label">Nomor telepon baru</label>
+                    <input type="text" class="form-control" id="id-contact" name="contact" placeholder="Nomor telepon baru">
+                  <button id="submit-contact-button" class="btn btn-primary" type="button">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- End edit username div -->
+
           <!-- Email div -->
-          <div class="email-box">
+          <div class="email-box" style="margin: 30px 0px 30px 0px;">
             <p class="email-title green-jk">Email :</p>
             <h3 id="email-content" class="email-text darkgreen-jk">{{user.email}}</h3>
             <!-- Edit email button -->
@@ -96,6 +117,23 @@
             <!-- End edit email button -->
           <!-- End email div -->
 
+          <!-- Edit email div -->
+          <div id="edit-email-div" style="display:none">
+            <div class="edit-email-content">
+              <div class="edit-email-header">
+                <button type="button" class="btn-close" aria-label="Close" onclick="close_edit_email()"></button>
+              </div>
+              <div class="edit-email-body">
+                <form action="" method="POST">
+                  {% csrf_token %}
+                    <label for="email" class="form-label">Email baru</label>
+                    <input type="text" class="form-control" id="id-email" name="email" placeholder="Email baru">
+                  <button id="submit-email-button" class="btn btn-primary" type="button">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- End edit username div -->
 
         </div>
       </div>
@@ -132,35 +170,36 @@
       </div>
       <!-- End tab content donation history -->
 
-      <!-- Tab content carbon history -->
+      <!-- Tab content carbon production -->
       <div class="tab-pane fade" id="pills-carbon" role="tabpanel" aria-labelledby="pills-carbon-tab" tabindex="2">
-        <div class="carbon-history-tab-content" style="padding: 30px;">
-          <div class="carbon-history-box">
-            <p class="carbon-history-title green-jk">Histori Karbon :</p>
-            <div class="carbon-history-content">
-              <div class="carbon-history-content-box">
-                <div class="carbon-history-content-box-header">
-                  <p class="carbon-history-content-box-header-title">Karbon 1</p>
+        <div class="carbon-production-tab-content" style="padding: 30px; background-color: rgb(233, 207, 172);">
+          <div class="carbon-production-box">
+            <p class="carbon-production-title green-jk">Produksi Karbon :</p>
+            <div class="carbon-production-content">
+              <div class="carbon-production-content-box">
+                <div class="carbon-production-content-box-header">
+                  <p class="carbon-production-content-box-header-title">Karbon 1</p>
                 </div>
-                <div class="carbon-history-content-box-body">
-                  <p class="carbon-history-content-box-body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl.</p>
-                </div>
-              </div>
-              <div class="carbon-history-content-box">
-                <div class="carbon-history-content-box-header">
-                  <p class="carbon-history-content-box-header-title">Karbon 2</p>
-                </div>
-                <div class="carbon-history-content-box-body">
-                  <p class="carbon-history-content-box-body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl.</p>
+                <div class="carbon-production-content-box-body">
+                  <p class="carbon-production-content-box-body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl.</p>
                 </div>
               </div>
-              <div class="carbon-history-content-box">
-                <div class="carbon-history-content-box-header">
-                  <p class="carbon-history-content-box-header-title">Karbon 3</p>
+              <div class="carbon-production-content-box">
+                <div class="carbon-production-content-box-header">
+                  <p class="carbon-production-content-box-header-title">Karbon 2</p>
                 </div>
-                <div class="carbon-history-content-box-body">
-                  <p class="carbon-history-content-box-body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit
+                <div class="carbon-production-content-box-body">
+                  <p class="carbon-production-content-box-body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl.</p>
+                </div>
+              </div>
+              <div class="carbon-production-content-box">
+                <div class="carbon-production-content-box-header">
+                  <p class="carbon-production-content-box-header-title">Karbon 3</p>
+                </div>
+                <div class="carbon-production-content-box-body">
+                  <p class="carbon-production-content-box-body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit
           {% for detail in detail_karbon %}
+
           {% endfor %}
         </div>
       </div>
