@@ -62,6 +62,7 @@ $(document).ready(() => {
       saveData(daftar_donasi)
     
       daftar_donasi.forEach((daftar) => {  
+              console.log(daftar.pk)
             
               $('#content-list').append(`
 
@@ -82,7 +83,7 @@ $(document).ready(() => {
                     <p class="card-text">${daftar.fields.deskripsi}</p>
     
                     <p class="card-text">Total donasi terkumpul: ${daftar.fields.total_donasi_terkumpul} / ${daftar.fields.target_donasi}</p>
-                    <a href="donasi/" class="btn-green sbmit">Donasi</a>
+                    <a href="donasi/${daftar.pk}/" class="btn-green sbmit">Donasi</a>
                   </div>
                 </div>
                   
