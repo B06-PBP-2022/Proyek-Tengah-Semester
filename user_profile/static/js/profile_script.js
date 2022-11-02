@@ -35,7 +35,7 @@ $(document).ready( function(){
             $('#id-contact-content').text(response);
             $('#edit-contact-div').hide;
         });
-    })
+    });
 
     $('#submit-email-button').click( function(){
         let email= $('#id-email').val();
@@ -55,7 +55,8 @@ $(document).ready( function(){
         } else {
             alert('Email is not valid');
         }
-    })
+    });
+
 })
 
 function edit_username_button() {

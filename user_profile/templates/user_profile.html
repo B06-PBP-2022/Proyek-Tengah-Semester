@@ -186,8 +186,18 @@
 
 
       <!-- Tab security content -->
-      <div class="tab-pane fade show active" id="pills-security" role="tabpanel" aria-labelledby="pills-security-tab" tabindex="2">
+      <div class="tab-pane fade" id="pills-security" role="tabpanel" aria-labelledby="pills-security-tab" tabindex="2">
         <div class="security-tab-content" style="padding: 30px;">
+          {% if passform.errors %}
+          <ul>
+            {% for key,value in passform.errors.items %} 
+            <div class="alert">
+              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+              <li>{{ value|escape }}</li>
+            </div>
+            {% endfor %}
+          </ul>
+          {% endif %}  
           <form method="post">
             {% csrf_token %}
             {{ passform.as_div }}
@@ -392,8 +402,18 @@
 
 
       <!-- Tab security content -->
-      <div class="tab-pane fade show active" id="pills-security" role="tabpanel" aria-labelledby="pills-security-tab" tabindex="2">
+      <div class="tab-pane fade" id="pills-security" role="tabpanel" aria-labelledby="pills-security-tab" tabindex="3">
         <div class="security-tab-content" style="padding: 30px;">
+          {% if passform.errors %}
+          <ul>
+            {% for key,value in passform.errors.items %} 
+            <div class="alert">
+              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+              <li>{{ value|escape }}</li>
+            </div>
+            {% endfor %}
+          </ul>
+          {% endif %}  
           <form method="post">
             {% csrf_token %}
             {{ passform.as_div }}

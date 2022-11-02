@@ -139,3 +139,68 @@ a, a:link, a:visited {
   margin-top: 35px;
   margin-left: 50px;
 }
+
+
+
+
+.closebtn {
+  margin-left: 15px;
+  color: black;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.alert {
+  padding: 20px;
+  background-color: #EBFBEA;
+  color: black;
+  margin-bottom: 15px;
+  display: block;
+  margin: 0 auto;
+  padding-left: 0px;
+  max-width: 450px;
+  margin-right: 30px;
+}
+
+.form-control {
+  margin-bottom: 20px;
+  width: 400px;
+}
+
+ul {
+  list-style: none;
+}
+
+.form-switch {
+  margin-bottom: 16px;
+}
+
+.form-check-input:checked {
+  background-color: #75C270;
+}
+
+table {
+  display: flex;
+  margin: 0 auto;
+  text-align: center;
+  justify-content: center;
+}
+
+@media all and (max-width: 450px) {
+  .form-control {
+      margin-bottom: 20px;
+      max-width: 300px;
+  }
+}
+
+@media all and (max-width: 300px) {
+  .form-control {
+      margin-bottom: 20px;
+      max-width: 250px;
+  }
+  
+}
