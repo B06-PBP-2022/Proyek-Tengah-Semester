@@ -13,9 +13,7 @@ $(document).ready(() => {
                     <span style="color: #75C270; background-color: white;" class="badge text-wrap text-truncate"> ${daftar.fields.total_donasi_terkumpul} / ${daftar.fields.target_donasi}</span>
                     <hr class="divider-card">
                     <p class="text card-text">${daftar.fields.deskripsi}</p>
-                    <a href="donasi/">
-                        <button type="button" class="btn-white card-button">Donate</button>
-                    </a>
+                    <a href="donasi/${daftar.pk}/" class="btn-white sbmit">Donasi</a>
                     </div>
                 </div>
             </div>
