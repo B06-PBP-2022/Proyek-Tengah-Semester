@@ -43,7 +43,9 @@ class CarbonDetailForm(forms.ModelForm):
                     'class': "form-select form-select-lg",
                     'aria-label': ".form-select-lg",
                     'id': 'usage',
-                    'name': 'usage'
+                    'name': 'usage',
+                    'required': True,
+                    'val': ''
                 }
             ),
         }
@@ -57,14 +59,16 @@ class DetailKendaraanForm(forms.ModelForm):
                 attrs={
                     'class': "form-check fuel-type-class",
                     'name': 'fuel_type',
-                    'id': 'fuel_type'
+                    'id': 'fuel_type',
+                    'required': True,
                 }
             ),
             'kilometer_jarak' : forms.NumberInput(
                 attrs={
                     'class': "form-control form-calculator",
                     'name': 'kilometer_jarak',
-                    'id': 'kilometer_jarak'
+                    'id': 'kilometer_jarak',
+                    'placeholder': '100'
                 }
             ),
             'litre_per_km' : forms.NumberInput(
