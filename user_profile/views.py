@@ -23,7 +23,7 @@ def show_profile(request):
     # todo: PERLU HANDLE SUPERUSER
     profile = UserProfile.objects.get(user=request.user)
 
-    if (profile.organization):
+    if not profile.organization:
         try:
             histori_karbon = CarbonPrintHistory.objects.get(user = profile)
         except:
