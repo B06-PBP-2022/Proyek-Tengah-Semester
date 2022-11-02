@@ -23,7 +23,7 @@ def show_profile(request):
     # todo: PERLU HANDLE SUPERUSER
     profile = UserProfile.objects.get(user=request.user)
 
-    if (profile.is_organization):
+    if (profile.organization):
         try:
             histori_karbon = CarbonPrintHistory.objects.get(user = profile)
         except:
@@ -37,7 +37,7 @@ def show_profile(request):
             'detail_karbon': detail_karbon,
         }
     else :
-        daftar_donasi = OpenDonasi.objects.filter(user = profile)
+        daftar_donasi = OpenDonasi.objects.filter(user = request.user)
         context = {
             'username_form': username_form,
             'daftar_donasi': daftar_donasi,
