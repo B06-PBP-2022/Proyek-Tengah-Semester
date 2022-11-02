@@ -106,6 +106,7 @@ def change_email(request):
     email = request.POST.get('email')
     user = request.user
     user.email = email
+    user.save()
     return HttpResponse(email)
 
 @login_required(login_url='/login/')
