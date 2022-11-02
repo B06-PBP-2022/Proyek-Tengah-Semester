@@ -39,12 +39,15 @@
   <!-- End sidebar -->
 
   <!-- Sidebar Content -->
-  <div style="background-color: white; width: 100%;">
+  <div style="width: 100%;">
     <div class="tab-content" id="pills-tabContent">
+
       {% if user.userprofile.organization %}
+
       <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">a</div>
       <div class="tab-pane fade" id="pills-donation" role="tabpanel" aria-labelledby="pills-donation-tab" tabindex="1">b</div>
       <div class="tab-pane fade" id="pills-carbon" role="tabpanel" aria-labelledby="pills-carbon-tab" tabindex="2">c</div>
+
       {% else %}
 
       <!-- Tab content profile -->
@@ -106,7 +109,7 @@
               </div>
             </div>
           </div>
-          <!-- End edit username div -->
+          <!-- End edit contact div -->
 
           <!-- Email div -->
           <div class="email-box" style="margin: 30px 0px 30px 0px;">
@@ -115,6 +118,7 @@
             <!-- Edit email button -->
             <button id="edit-email-button" type="button" class="btn btn-primary" onclick="edit_email_button()">Edit Email</button>
             <!-- End edit email button -->
+          </div>
           <!-- End email div -->
 
           <!-- Edit email div -->
@@ -139,68 +143,38 @@
       </div>
       <!-- End tab content profile -->
 
+
       <!-- Tab content donation history -->
       <div class="tab-pane fade" id="pills-history" role="tabpanel" aria-labelledby="pills-history-tab" tabindex="1">
         <div class="donation-history-tab-content" style="padding: 30px;">
-          <div class="donation-history-box">
-            <p class="donation-history-title green-jk">Histori Donasi :</p>
-            <div class="donation-history-content">
-              <div class="donation-history-content-box">
-                <div class="donation-history-content-box-header">
-                  <p class="donation-history-content-box-header-title">Donasi 1</p>
-                </div>
-                <div class="donation-history-content-box-body">
-                  <p class="donation-history-content-box-body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl.</p>
-                </div>
-              </div>
-              <div class="donation-history-content-box">
-                <div class="donation-history-content-box-header">
-                  <p class="donation-history-content-box-header-title">Donasi 2</p>
-                </div>
-                <div class="donation-history-content-box-body">
-                  <p class="donation-history-content-box-body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl.</p>
-                </div>
-              </div>
-              <div class="donation-history-content-box">
-                <div class="donation-history-content-box-header">
-                  <p class="donation-history-content-box-header-title">Donasi 3</p>
-                </div>
-                <div class="donation-history-content-box-body">
-                  <p class="donation-history-content-box-body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl n
+        
+        </div>
       </div>
       <!-- End tab content donation history -->
+
 
       <!-- Tab content carbon production -->
       <div class="tab-pane fade" id="pills-carbon" role="tabpanel" aria-labelledby="pills-carbon-tab" tabindex="2">
         <div class="carbon-production-tab-content" style="padding: 30px; background-color: rgb(233, 207, 172);">
-          <div class="carbon-production-box">
-            <p class="carbon-production-title green-jk">Produksi Karbon :</p>
-            <div class="carbon-production-content">
-              <div class="carbon-production-content-box">
-                <div class="carbon-production-content-box-header">
-                  <p class="carbon-production-content-box-header-title">Karbon 1</p>
-                </div>
-                <div class="carbon-production-content-box-body">
-                  <p class="carbon-production-content-box-body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl.</p>
-                </div>
+          <div class="carbon-production-box" style="margin: 0px 0px 30px 0px;">
+            <p class="carbon-production-title green-jk">Produksi karbon :</p>
+            <h3 id="carbon-production-content" class="carbon-production-text darkgreen-jk">{{histori_karbon.carbon_print_total|floatformat:2}} Kilogram</h3>
+          </div>
+          <div class="carbon-history-cards-box" style="flex-direction: row; flex-wrap:wrap; align-content:flex-start; background-color: aquamarine;">
+            {% for detail in detail_karbon %}
+            <div class="card" style="width: 18rem;">
+              <div class="card-header">
+                <h5 class="card-title">{{detail.usage}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{detail.date_input}}</h6>
               </div>
-              <div class="carbon-production-content-box">
-                <div class="carbon-production-content-box-header">
-                  <p class="carbon-production-content-box-header-title">Karbon 2</p>
-                </div>
-                <div class="carbon-production-content-box-body">
-                  <p class="carbon-production-content-box-body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl.</p>
-                </div>
+              <div class="card-body">
+                <p>
+                  Carbon print: {{detail.carbon_print|floatformat:2}} kg
+                </p>
               </div>
-              <div class="carbon-production-content-box">
-                <div class="carbon-production-content-box-header">
-                  <p class="carbon-production-content-box-header-title">Karbon 3</p>
-                </div>
-                <div class="carbon-production-content-box-body">
-                  <p class="carbon-production-content-box-body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit amet nisl. Sed euismod, nunc sit amet aliquet lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl sit
-          {% for detail in detail_karbon %}
-
-          {% endfor %}
+            </div>
+            {% endfor %}
+          </div>
         </div>
       </div>
       <!-- End tab content carbon history -->
