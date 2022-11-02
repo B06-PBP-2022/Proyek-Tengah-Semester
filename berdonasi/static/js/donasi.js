@@ -1,11 +1,12 @@
 // type="text/javascript"
 
+//POST
 function postNom() {
     fetch("add/",{
         method:"POST",
         body: new FormData(document.querySelector('#forms'))
     }).then(showNominal)
-    document.getElementById("forms").reset();
+    document.getElementById("/forms").reset();
     return false
 }
 
@@ -32,11 +33,15 @@ function showNominal(){
             data.forEach(e => {
                 str= `
                 <div class="accordion-item">
-                    <h2 class="accordion-header">
+                    <h3 class="accordion-header">
                         Total pembayaran <br>
                         <br>
                         Rp ${e.fields.nominal}
-                    </h2>
+                        
+                        <a href='pembayaran'><button>Lakukan Pembayaran</button></a>
+               
+                    
+                    </h3>
                 </div>`
                 ;
             });

@@ -13,10 +13,15 @@
 <div class="content d-flex flex-row" style="width: 100%;">
 
   <!-- Sidebar -->
-  <div class="d-flex flex-column flex-shrink-0 p-3 bg-green" style="width: 300px; height: 150vh;">
+  <div id="id-sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-green" style="width: 300px; height: 150vh;">
 
-    <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-      <h3 class="name-header" id="id-name-header">{{user}}</h3>
+    <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none flex-column">
+      <h3 class="name-header" id="id-name-header">{{user.userprofile.name}}</h3>
+      {% if user.profile.organization %}
+      <h6 class="role-subtitle" id="id-role-subtitle">Organisasi</h6>
+      {% else %}
+      <h6 class="role-subtitle" id="id-role-subtitle">Pengguna</h6>
+      {% endif %}
     </a>
     <hr>
 
@@ -57,7 +62,7 @@
           <!-- Username div -->
           <div class="username-box" style="margin: 0px 0px 30px 0px;">
             <p class="username-title green-jk">Username :</p>
-            <h3 id="username-content" class="username-text darkgreen-jk">{{user}}</h3>
+            <h3 id="id-username-content" class="username-text darkgreen-jk">{{user}}</h3>
             <!-- Edit username button -->
             <button id="edit-username-button" type="button" class="btn btn-primary" onclick="edit_username_button()">Edit Username</button>
             <!-- End edit username button -->
@@ -86,7 +91,7 @@
           <!-- Contact div -->
           <div class="contact-box" style="margin: 30px 0px 30px 0px;">
             <p class="contact-title green-jk">Contact :</p>
-            <h3 id="contact-content" class="contact-text darkgreen-jk">{{user.userprofile.contact}}</h3>
+            <h3 id="id-contact-content" class="contact-text darkgreen-jk">{{user.userprofile.contact}}</h3>
             <!-- Edit contact button -->
             <button id="edit-contact-button" type="button" class="btn btn-primary" onclick="edit_contact_button()">Edit Contact</button>
             <!-- End edit contact button -->
@@ -114,7 +119,7 @@
           <!-- Email div -->
           <div class="email-box" style="margin: 30px 0px 30px 0px;">
             <p class="email-title green-jk">Email :</p>
-            <h3 id="email-content" class="email-text darkgreen-jk">{{user.email}}</h3>
+            <h3 id="id-email-content" class="email-text darkgreen-jk">{{user.email}}</h3>
             <!-- Edit email button -->
             <button id="edit-email-button" type="button" class="btn btn-primary" onclick="edit_email_button()">Edit Email</button>
             <!-- End edit email button -->
@@ -155,7 +160,7 @@
 
       <!-- Tab content carbon production -->
       <div class="tab-pane fade" id="pills-carbon" role="tabpanel" aria-labelledby="pills-carbon-tab" tabindex="2">
-        <div class="carbon-production-tab-content" style="padding: 30px; background-color: rgb(233, 207, 172);">
+        <div class="carbon-production-tab-content" style="padding: 30px; background-color: rgb(199, 197, 194);">
           <div class="carbon-production-box" style="margin: 0px 0px 30px 0px;">
             <p class="carbon-production-title green-jk">Produksi karbon :</p>
             <h3 id="carbon-production-content" class="carbon-production-text darkgreen-jk">{{histori_karbon.carbon_print_total|floatformat:2}} Kilogram</h3>
