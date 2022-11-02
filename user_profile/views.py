@@ -69,6 +69,18 @@ def username_available(request):
 def username_json(request):
     return JsonResponse({'username': request.user.username})
 
+def change_contact(request):
+    contact = request.POST.get('contact')
+    user = request.user
+    user.contact = contact
+    return HttpResponse('')
+
+def change_email(request):
+    email = request.POST.get('email')
+    user = request.user
+    user.email = email
+    return HttpResponse('')
+
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
