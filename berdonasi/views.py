@@ -5,6 +5,7 @@ from django.shortcuts import render
 
 from faq.views import get_json
 from .models import ikutdonasi
+from form_donasi.models import OpenDonasi
 from .forms import formPembayaran
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
@@ -14,7 +15,7 @@ from django.contrib import admin
 from django.core import serializers
 
 
-def show_masukkan_nominal(request):
+def show_masukkan_nominal(request, id):
     ikutberdonasi = ikutdonasi.objects.all()
     form = formPembayaran()
 
@@ -27,6 +28,7 @@ def show_masukkan_nominal(request):
     
     context = {
         'ikutberdonasi': ikutberdonasi,
+        'id_penerima_donasi' : id,
         'form': form,
     }
       
@@ -47,14 +49,21 @@ def get_json(request):
     data = ikutdonasi.objects.all()
     return HttpResponse(serializers.serialize("json", data))
 
-def add_nominal(request):
+def add_nominal(request, id):
+    obj = OpenDonasi.objects.get(pk=id)
+
     form = formPembayaran()
     if request.method == 'POST':
         form = formPembayaran(request.POST)
         if form.is_valid():
             nominal = request.POST['nominal']
             pesan = request.POST['pesan']
+
+
             new_ikutdonasi = ikutdonasi(user=request.user,nominal=nominal,pesan=pesan)
+            obj.total_donasi_terkumpul += nominal
+
             new_ikutdonasi.save()
+            obj.save()
 
             return HttpResponse(b"CREATED")
