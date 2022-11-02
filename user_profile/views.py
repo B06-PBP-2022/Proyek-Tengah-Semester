@@ -2,6 +2,7 @@ import datetime
 from kalkulator.models import CarbonDetail, CarbonPrintHistory
 from register.models import UserProfile
 from form_donasi.models import OpenDonasi
+from berdonasi.models import ikutdonasi
 
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
@@ -18,7 +19,6 @@ from user_profile.models import LastEdited
 
 @login_required(login_url='/login/')
 def show_profile(request):
-    username_form = EditUsernameForm()
 
     # todo: PERLU HANDLE SUPERUSER
     profile = UserProfile.objects.get(user=request.user)
@@ -31,15 +31,15 @@ def show_profile(request):
             histori_karbon.save()
 
         detail_karbon = CarbonDetail.objects.filter(histori_karbon = histori_karbon)
+        histori_berdonasi = ikutdonasi.objects.filter(user = request.user)
         context = {
-            'username_form': username_form,
             'histori_karbon': histori_karbon,
             'detail_karbon': detail_karbon,
+            'histori_berdonasi': histori_berdonasi,
         }
     else :
         daftar_donasi = OpenDonasi.objects.filter(user = request.user)
         context = {
-            'username_form': username_form,
             'daftar_donasi': daftar_donasi,
         }
     return render(request, 'user_profile.html', context)

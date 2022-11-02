@@ -298,7 +298,25 @@
       <!-- Tab content donation history -->
       <div class="tab-pane fade" id="pills-history" role="tabpanel" aria-labelledby="pills-history-tab" tabindex="1">
         <div class="donation-history-tab-content" style="padding: 30px;">
-        
+          <div class="container" id="container-data">
+            <h4 class="subtitle">Donasi yang telah Kamu Ikuti</h4>
+            <div class="row row-cols-2 justify-content-center cards-donate" id="content">
+              <!-- each row has 2 cards -->
+              {% for histori in histori_donasi %}
+              <div class="col sec-card">
+                <div class="card mb-3">
+                  <img class="card-img" src="{% static 'image/jkwork.png' %}" class="img-fluid rounded-start">
+                  <div class="card-body">
+                    <h5 class="text card-title">{{histori.nominal}}</h5>
+                    <!-- <p class="text card-text">Dari: {{histori.pesan}}</p> -->
+                    <hr class="divider-card">
+                    <p class="text card-text">{{histori.pesan}}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
         </div>
       </div>
       <!-- End tab content donation history -->
@@ -306,12 +324,15 @@
 
       <!-- Tab content carbon production -->
       <div class="tab-pane fade" id="pills-carbon" role="tabpanel" aria-labelledby="pills-carbon-tab" tabindex="2">
-        <div class="carbon-production-tab-content" style="padding: 30px; background-color: rgb(199, 197, 194);">
+        <div class="carbon-production-tab-content" style="padding: 30px;">
+
+          <h4 class="subtitle">Karbon yang Kamu Hasilkan</h4>
           <div class="carbon-production-box" style="margin: 0px 0px 30px 0px;">
             <p class="carbon-production-title green-jk">Produksi karbon :</p>
             <h3 id="carbon-production-content" class="carbon-production-text darkgreen-jk">{{histori_karbon.carbon_print_total|floatformat:2}} Kilogram</h3>
           </div>
-          <div class="carbon-history-cards-box" style="flex-direction: row; flex-wrap:wrap; align-content:flex-start; background-color: aquamarine;">
+
+          <!-- <div class="carbon-history-cards-box" style="flex-direction: row; flex-wrap:wrap; align-content:flex-start; background-color: aquamarine;">
             {% for detail in detail_karbon %}
             <div class="card" style="width: 18rem;">
               <div class="card-header">
@@ -325,11 +346,34 @@
               </div>
             </div>
             {% endfor %}
+          </div> -->
+
+          <div class="container" id="container-data">
+            <div class="row row-cols-3 justify-content-center cards-donate" id="content">
+              <!-- each row has 2 cards -->
+              {% for detail in detail_karbon %}
+              <div class="col sec-card">
+                <div class="card mb-3">
+                  <img class="card-img" src="{% static 'image/pollution.png' %}" class="img-fluid rounded-start">
+                  <div class="card-body">
+                    <h5 class="text card-title">{{detail.usage}}</h5>
+                    <p class="text card-text">Dari: {{detail.date_input}}</p>
+                    <span style="color: #75C270; background-color: white;" class="badge text-wrap text-truncate"> {{detail.carbon_print|floatformat:2}} Kilogram </span>
+                    <!-- <hr class="divider-card"> -->
+                    <!-- <p class="text card-text">  </p> -->
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
           </div>
+
         </div>
       </div>
       <!-- End tab content carbon history -->
+
       {% endif %}
+
     </div>
   </div>
   <!-- End sidebar content -->

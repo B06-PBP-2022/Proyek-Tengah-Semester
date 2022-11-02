@@ -1,6 +1,5 @@
 $(document).ready( function(){
     $('#submit-username-button').click( function(){
-        alert("TERTEKAN");
         let username= $('#id-username').val();
         let CSRFtoken = $('input[name="csrfmiddlewaretoken"]').val();
         // alert("TERTEKAN");
