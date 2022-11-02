@@ -34,10 +34,10 @@ def show_masukkan_nominal(request):
 
 def pembayaran(request):
      if request.method=='POST':
-
+ 
         nominal = request.POST['nominal']
         pesan = request.POST['pesan']
-        new_ikutdonasi = ikutdonasi(user=request.user,nominal=nominal,pesan=pesan)
+        new_ikutdonasi = ikutdonasi(user=user,nominal=nominal,pesan=pesan)
         new_ikutdonasi.save()
         success = 'User' + nominal + pesan
         return HttpResponse(success)
@@ -54,7 +54,7 @@ def add_nominal(request):
         if form.is_valid():
             nominal = request.POST['nominal']
             pesan = request.POST['pesan']
-            new_ikutdonasi = ikutdonasi(nominal=nominal,pesan=pesan)
+            new_ikutdonasi = ikutdonasi(user=request.user,nominal=nominal,pesan=pesan)
             new_ikutdonasi.save()
 
             return HttpResponse(b"CREATED")
