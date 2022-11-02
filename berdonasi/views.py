@@ -13,6 +13,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib import admin
 from django.core import serializers
+from django.contrib.auth.decorators import login_required
 
 
 def show_masukkan_nominal(request, id):
@@ -34,6 +35,7 @@ def show_masukkan_nominal(request, id):
       
     return render(request,'form_berdonasi.html',context)
 
+@login_required(login_url='/login/')
 def pembayaran(request,id):
     if request.method=='POST':
  
