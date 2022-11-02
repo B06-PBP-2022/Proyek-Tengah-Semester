@@ -62,3 +62,5 @@ def ajax_submit(request):
         return JsonResponse(data)
         
 
+def berdonasi(request, id):
+    return redirect('berdonasi:show_masukkan_nominal', id=id)
