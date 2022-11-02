@@ -23,8 +23,20 @@ def show_profile(request):
     # todo: PERLU HANDLE SUPERUSER
     profile = UserProfile.objects.get(user=request.user)
 
-    passform = PasswordChangingForm(request.user)
+    passform = PasswordChangingForm(request.user, request.POST)
 
+    # Handle password changing
+    if request.method == 'POST':
+        if passform.is_valid():
+            user = passform.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('user_profile:show_profile')
+        else:
+            messages.error(request, 'Please correct the error.')
+            return HttpResponse('')
+
+    # Passing data to template
     if not profile.organization:
         try:
             histori_karbon = CarbonPrintHistory.objects.get(user = profile)
@@ -46,7 +58,8 @@ def show_profile(request):
             'daftar_donasi': daftar_donasi,
             'passform': passform,
         }
-    
+
+    # Render template
     return render(request, 'user_profile.html', context)
 
 @login_required(login_url='/login/')
