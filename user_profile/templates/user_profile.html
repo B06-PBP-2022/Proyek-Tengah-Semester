@@ -18,7 +18,7 @@
     <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none flex-column">
       <img class="card-img" src="{% static 'image/user.png' %}" class="img-fluid rounded-start">
       <h3 class="name-header" id="id-name-header">{{user.userprofile.name}}</h3>
-      {% if user.profile.organization %}
+      {% if user.userprofile.organization %}
       <h6 class="role-subtitle" id="id-role-subtitle">Organisasi</h6>
       {% else %}
       <h6 class="role-subtitle" id="id-role-subtitle">Pengguna</h6>
@@ -30,13 +30,14 @@
       <div class="nav flex-column nav-pills nav-fill me-3" id="pills-tab" role="tablist" aria-orientation="vertical">
         <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="true">Data Profil</button>
         <button class="nav-link" id="pills-donation-tab" data-bs-toggle="pill" data-bs-target="#pills-donation" type="button" role="tab" aria-controls="pills-donation" aria-selected="false">Donasi yang Dibuka</button>
-        <!-- <button class="nav-link" id="pills-carbon-tab" data-bs-toggle="pill" data-bs-target="#pills-carbon" type="button" role="tab" aria-controls="pills-carbon" aria-selected="false">Produksi Karbon</button> -->
+        <button class="nav-link" id="pills-security-tab" data-bs-toggle="pill" data-bs-target="#pills-security" type="button" role="tab" aria-controls="pills-carbon" aria-selected="false">Keamanan Akun</button>
       </div>
     {% else %}
       <div class="nav flex-column nav-pills nav-fill me-3" id="pills-tab" role="tablist" aria-orientation="vertical">
         <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="true">Data Profil</button>
         <button class="nav-link" id="pills-history-tab" data-bs-toggle="pill" data-bs-target="#pills-history" type="button" role="tab" aria-controls="pills-history" aria-selected="false">Histori Donasi</button>
         <button class="nav-link" id="pills-carbon-tab" data-bs-toggle="pill" data-bs-target="#pills-carbon" type="button" role="tab" aria-controls="pills-carbon" aria-selected="false">Produksi Karbon</button>
+        <button class="nav-link" id="pills-security-tab" data-bs-toggle="pill" data-bs-target="#pills-security" type="button" role="tab" aria-controls="pills-carbon" aria-selected="false">Keamanan Akun</button>
       </div>
     {% endif %}
 
@@ -156,6 +157,7 @@
       <!-- End tab content profile -->
 
 
+      <!-- Tab content donation opened by organization -->
       <div class="tab-pane fade" id="pills-donation" role="tabpanel" aria-labelledby="pills-donation-tab" tabindex="1">
         <div class="donation-tab-content" style="padding: 30px;">
           <div class="container" id="container-data">
@@ -169,7 +171,7 @@
                   <div class="card-body">
                     <h5 class="text card-title">{{donasi.tema_kegiatan}}</h5>
                     <p class="text card-text">Dari: {{donasi.pencetus_donasi}}</p>
-                    <span style="color: #75C270; background-color: white;" class="badge text-wrap text-truncate"> {{donasi.total_donasi_terkumpul}} / {{daftar.target_donasi}}</span>
+                    <span style="color: #75C270; background-color: white;" class="badge text-wrap text-truncate"> {{donasi.total_donasi_terkumpul}} / {{donasi.target_donasi}}</span>
                     <hr class="divider-card">
                     <p class="text card-text">{{donasi.deskripsi}}</p>
                   </div>
@@ -180,6 +182,22 @@
           </div>
         </div>
       </div>
+      <!-- End tab content donation opened by organization -->
+
+
+      <!-- Tab security content -->
+      <div class="tab-pane fade show active" id="pills-security" role="tabpanel" aria-labelledby="pills-security-tab" tabindex="2">
+        <div class="security-tab-content" style="padding: 30px;">
+          <form method="post">
+            {% csrf_token %}
+            {{ passform.as_div }}
+            <a>
+              <button type="button" id="id-submit-password" class="btn btn-green container-top2-button">Simpan Password</button>
+            </a>
+          </form>          
+        </div>
+      </div>
+      <!-- End tab security content -->
 
 
       <!-- <div class="tab-pane fade" id="pills-carbon" role="tabpanel" aria-labelledby="pills-carbon-tab" tabindex="2">c</div> -->
@@ -371,6 +389,19 @@
         </div>
       </div>
       <!-- End tab content carbon history -->
+
+
+      <!-- Tab security content -->
+      <div class="tab-pane fade show active" id="pills-security" role="tabpanel" aria-labelledby="pills-security-tab" tabindex="2">
+        <div class="security-tab-content" style="padding: 30px;">
+          <form method="post">
+            {% csrf_token %}
+            {{ passform.as_div }}
+            <button type="submit" id="id-submit-password">Simpan Password</button>
+          </form>          
+        </div>
+      </div>
+      <!-- End tab security content -->
 
       {% endif %}
 

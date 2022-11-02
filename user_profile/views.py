@@ -14,7 +14,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect,HttpResponse,JsonResponse
 
-from user_profile.forms import EditUsernameForm, EditAccountForm
+from user_profile.forms import EditUsernameForm, EditAccountForm, PasswordChangingForm
 from user_profile.models import LastEdited
 
 @login_required(login_url='/login/')
@@ -22,6 +22,8 @@ def show_profile(request):
 
     # todo: PERLU HANDLE SUPERUSER
     profile = UserProfile.objects.get(user=request.user)
+
+    passform = PasswordChangingForm(request.user)
 
     if not profile.organization:
         try:
@@ -36,12 +38,15 @@ def show_profile(request):
             'histori_karbon': histori_karbon,
             'detail_karbon': detail_karbon,
             'histori_berdonasi': histori_berdonasi,
+            'passform': passform,
         }
     else :
         daftar_donasi = OpenDonasi.objects.filter(user = request.user)
         context = {
             'daftar_donasi': daftar_donasi,
+            'passform': passform,
         }
+    
     return render(request, 'user_profile.html', context)
 
 @login_required(login_url='/login/')
@@ -90,9 +95,9 @@ def change_password(request):
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
             messages.success(request, 'Your password was successfully updated!')
-            # return redirect('change_password')
+            return redirect('profile')
         else:
-            messages.error(request, 'Please correct the error below.')
+            messages.error(request, 'Please correct the error.')
     return HttpResponse('')
 
 @login_required(login_url='/login/')
