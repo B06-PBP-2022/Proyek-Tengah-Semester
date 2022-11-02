@@ -152,7 +152,7 @@
               {% for donasi in daftar_donasi %}
               <div class="col sec-card">
                 <div class="card mb-3">
-                  <img class="card-img" src="static/image/donating_card.png" class="img-fluid rounded-start">
+                  <img class="card-img" src="{% static 'image/donating_card.png' %}" class="img-fluid rounded-start">
                   <div class="card-body">
                     <h5 class="text card-title">{{donasi.tema_kegiatan}}</h5>
                     <p class="text card-text">Dari: {{donasi.pencetus_donasi}}</p>
