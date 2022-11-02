@@ -34,18 +34,18 @@ def show_masukkan_nominal(request, id):
       
     return render(request,'form_berdonasi.html',context)
 
-def pembayaran(request):
-     if request.method=='POST':
+def pembayaran(request,id):
+    if request.method=='POST':
  
         nominal = request.POST['nominal']
         pesan = request.POST['pesan']
         new_ikutdonasi = ikutdonasi(user=user,nominal=nominal,pesan=pesan)
         new_ikutdonasi.save()
         success = 'User' + nominal + pesan
-        return HttpResponse(success)
+    return render(request,'pembayaran.html')
 
 
-def get_json(request):
+def get_json(request, id):
     data = ikutdonasi.objects.all()
     return HttpResponse(serializers.serialize("json", data))
 
@@ -61,7 +61,7 @@ def add_nominal(request, id):
 
 
             new_ikutdonasi = ikutdonasi(user=request.user,nominal=nominal,pesan=pesan)
-            obj.total_donasi_terkumpul += nominal
+            obj.total_donasi_terkumpul += int(nominal)
 
             new_ikutdonasi.save()
             obj.save()

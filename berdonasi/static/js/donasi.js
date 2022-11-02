@@ -1,11 +1,12 @@
 // type="text/javascript"
 
+//POST
 function postNom() {
     fetch("add/",{
         method:"POST",
         body: new FormData(document.querySelector('#forms'))
     }).then(showNominal)
-    document.getElementById("forms").reset();
+    document.getElementById("/forms").reset();
     return false
 }
 
