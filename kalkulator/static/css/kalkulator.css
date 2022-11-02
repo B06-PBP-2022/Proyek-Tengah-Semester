@@ -43,3 +43,11 @@ select {
     font-weight: bold;
     color: #4A9745;
 }
+
+.show-offset{
+    align-content: center;
+}
+
+.hasil {
+    width: 16rem;
+}

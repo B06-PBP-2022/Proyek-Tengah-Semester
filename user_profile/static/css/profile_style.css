@@ -2,7 +2,15 @@
   background-color: #75C270;
 }
 
+/* #id-sidebar {
+  align-items: center;
+} */
+
 .name-header {
+  color: white;
+}
+
+.role-subtitle {
   color: white;
 }
 
@@ -24,4 +32,175 @@
 
 .darkgreen-jk {
   color: #4A9745;
+}
+
+.container {
+  margin-top: 100px;
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.subtitle {
+  color: rgba(117, 194, 112, 1);
+  font-weight: bold;
+  text-align: center;
+}
+
+.card {
+  background-color: #75C270;
+  max-width: 540px;
+  border: none;
+  box-shadow: -4px -4px 10px rgba(0, 0, 0, 0.06), 4px 4px 6px rgba(0, 0, 0, 0.08);
+  height: 100%;
+}
+
+.card:hover {
+  background: #4A9745;
+  box-shadow: 4px 4px 8px rgba(98, 98, 98, 0.4);
+  transform: scale(1.02);
+  transition: 0.3s;
+}
+
+.divider-card {
+  border: none;
+  height: 2px;
+  background-color: white;
+}
+
+#container-data {
+  display: block;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+
+.cards-donate {
+  margin-top: 32px;
+}
+
+.text {
+  color: white;
+  text-align: left;
+}
+
+.card-img {
+  max-width:100%;
+  max-height:100%;
+  display: block;
+}
+
+.sec-card {
+  margin-bottom: 32px;
+}
+
+.badge {
+  display: flex;
+}
+
+@media all and (max-width: 450px) {
+  .image-application {
+      max-width: 300px;
+  }
+
+  .card-button {
+      width: 60px;
+      height: 30px;
+      font-size: 10px;
+      padding: 0px 5px;
+      border-radius: 5px;
+  }
+
+  .badge {
+      display: flex;
+  }
+}
+
+@media all and (max-width: 300px) {
+  .image-application {
+      max-width: 280px;
+  }
+
+  .card-button {
+      width: 40px;
+      height: 20px;
+      font-size: 8px;
+      padding: 0px 5px;
+      border-radius: 5px;
+  }
+}
+
+a, a:link, a:visited {
+  text-decoration: none;
+  color: #75C270;
+}
+
+.container-top2-button {
+  margin-top: 35px;
+  margin-left: 50px;
+}
+
+
+
+
+.closebtn {
+  margin-left: 15px;
+  color: black;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.alert {
+  padding: 20px;
+  background-color: #EBFBEA;
+  color: black;
+  margin-bottom: 15px;
+  display: block;
+  margin: 0 auto;
+  padding-left: 0px;
+  max-width: 450px;
+  margin-right: 30px;
+}
+
+.form-control {
+  margin-bottom: 20px;
+  width: 400px;
+}
+
+ul {
+  list-style: none;
+}
+
+.form-switch {
+  margin-bottom: 16px;
+}
+
+.form-check-input:checked {
+  background-color: #75C270;
+}
+
+table {
+  display: flex;
+  margin: 0 auto;
+  text-align: center;
+  justify-content: center;
+}
+
+@media all and (max-width: 450px) {
+  .form-control {
+      margin-bottom: 20px;
+      max-width: 300px;
+  }
+}
+
+@media all and (max-width: 300px) {
+  .form-control {
+      margin-bottom: 20px;
+      max-width: 250px;
+  }
+  
 }

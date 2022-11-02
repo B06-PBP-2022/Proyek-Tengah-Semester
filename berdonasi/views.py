@@ -41,7 +41,7 @@ def pembayaran(request,id):
  
         nominal = request.POST['nominal']
         pesan = request.POST['pesan']
-        new_ikutdonasi = ikutdonasi(user=user,nominal=nominal,pesan=pesan)
+        new_ikutdonasi = ikutdonasi(user=request.user,nominal=nominal,pesan=pesan)
         new_ikutdonasi.save()
         success = 'User' + nominal + pesan
     return render(request,'pembayaran.html')
