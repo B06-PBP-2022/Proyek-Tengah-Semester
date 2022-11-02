@@ -26,14 +26,14 @@ $(document).ready( function(){
     $('#submit-contact-button').click( function(){
         let contact= $('#id-contact').val();
         let CSRFtoken = $('input[name="csrfmiddlewaretoken"]').val();
-        alert("TERTEKAN");
+
         $.ajax({
             url:'change-contact/',
             type:'POST',
             data:{contact:contact, csrfmiddlewaretoken:CSRFtoken}
         }).done(function(response){
             $('#id-contact').val("");
-            $('#id-contact-content').text(contact);
+            $('#id-contact-content').text(response);
             $('#edit-contact-div').hide;
         });
     })
@@ -41,7 +41,6 @@ $(document).ready( function(){
     $('#submit-email-button').click( function(){
         let email= $('#id-email').val();
         let CSRFtoken = $('input[name="csrfmiddlewaretoken"]').val();
-        alert("TERTEKAN");
         
         // Validasi email
         if (ValidateEmail(email)){
@@ -51,7 +50,7 @@ $(document).ready( function(){
                 data:{email:email, csrfmiddlewaretoken:CSRFtoken}
             }).done(function(response){
                 $('#id-email').val("");
-                $('#id-email-content').text(email);
+                $('#id-email-content').text(response);
                 $('#edit-email-div').hide;
             });
         } else {

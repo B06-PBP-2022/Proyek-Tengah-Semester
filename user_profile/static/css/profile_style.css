@@ -129,3 +129,13 @@
       border-radius: 5px;
   }
 }
+
+a, a:link, a:visited {
+  text-decoration: none;
+  color: #75C270;
+}
+
+.container-top2-button {
+  margin-top: 35px;
+  margin-left: 50px;
+}

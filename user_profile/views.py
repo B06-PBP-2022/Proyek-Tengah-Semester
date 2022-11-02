@@ -71,16 +71,16 @@ def username_json(request):
 @login_required(login_url='/login/')
 def change_contact(request):
     contact = request.POST.get('contact')
-    user = request.user
-    user.contact = contact
-    return HttpResponse('')
+    profile = UserProfile.objects.get(user=request.user)
+    profile.contact = contact
+    return HttpResponse(contact)
 
 @login_required(login_url='/login/')
 def change_email(request):
     email = request.POST.get('email')
     user = request.user
     user.email = email
-    return HttpResponse('')
+    return HttpResponse(email)
 
 @login_required(login_url='/login/')
 def change_password(request):
