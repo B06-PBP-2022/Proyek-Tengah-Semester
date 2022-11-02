@@ -16,6 +16,7 @@
   <div id="id-sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-green" style="width: 300px; height: 150vh;">
 
     <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none flex-column">
+      <img class="card-img" src="{% static 'image/user.png' %}" class="img-fluid rounded-start">
       <h3 class="name-header" id="id-name-header">{{user.userprofile.name}}</h3>
       {% if user.profile.organization %}
       <h6 class="role-subtitle" id="id-role-subtitle">Organisasi</h6>
@@ -54,11 +55,15 @@
         <div class="profile-tab-content" style="padding: 30px;">
 
           <!-- Username div -->
-          <div class="username-box" style="margin: 0px 0px 30px 0px;">
-            <p class="username-title green-jk">Username :</p>
-            <h3 id="id-username-content" class="username-text darkgreen-jk">{{user}}</h3>
+          <div class="username-box d-flex flex-row" style="margin: 0px 0px 30px 0px;">
+            <div>
+              <p class="username-title green-jk">Username :</p>
+              <h3 id="id-username-content" class="username-text darkgreen-jk">{{user}}</h3>
+            </div>
             <!-- Edit username button -->
-            <button id="edit-username-button" type="button" class="btn btn-primary" onclick="edit_username_button()">Edit Username</button>
+            <a>
+              <button id="edit-username-button" type="button" class="btn btn-green container-top2-button" onclick="edit_username_button()">Edit Username</button>
+            </a>
             <!-- End edit username button -->
           </div>
           <!-- End username div -->
@@ -83,11 +88,15 @@
           <!-- <p class="tes-aja" id="id-tes-aja">tes aja</p> -->
 
           <!-- Contact div -->
-          <div class="contact-box" style="margin: 30px 0px 30px 0px;">
-            <p class="contact-title green-jk">Contact :</p>
-            <h3 id="id-contact-content" class="contact-text darkgreen-jk">{{user.userprofile.contact}}</h3>
+          <div class="contact-box d-flex flex-row" style="margin: 30px 0px 30px 0px;">
+            <div>
+              <p class="contact-title green-jk">Contact :</p>
+              <h3 id="id-contact-content" class="contact-text darkgreen-jk">{{user.userprofile.contact}}</h3>
+            </div>
             <!-- Edit contact button -->
-            <button id="edit-contact-button" type="button" class="btn btn-primary" onclick="edit_contact_button()">Edit Contact</button>
+            <a>
+              <button id="edit-contact-button" type="button" class="btn btn-green container-top2-button" onclick="edit_contact_button()">Edit Contact</button>
+            </a>
             <!-- End edit contact button -->
           </div>
           <!-- End contact div -->
@@ -111,11 +120,15 @@
           <!-- End edit contact div -->
 
           <!-- Email div -->
-          <div class="email-box" style="margin: 30px 0px 30px 0px;">
-            <p class="email-title green-jk">Email :</p>
-            <h3 id="id-email-content" class="email-text darkgreen-jk">{{user.email}}</h3>
+          <div class="email-box d-flex flex-row" style="margin: 30px 0px 30px 0px;">
+            <div>
+              <p class="email-title green-jk">Email :</p>
+              <h3 id="id-email-content" class="email-text darkgreen-jk">{{user.email}}</h3>
+            </div>
             <!-- Edit email button -->
-            <button id="edit-email-button" type="button" class="btn btn-primary" onclick="edit_email_button()">Edit Email</button>
+            <a>
+              <button id="edit-email-button" type="button" class="btn btn-green container-top2-button" onclick="edit_email_button()">Edit Email</button>
+            </a>
             <!-- End edit email button -->
           </div>
           <!-- End email div -->
@@ -146,7 +159,7 @@
       <div class="tab-pane fade" id="pills-donation" role="tabpanel" aria-labelledby="pills-donation-tab" tabindex="1">
         <div class="donation-tab-content" style="padding: 30px;">
           <div class="container" id="container-data">
-            <h4 class="subtitle">Donasi pada JejaKarbon</h4>
+            <h4 class="subtitle">Donasi yang Anda Buka</h4>
             <div class="row row-cols-2 justify-content-center cards-donate" id="content">
               <!-- each row has 2 cards -->
               {% for donasi in daftar_donasi %}
@@ -156,7 +169,7 @@
                   <div class="card-body">
                     <h5 class="text card-title">{{donasi.tema_kegiatan}}</h5>
                     <p class="text card-text">Dari: {{donasi.pencetus_donasi}}</p>
-                    <span style="color: #75C270; background-color: white;" class="badge text-wrap text-truncate"> {{donasi.total_donasi_terkumpul}} / {{daftar.fields.target_donasi}}</span>
+                    <span style="color: #75C270; background-color: white;" class="badge text-wrap text-truncate"> {{donasi.total_donasi_terkumpul}} / {{daftar.target_donasi}}</span>
                     <hr class="divider-card">
                     <p class="text card-text">{{donasi.deskripsi}}</p>
                   </div>
@@ -179,11 +192,17 @@
         <div class="profile-tab-content" style="padding: 30px;">
 
           <!-- Username div -->
-          <div class="username-box" style="margin: 0px 0px 30px 0px;">
-            <p class="username-title green-jk">Username :</p>
-            <h3 id="id-username-content" class="username-text darkgreen-jk">{{user}}</h3>
+          <div class="username-box d-flex flex-row" style="margin: 0px 0px 30px 0px;">
+            
+            <div>
+              <p class="username-title green-jk">Username :</p>
+              <h3 id="id-username-content" class="username-text darkgreen-jk">{{user}}</h3>
+            </div>
+
             <!-- Edit username button -->
-            <button id="edit-username-button" type="button" class="btn btn-primary" onclick="edit_username_button()">Edit Username</button>
+            <a>
+              <button id="edit-username-button" type="button" class="btn btn-green container-top2-button" onclick="edit_username_button()">Edit Username</button>
+            </a>
             <!-- End edit username button -->
           </div>
           <!-- End username div -->
@@ -208,12 +227,16 @@
           <!-- <p class="tes-aja" id="id-tes-aja">tes aja</p> -->
 
           <!-- Contact div -->
-          <div class="contact-box" style="margin: 30px 0px 30px 0px;">
-            <p class="contact-title green-jk">Contact :</p>
-            <h3 id="id-contact-content" class="contact-text darkgreen-jk">{{user.userprofile.contact}}</h3>
-            <!-- Edit contact button -->
-            <button id="edit-contact-button" type="button" class="btn btn-primary" onclick="edit_contact_button()">Edit Contact</button>
-            <!-- End edit contact button -->
+          <div class="contact-box d-flex flex-row" style="margin: 30px 0px 30px 0px;">
+            <div>
+              <p class="contact-title green-jk">Contact :</p>
+              <h3 id="id-contact-content" class="contact-text darkgreen-jk">{{user.userprofile.contact}}</h3>
+            </div>
+            <a>
+              <!-- Edit contact button -->
+              <button id="edit-contact-button" type="button" class="btn btn-green container-top2-button" onclick="edit_contact_button()">Edit Contact</button>
+              <!-- End edit contact button -->
+            </a>
           </div>
           <!-- End contact div -->
 
@@ -236,11 +259,15 @@
           <!-- End edit contact div -->
 
           <!-- Email div -->
-          <div class="email-box" style="margin: 30px 0px 30px 0px;">
-            <p class="email-title green-jk">Email :</p>
-            <h3 id="id-email-content" class="email-text darkgreen-jk">{{user.email}}</h3>
+          <div class="email-box d-flex flex-row" style="margin: 30px 0px 30px 0px;">
+            <div>
+              <p class="email-title green-jk">Email :</p>
+              <h3 id="id-email-content" class="email-text darkgreen-jk">{{user.email}}</h3>
+            </div>
             <!-- Edit email button -->
-            <button id="edit-email-button" type="button" class="btn btn-primary" onclick="edit_email_button()">Edit Email</button>
+            <a>
+              <button id="edit-email-button" type="button" class="btn btn-green container-top2-button" onclick="edit_email_button()">Edit Email</button>
+            </a>
             <!-- End edit email button -->
           </div>
           <!-- End email div -->
