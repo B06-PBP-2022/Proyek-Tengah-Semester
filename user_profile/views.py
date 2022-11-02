@@ -1,6 +1,7 @@
 import datetime
 from kalkulator.models import CarbonDetail, CarbonPrintHistory
 from register.models import UserProfile
+from form_donasi.models import OpenDonasi
 
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
@@ -21,21 +22,29 @@ def show_profile(request):
 
     # todo: PERLU HANDLE SUPERUSER
     profile = UserProfile.objects.get(user=request.user)
-    
-    try:
-        histori_karbon = CarbonPrintHistory.objects.get(user = profile)
-    except:
-        histori_karbon = CarbonPrintHistory(user = profile)
-        histori_karbon.save()
 
-    detail_karbon = CarbonDetail.objects.filter(histori_karbon = histori_karbon)
-    context = {
-        'username_form': username_form,
-        'histori_karbon': histori_karbon,
-        'detail_karbon': detail_karbon,
-    }
+    if not profile.organization:
+        try:
+            histori_karbon = CarbonPrintHistory.objects.get(user = profile)
+        except:
+            histori_karbon = CarbonPrintHistory(user = profile)
+            histori_karbon.save()
+
+        detail_karbon = CarbonDetail.objects.filter(histori_karbon = histori_karbon)
+        context = {
+            'username_form': username_form,
+            'histori_karbon': histori_karbon,
+            'detail_karbon': detail_karbon,
+        }
+    else :
+        daftar_donasi = OpenDonasi.objects.filter(user = request.user)
+        context = {
+            'username_form': username_form,
+            'daftar_donasi': daftar_donasi,
+        }
     return render(request, 'user_profile.html', context)
 
+@login_required(login_url='/login/')
 def change_username(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -44,17 +53,6 @@ def change_username(request):
         user.username = username
         user.save()
         messages.success(request, 'Your username was successfully updated!')
-        # # Menyimpan data kapan username terakhir kali diedit
-        # last_edited = LastEdited.objects.get(user = request.user)
-        # if last_edited is not None:
-        #     # Mengubah field LastEdited
-        #     last_edited.last_username_edited = datetime.date.today()
-        #     last_edited.save()
-        # else:
-        #     # Membuat objek LastEdited baru
-        #     last_edited = LastEdited(user = request.user)
-        #     last_edited.last_username_edited = datetime.date.today()
-        #     last_edited.save()
     return HttpResponse(user.username)
 
 @csrf_exempt
@@ -66,21 +64,25 @@ def username_available(request):
     else:
         return HttpResponse(True)
 
+@login_required(login_url='/login/')
 def username_json(request):
     return JsonResponse({'username': request.user.username})
 
+@login_required(login_url='/login/')
 def change_contact(request):
     contact = request.POST.get('contact')
-    user = request.user
-    user.contact = contact
-    return HttpResponse('')
+    profile = UserProfile.objects.get(user=request.user)
+    profile.contact = contact
+    return HttpResponse(contact)
 
+@login_required(login_url='/login/')
 def change_email(request):
     email = request.POST.get('email')
     user = request.user
     user.email = email
-    return HttpResponse('')
+    return HttpResponse(email)
 
+@login_required(login_url='/login/')
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -92,3 +94,7 @@ def change_password(request):
         else:
             messages.error(request, 'Please correct the error below.')
     return HttpResponse('')
+
+@login_required(login_url='/login/')
+def is_organization(request):
+    return HttpResponse(request.user.is_organization)
