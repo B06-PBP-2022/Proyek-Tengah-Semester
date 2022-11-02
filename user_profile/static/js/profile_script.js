@@ -44,3 +44,24 @@ function close_edit_username() {
 // function submit_username() {
 //     console.log("TERTEKAN")
 // }
+
+function edit_contact_button() {
+    $("#edit-contact-div").show();
+    $("#edit-contact-button").hide();
+}
+
+function close_edit_contact() {
+    $("#edit-contact-div").hide();
+    $("#edit-contact-button").show();
+}
+
+
+function edit_email_button() {
+    $("#edit-email-div").show();
+    $("#edit-email-button").hide();
+}
+
+function close_edit_email() {
+    $("#edit-email-div").hide();
+    $("#edit-email-button").show();
+}
