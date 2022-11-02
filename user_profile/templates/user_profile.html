@@ -80,7 +80,7 @@
                   {% csrf_token %}
                     <label for="username" class="form-label">Username baru</label>
                     <input type="text" class="form-control" id="id-username" name="username" placeholder="Username baru">
-                  <button id="submit-username-button" class="btn btn-primary" type="button">Submit</button>
+                  <button id="submit-username-button" class="btn btn-green container-top2-button" type="button">Submit</button>
                 </form>
               </div>
             </div>
@@ -113,7 +113,7 @@
                   {% csrf_token %}
                     <label for="contact" class="form-label">Nomor telepon baru</label>
                     <input type="text" class="form-control" id="id-contact" name="contact" placeholder="Nomor telepon baru">
-                  <button id="submit-contact-button" class="btn btn-primary" type="button">Submit</button>
+                  <button id="submit-contact-button" class="btn btn-green container-top2-button" type="button">Submit</button>
                 </form>
               </div>
             </div>
@@ -145,7 +145,7 @@
                   {% csrf_token %}
                     <label for="email" class="form-label">Email baru</label>
                     <input type="text" class="form-control" id="id-email" name="email" placeholder="Email baru">
-                  <button id="submit-email-button" class="btn btn-primary" type="button">Submit</button>
+                  <button id="submit-email-button" class="btn btn-green container-top2-button" type="button">Submit</button>
                 </form>
               </div>
             </div>
@@ -246,7 +246,7 @@
                   {% csrf_token %}
                     <label for="username" class="form-label">Username baru</label>
                     <input type="text" class="form-control" id="id-username" name="username" placeholder="Username baru">
-                  <button id="submit-username-button" class="btn btn-primary" type="button">Submit</button>
+                  <button id="submit-username-button" class="btn btn-green container-top2-button" type="button">Submit</button>
                 </form>
               </div>
             </div>
@@ -279,7 +279,7 @@
                   {% csrf_token %}
                     <label for="contact" class="form-label">Nomor telepon baru</label>
                     <input type="text" class="form-control" id="id-contact" name="contact" placeholder="Nomor telepon baru">
-                  <button id="submit-contact-button" class="btn btn-primary" type="button">Submit</button>
+                  <button id="submit-contact-button" class="btn btn-green container-top2-button" type="button">Submit</button>
                 </form>
               </div>
             </div>
@@ -311,7 +311,7 @@
                   {% csrf_token %}
                     <label for="email" class="form-label">Email baru</label>
                     <input type="text" class="form-control" id="id-email" name="email" placeholder="Email baru">
-                  <button id="submit-email-button" class="btn btn-primary" type="button">Submit</button>
+                  <button id="submit-email-button" class="btn btn-green container-top2-button" type="button">Submit</button>
                 </form>
               </div>
             </div>
@@ -404,6 +404,11 @@
       <!-- Tab security content -->
       <div class="tab-pane fade" id="pills-security" role="tabpanel" aria-labelledby="pills-security-tab" tabindex="3">
         <div class="security-tab-content" style="padding: 30px;">
+
+          {% if last_edited.password_edited %}
+          <h6 class="text-muted">Terakhir diubah: {{last_edited.last_password_edited}}</h6>
+          {% endif %}
+
           {% if passform.errors %}
           <ul>
             {% for key,value in passform.errors.items %} 
