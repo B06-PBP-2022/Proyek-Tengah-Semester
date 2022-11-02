@@ -114,6 +114,11 @@
     display: flex;
 }
 
+a, a:link, a:visited {
+    text-decoration: none;
+    color: #75C270;
+}
+
 @media all and (max-width: 450px) {
     .image-application {
         max-width: 300px;
