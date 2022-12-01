@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import show_faq, get_json, add_question, edit_faq, delete_faq
+from .views import show_faq, get_json, add_question, edit_faq, delete_faq, show_json
 
 app_name = 'faq'
 
@@ -9,4 +9,5 @@ urlpatterns = [
     path('add/', add_question, name='add_question'),
     path('answer/<str:pk>', edit_faq, name='edit_faq'),
     path('delete/<str:pk>/', delete_faq, name='delete_faq'),
+    path('json/', show_json, name='show_json'),
 ]
