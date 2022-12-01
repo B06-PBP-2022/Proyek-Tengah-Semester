@@ -34,6 +34,8 @@ CSRF_TRUSTED_ORIGINS = ['https://jejakarbon.up.railway.app']
 # authentications
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
+
+# csrf
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
