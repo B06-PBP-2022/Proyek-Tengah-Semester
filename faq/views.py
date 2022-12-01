@@ -95,3 +95,7 @@ def delete_faq(request, pk):
     faq = Faq.objects.get(id=pk)
     faq.delete()
     return redirect('faq:show_faq')
+
+def show_json(request):
+    data = Faq.objects.all()
+    return HttpResponse(serializers.serialize("json", data))
