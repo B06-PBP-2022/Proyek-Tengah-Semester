@@ -35,7 +35,7 @@ CSRF_TRUSTED_ORIGINS = ['https://jejakarbon.up.railway.app']
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
-# csrf
+
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
@@ -44,6 +44,7 @@ SESSION_COOKIE_SAMESITE = 'None'
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -60,7 +61,6 @@ INSTALLED_APPS = [
     'berdonasi',
     'kalkulator',
     'authentication',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
