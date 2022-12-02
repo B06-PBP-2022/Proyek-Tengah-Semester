@@ -161,3 +161,6 @@ def add_carbon_kendaraan(request):
         data = {"pk": detail.pk}
     return JsonResponse(data)
 
+def carbon_detail_json(request):
+    data = CarbonDetail.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
