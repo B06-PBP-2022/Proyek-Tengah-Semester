@@ -66,7 +66,15 @@ def user_histori(request):
     return JsonResponse(data)
 
 def show_json_carbon_detail(request):
-    data = CarbonDetail.objects.filter(user = request.user)
+    userprofile = UserProfile.objects.get(user=request.user)
+
+    try:
+        histori = CarbonPrintHistory.objects.get(user=userprofile)
+    except CarbonPrintHistory.DoesNotExist:
+        histori = CarbonPrintHistory(user=userprofile)
+        histori.save()
+
+    data = CarbonDetail.objects.filter(histori_karbon=histori)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 # add login required untuk individual user
