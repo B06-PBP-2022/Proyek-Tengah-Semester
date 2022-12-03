@@ -2,8 +2,6 @@ import email
 from sre_constants import SUCCESS
 from urllib import request
 from django.shortcuts import render
-
-from faq.views import get_json
 from .models import ikutdonasi
 from form_donasi.models import OpenDonasi
 from .forms import formPembayaran
