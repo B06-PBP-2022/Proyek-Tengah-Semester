@@ -4,6 +4,9 @@ from .models import Faq
 from django.http import HttpResponse
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+import json
+from django.http import JsonResponse
 
 # Create your views here.
 def show_faq(request):
@@ -31,10 +34,6 @@ def show_faq(request):
                'recently_asked_faq' : recently_asked_faq}
 
     return render(request, 'faq.html', context)
-
-def get_json(request):
-    data = Faq.objects.all()
-    return HttpResponse(serializers.serialize("json", data))
 
 @login_required(login_url='/login/')
 def add_question(request):
@@ -99,3 +98,14 @@ def delete_faq(request, pk):
 def show_json(request):
     data = Faq.objects.all()
     return HttpResponse(serializers.serialize("json", data))
+
+@csrf_exempt
+def add_question_flutter(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        faq = Faq(question = data['question'], answer="")
+        faq.save()
+    faq_obj = Faq.objects.all()
+    faq_data = json.loads(serializers.serialize('json', faq_obj))
+    return JsonResponse(faq_data, safe=False)
+
