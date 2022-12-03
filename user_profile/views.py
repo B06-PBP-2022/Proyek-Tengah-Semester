@@ -99,6 +99,7 @@ def change_contact(request):
     contact = request.POST.get('contact')
     profile = UserProfile.objects.get(user=request.user)
     profile.contact = contact
+    profile.save()
     return HttpResponse(contact)
 
 @login_required(login_url='/login/')
