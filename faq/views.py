@@ -8,6 +8,8 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.http import JsonResponse
 
+from django.contrib.auth.models import User
+
 # Create your views here.
 def show_faq(request):
     faqs = Faq.objects.all()
@@ -103,7 +105,8 @@ def show_json(request):
 def add_question_flutter(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        faq = Faq(user = data['user'], username = data['username'], question = data['question'], answer="")
+        userWhoAsked = User.objects.get(id=data['id'])
+        faq = Faq(user = userWhoAsked, username = data['username'], question = data['question'], answer="")
         faq.save()
     faq_obj = Faq.objects.all()
     faq_data = json.loads(serializers.serialize('json', faq_obj))
