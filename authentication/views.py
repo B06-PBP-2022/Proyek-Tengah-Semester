@@ -20,11 +20,9 @@ def login(request):
             "message": "Successfully Logged In!",
             # Insert any extra data if you want to pass data to Flutter
             "user" : request.user,
-            "username" : request.user.username,
             "contact" : profile.contact,
             "name" : profile.name,
             "organization" : profile.organization,
-            "email" : request.user.email
             }, status=200)
         else:
             return JsonResponse({
