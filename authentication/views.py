@@ -20,7 +20,7 @@ def login(request):
             "message": "Successfully Logged In!",
             # Insert any extra data if you want to pass data to Flutter
             "id" : user.id,
-            "username" : user.get_username,
+            "username" : user.username,
             "email" : user.email,
             "is_admin" : user.is_superuser,
             "contact" : profile.contact,
