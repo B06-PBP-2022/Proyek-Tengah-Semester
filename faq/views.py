@@ -107,7 +107,6 @@ def add_question_flutter(request):
         data = json.loads(request.body)
         faq = Faq(user = request.user, username = request.user.username, question = data['question'], answer="")
         faq.save()
-    faq_obj = Faq.objects.all()
-    faq_data = json.loads(serializers.serialize('json', faq_obj))
-    return JsonResponse(faq_data, safe=False)
-
+        return JsonResponse({"status" : "success"}, status = 200)
+    else:
+        return JsonResponse({"status" : "error"}, status = 401)
