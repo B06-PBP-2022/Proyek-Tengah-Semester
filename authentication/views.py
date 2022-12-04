@@ -13,18 +13,16 @@ def login(request):
     if user is not None:
         if user.is_active:
             auth_login(request, user)
-            profile = UserProfile.objects.get(user=request.user)
+            profile = UserProfile.objects.get(user=user)
             # Redirect to a success page.
             return JsonResponse({
             "status": True,
             "message": "Successfully Logged In!",
             # Insert any extra data if you want to pass data to Flutter
-            "user" : request.user,
-            "username" : request.user.username,
+            "user" : user,
             "contact" : profile.contact,
             "name" : profile.name,
             "organization" : profile.organization,
-            "email" : request.user.email
             }, status=200)
         else:
             return JsonResponse({
