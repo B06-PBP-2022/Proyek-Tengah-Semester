@@ -1,6 +1,7 @@
 import imp
 from django.shortcuts import render
 from .models import OpenDonasi
+import json
 
 from django.shortcuts import render
 from . import forms
@@ -64,3 +65,11 @@ def ajax_submit(request):
 
 def berdonasi(request, id):
     return redirect('berdonasi:show_masukkan_nominal', id=id)
+
+
+def add_donasi_flutter(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        new_data = OpenDonasi.objects.create(user=request.user, pencetus_donasi = request.user.userprofile.name, username = request.user.username, tema_kegiatan=data['judul'], target_donasi=data['target'], total_donasi_terkumpul=0, deskripsi=data['deskripsi'])
+        new_data.save()
+    return JsonResponse({"status" : "success"}, status = 200)
