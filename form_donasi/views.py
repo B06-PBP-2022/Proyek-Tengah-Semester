@@ -35,8 +35,7 @@ def show_page(request):
 @csrf_exempt
 def show_json_user(request):
     if request.method == 'GET':
-        username = request.GET.get('username')
-        user = User.objects.get(username=username)
+        user = User.objects.get(username=request.user.username)
         pokemon = OpenDonasi.objects.filter(user=user)
         return HttpResponse(serializers.serialize("json", pokemon), content_type="application/json")
     else:
