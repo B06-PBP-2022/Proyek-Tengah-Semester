@@ -9,6 +9,7 @@ from . import forms
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 
 
 from django.contrib.auth import authenticate, login
@@ -17,7 +18,6 @@ from django.contrib.auth import logout
 
 from django.contrib.auth.decorators import login_required
 
-import datetime
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core import serializers
 from django.urls import reverse
@@ -66,7 +66,7 @@ def ajax_submit(request):
 def berdonasi(request, id):
     return redirect('berdonasi:show_masukkan_nominal', id=id)
 
-
+@csrf_exempt
 def add_donasi_flutter(request):
     if request.method == "POST":
         data = json.loads(request.body)
