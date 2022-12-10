@@ -70,6 +70,6 @@ def berdonasi(request, id):
 def add_donasi_flutter(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        new_data = OpenDonasi.objects.create(user=request.user, pencetus_donasi = request.user.userprofile.name, username = request.user.username, tema_kegiatan=data['judul'], target_donasi=data['target'], total_donasi_terkumpul=0, deskripsi=data['deskripsi'])
+        new_data = OpenDonasi.objects.create(user=request.user, pencetus_donasi = request.user.name, username = request.user.username, tema_kegiatan=data['judul'], target_donasi=data['target'], total_donasi_terkumpul=0, deskripsi=data['deskripsi'])
         new_data.save()
     return JsonResponse({"status" : "success"}, status = 200)
