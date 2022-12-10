@@ -8,8 +8,6 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.http import JsonResponse
 
-from django.contrib.auth.models import User
-
 # Create your views here.
 def show_faq(request):
     faqs = Faq.objects.all()
