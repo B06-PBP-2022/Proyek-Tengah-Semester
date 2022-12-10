@@ -108,3 +108,12 @@ def add_question_flutter(request):
         faq = Faq(user = request.user, username = request.user.username, question = data['question'], answer="")
         faq.save()
         return JsonResponse({"status" : "success"}, status = 200)
+
+@csrf_exempt
+def edit_question_flutter(request, pk):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        faq = Faq.objects.get(id=pk)
+        faq.answer = data['answer']
+        faq.save()
+        return JsonResponse({"status" : "success"}, status = 200)

@@ -2,7 +2,7 @@ import json
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.backends import UserModel
+from django.contrib.auth.models import User
 from register.models import UserProfile
 
 @csrf_exempt
@@ -47,16 +47,15 @@ def register(request):
         username = data["username"]
         email = data["email"]
         password1 = data["password1"]
+        password2 = data["password2"]
         name = data['name']
         contact = data['contact']
         organization = data['organization']
 
-        newUser = UserModel.objects.create_user(
-        username = username, 
-        email = email,
-        password = password1,
-        )
+        if password1 != password2:
+            return JsonResponse({'status': 'failed', 'message': 'Gagal woi'})
 
+        newUser = User.objects.create_user(username = username, email = email, password = password1)
         newUser.save()
         userProfile = UserProfile(user = newUser, name = name, contact = contact, organization = organization)
         userProfile.save()
