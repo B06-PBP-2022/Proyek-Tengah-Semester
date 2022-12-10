@@ -33,6 +33,12 @@ def show_page(request):
 
 def show_json(request):
     data = OpenDonasi.objects.all()
+    task_item = data.filter(user=request.user)
+    return HttpResponse(serializers.serialize("json", task_item), content_type="application/json")
+
+
+def show_json_user(request):
+    data = OpenDonasi.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def ajax_submit(request):
@@ -67,7 +73,6 @@ def berdonasi(request, id):
     return redirect('berdonasi:show_masukkan_nominal', id=id)
 
 
-
 @csrf_exempt
 def add_donasi_flutter(request):
     if request.method == "POST":
@@ -75,3 +80,10 @@ def add_donasi_flutter(request):
         new_data = OpenDonasi(user=request.user, pencetus_donasi = request.user.userprofile.name, username = request.user.username, tema_kegiatan=data['tema_kegiatan'], target_donasi=int(data['target_donasi']), total_donasi_terkumpul=0, deskripsi=data['deskripsi'])
         new_data.save()
     return JsonResponse({"status" : "success"}, status = 200)
+
+@csrf_exempt
+def delate_event(request, pk):
+    if request.method == "POST":
+        obj = OpenDonasi.objects.filter(pk=id)
+        obj.delete
+        return JsonResponse({"status" : "success"}, status = 200)
