@@ -66,10 +66,12 @@ def ajax_submit(request):
 def berdonasi(request, id):
     return redirect('berdonasi:show_masukkan_nominal', id=id)
 
+
+
 @csrf_exempt
 def add_donasi_flutter(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        new_data = OpenDonasi.objects.create(user=request.user, pencetus_donasi = request.user.name, username = request.user.username, tema_kegiatan=data['judul'], target_donasi=data['target'], total_donasi_terkumpul=0, deskripsi=data['deskripsi'])
+        new_data = OpenDonasi.objects.create(user=request.user, pencetus_donasi = request.user.name, username = request.user.username, tema_kegiatan=data['judul'], target_donasi=int(data['target']), total_donasi_terkumpul=0, deskripsi=data['deskripsi'])
         new_data.save()
     return JsonResponse({"status" : "success"}, status = 200)
