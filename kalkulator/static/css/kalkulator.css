@@ -43,3 +43,16 @@ select {
     font-weight: bold;
     color: #4A9745;
 }
+
+.show-offset{
+    align-content: center;
+}
+
+div.card.text-center {
+    width: 12rem;
+    height: 12rem;
+    border: 1px solid #eee;
+    flex: 1;
+    box-shadow: 0 4px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 7px;
+}

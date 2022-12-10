@@ -1,15 +1,8 @@
-// const myModal = document.getElementById('myModal')
-// const myInput = document.getElementById('myInput')
-
-// myModal.addEventListener('shown.bs.modal', () => {
-//     myInput.focus()
-// })
-
 $(document).ready( function(){
     $('#submit-username-button').click( function(){
         let username= $('#id-username').val();
         let CSRFtoken = $('input[name="csrfmiddlewaretoken"]').val();
-        // alert("TERTEKAN")
+        // alert("TERTEKAN");
         $.ajax({
             url:'username-available/',
             type:'GET',
@@ -20,15 +13,50 @@ $(document).ready( function(){
                     username: username,
                     csrfmiddlewaretoken: CSRFtoken
                 });
-                    $('#id-name-header').text(username);
-                    $('#id-username').val("");
-                    $('#id-username-content').text(username);
-                    $('#edit-username-div').hide;
+                $('#id-username').val("");
+                $('#id-username-content').text(username);
+                $('#edit-username-div').hide;
             } else {
                 alert('Username is not available');
             }
         });
     })
+
+    $('#submit-contact-button').click( function(){
+        let contact= $('#id-contact').val();
+        let CSRFtoken = $('input[name="csrfmiddlewaretoken"]').val();
+
+        $.ajax({
+            url:'change-contact/',
+            type:'POST',
+            data:{contact:contact, csrfmiddlewaretoken:CSRFtoken}
+        }).done(function(response){
+            $('#id-contact').val("");
+            $('#id-contact-content').text(response);
+            $('#edit-contact-div').hide;
+        });
+    });
+
+    $('#submit-email-button').click( function(){
+        let email= $('#id-email').val();
+        let CSRFtoken = $('input[name="csrfmiddlewaretoken"]').val();
+        
+        // Validasi email
+        if (ValidateEmail(email)){
+            $.ajax({
+                url:'change-email/',
+                type:'POST',
+                data:{email:email, csrfmiddlewaretoken:CSRFtoken}
+            }).done(function(response){
+                $('#id-email').val("");
+                $('#id-email-content').text(response);
+                $('#edit-email-div').hide;
+            });
+        } else {
+            alert('Email is not valid');
+        }
+    });
+
 })
 
 function edit_username_button() {
@@ -40,10 +68,6 @@ function close_edit_username() {
     $("#edit-username-div").hide();
     $("#edit-username-button").show();
 }
-
-// function submit_username() {
-//     console.log("TERTEKAN")
-// }
 
 function edit_contact_button() {
     $("#edit-contact-div").show();
@@ -64,4 +88,15 @@ function edit_email_button() {
 function close_edit_email() {
     $("#edit-email-div").hide();
     $("#edit-email-button").show();
+}
+
+function ValidateEmail(input) {
+
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  
+    if (input.value.match(validRegex)) {
+        return true;
+    } else {
+        return false;
+    } 
 }

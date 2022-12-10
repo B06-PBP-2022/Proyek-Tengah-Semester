@@ -1,7 +1,8 @@
 from django.http import JsonResponse
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.core import serializers
-from django.http import HttpResponse
+from django.utils import timezone
 
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
@@ -11,6 +12,7 @@ from kalkulator.forms import CarbonDetailForm, DetailListrikForm, DetailKendaraa
 from kalkulator.models import CarbonPrintHistory, KomponenKalkulator, CarbonDetail
 from register.models import UserProfile
 
+# import date
 import json
 
 @login_required(login_url='/login/')
@@ -19,14 +21,60 @@ def show_kalkulator(request):
     form_listrik = DetailListrikForm()
     form_kendaraan = DetailKendaraanForm()
 
+    userprofile = UserProfile.objects.get(user=request.user)
+
+    try:
+        histori = CarbonPrintHistory.objects.get(user=userprofile)
+    except CarbonPrintHistory.DoesNotExist:
+        histori = CarbonPrintHistory(user=userprofile)
+        histori.save()
+
+    # detail_histori = CarbonDetail.objects.filter(histori_karbon=histori)
+    # today = date.today()
+    # today_histori = detail_histori.filter(date__year=today.year, date__month=today.month, date__day=today.day)
+    # serializers.serialize("json", today_histori)
+    
+    # today_total = 0.00
+    # for detail in today_histori:
+    #     today_total += detail.carbon_print
+
     context = {
         'form_detail': form_detail,
         'form_listrik': form_listrik,
-        'form_kendaraan': form_kendaraan}
+        'form_kendaraan': form_kendaraan,
+        'total': histori.carbon_print_total,
+        # 'total_today': today_total,
+        }
     return render(request, 'show_kalkulator.html', context)
 
+def user_histori(request):
+    userprofile = UserProfile.objects.get(user=request.user)
+
+    try:
+        histori = CarbonPrintHistory.objects.get(user=userprofile)
+    except CarbonPrintHistory.DoesNotExist:
+        histori = CarbonPrintHistory(user=userprofile)
+        histori.save()
+
+    hasil_kalkulasi = CarbonDetail.objects.filter(histori_karbon=histori).last()
+    print(hasil_kalkulasi)
+    
+    data = {
+        'carbon_print_total': histori.carbon_print_total,
+        'hasil_kalkulasi': hasil_kalkulasi.carbon_print}
+
+    return JsonResponse(data)
+
 def show_json_carbon_detail(request):
-    data = CarbonDetail.objects.filter(user = request.user)
+    userprofile = UserProfile.objects.get(user=request.user)
+
+    try:
+        histori = CarbonPrintHistory.objects.get(user=userprofile)
+    except CarbonPrintHistory.DoesNotExist:
+        histori = CarbonPrintHistory(user=userprofile)
+        histori.save()
+
+    data = CarbonDetail.objects.filter(histori_karbon=histori)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 # add login required untuk individual user
@@ -121,3 +169,6 @@ def add_carbon_kendaraan(request):
         data = {"pk": detail.pk}
     return JsonResponse(data)
 
+def carbon_detail_json(request):
+    data = CarbonDetail.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")

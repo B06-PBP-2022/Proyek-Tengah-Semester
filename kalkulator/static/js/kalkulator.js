@@ -9,12 +9,13 @@ $(document).ready(function(data){
             $('#listrik-form').show()
             $('#kendaraan-form').hide()
         }
+        $("#hasil_kalkulasi").html("0")
     })
     $("#calculate-btn").click(function(){
       usage_type = $('#usage option:selected').val()
         if (usage_type != 'listrik'){
             $.post(
-              '/kalkulator-karbon/calculate-kendaraan/',
+              'calculate-kendaraan/',
               {
                 usage: $('#usage option:selected').val(),
                 fuel_type: $('.fuel-type-class:checked').val(),
@@ -22,21 +23,29 @@ $(document).ready(function(data){
                 litre_per_km: $('#litre_per_km').val()
               },
               function(data){
+                $.get(
+                  'get_total_carbon/',
+                  function(data){
+                    $("#total").html(data['carbon_print_total'].toFixed(2))
+                    $("#hasil_kalkulasi").html(data['hasil_kalkulasi'].toFixed(2))
+                  }
+                )
               }
               )
               $("#kendaraan-form")[0].reset()
         } else {
           $.post(
-              '/kalkulator-karbon/calculate-listrik/',
+              'calculate-listrik/',
               {
                 usage: $('#usage option:selected').val(),
                 kilowatt_hour: $('#kilowatt_hour').val()
               },
               function(data){
                 $.get(
-                  '/kalkulator-karbon/kalkulator-json/',
+                  'get_total_carbon/',
                   function(data){
-                    
+                    $("#total").html(data['carbon_print_total'].toFixed(2));
+                    $("#hasil_kalkulasi").html(data['hasil_kalkulasi'].toFixed(2))
                   }
                 )
               }

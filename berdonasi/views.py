@@ -2,8 +2,6 @@ import email
 from sre_constants import SUCCESS
 from urllib import request
 from django.shortcuts import render
-
-from faq.views import get_json
 from .models import ikutdonasi
 from form_donasi.models import OpenDonasi
 from .forms import formPembayaran
@@ -13,6 +11,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib import admin
 from django.core import serializers
+from django.contrib.auth.decorators import login_required
 
 
 def show_masukkan_nominal(request, id):
@@ -34,18 +33,19 @@ def show_masukkan_nominal(request, id):
       
     return render(request,'form_berdonasi.html',context)
 
-def pembayaran(request):
-     if request.method=='POST':
-
+@login_required(login_url='/login/')
+def pembayaran(request,id):
+    if request.method=='POST':
+ 
         nominal = request.POST['nominal']
         pesan = request.POST['pesan']
         new_ikutdonasi = ikutdonasi(user=request.user,nominal=nominal,pesan=pesan)
         new_ikutdonasi.save()
         success = 'User' + nominal + pesan
-        return HttpResponse(success)
+    return render(request,'pembayaran.html')
 
 
-def get_json(request):
+def get_json(request, id):
     data = ikutdonasi.objects.all()
     return HttpResponse(serializers.serialize("json", data))
 
@@ -58,8 +58,11 @@ def add_nominal(request, id):
         if form.is_valid():
             nominal = request.POST['nominal']
             pesan = request.POST['pesan']
-            new_ikutdonasi = ikutdonasi(nominal=nominal,pesan=pesan)
-            obj.total_donasi_terkumpul += nominal
+
+
+            new_ikutdonasi = ikutdonasi(user=request.user,nominal=nominal,pesan=pesan)
+            obj.total_donasi_terkumpul += int(nominal)
+
             new_ikutdonasi.save()
             obj.save()
 
