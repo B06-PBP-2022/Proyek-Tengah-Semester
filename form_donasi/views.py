@@ -31,13 +31,13 @@ from .forms import OpenDonasiForm
 def show_page(request):
     return render(request,'form_buat_donasi.html')
 
-def show_json(request):
+def show_json_user(request):
     data = OpenDonasi.objects.all()
     task_item = data.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", task_item), content_type="application/json")
 
 
-def show_json_user(request):
+def show_json(request):
     data = OpenDonasi.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
