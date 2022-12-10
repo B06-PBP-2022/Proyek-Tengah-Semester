@@ -1,4 +1,4 @@
-import imp
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from .models import OpenDonasi
 import json
@@ -31,12 +31,17 @@ from .forms import OpenDonasiForm
 def show_page(request):
     return render(request,'form_buat_donasi.html')
 
+
+@csrf_exempt
 def show_json_user(request):
-    data = OpenDonasi.objects.all()
-    task_item = data.filter(user=request.user)
-    return HttpResponse(serializers.serialize("json", task_item), content_type="application/json")
-
-
+    if request.method == 'GET':
+        username = request.GET.get('username')
+        user = User.objects.get(username=username)
+        pokemon = OpenDonasi.objects.filter(user=user)
+        return HttpResponse(serializers.serialize("json", pokemon), content_type="application/json")
+    else:
+        return JsonResponse({'status': 'failed', 'message': 'Method not allowed'})
+        
 def show_json(request):
     data = OpenDonasi.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
