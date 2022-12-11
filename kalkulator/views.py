@@ -86,7 +86,7 @@ def show_json_histori_carbon(request):
         histori = CarbonPrintHistory(user=userprofile)
         histori.save()
 
-    return HttpResponse(serializers.serialize("json", histori), content_type="application/json")
+    return JsonResponse(histori)
 
 # add login required untuk individual user
 @login_required(login_url='/login/')
