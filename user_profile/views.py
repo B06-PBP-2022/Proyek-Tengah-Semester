@@ -126,3 +126,20 @@ def change_password(request):
 @login_required(login_url='/login/')
 def is_organization(request):
     return HttpResponse(request.user.is_organization)
+
+@login_required(login_url='/login/')
+def profile_data(request):
+    user = request.user
+    profile = UserProfile.objects.get(user=request.user)
+    return JsonResponse(
+        {
+            "status": True,
+            "username" : user.username,
+            "email" : user.email,
+            "is_admin" : user.is_superuser,
+            "contact" : profile.contact,
+            "name" : profile.name,
+            "organization" : profile.organization,
+        }, 
+        status=200
+    )
