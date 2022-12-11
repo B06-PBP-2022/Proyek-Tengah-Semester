@@ -150,7 +150,7 @@ def profile_json(request):
 
 @csrf_exempt
 def is_username_available(request):
-    username = request.GET.get('username')
+    username = request.POST.get('username')
     user = User.objects.filter(username = username).exists()
     if user:
         return JsonResponse({"available": False}, status=200)
