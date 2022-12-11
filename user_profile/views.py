@@ -153,9 +153,9 @@ def is_username_available(request):
     username = request.POST.get('username')
     user = User.objects.filter(username = username).exists()
     if user:
-        return JsonResponse({"available": False}, status=200)
+        return JsonResponse({"available": "false"}, status=200)
     else:
-        return JsonResponse({"available": True}, status=200)
+        return JsonResponse({"available": "true"}, status=200)
 
 @login_required(login_url='/login/')
 def change_username_flutter(request):
