@@ -12,8 +12,8 @@ urlpatterns = [
     path('open-donasi/', ajax_submit ,name='open_donasi'),
     path('open-donasi-flutter/', add_donasi_flutter ,name='open_donasi_flutter'),
     path('donasi/<int:id>/',berdonasi, name='donasi'),
-    path('delete-event/<int:id>/',delate_event, name='tutup_donasi'),
-    path('edit-event/<int:id>/',edit_event_flutter, name='edit_donasi'),
+    path('delete-event/<str:pk>/',delate_event, name='tutup_donasi'),
+    path('edit-event/<str:pk>/',edit_event_flutter, name='edit_donasi'),
     
 
     # path('donasi/',include('berdonasi.urls'), name='donasi')
