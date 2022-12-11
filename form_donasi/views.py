@@ -36,8 +36,8 @@ def show_page(request):
 def show_json_user(request):
     if request.method == 'GET':
         user = User.objects.get(username=request.user.username)
-        pokemon = OpenDonasi.objects.filter(user=user)
-        return HttpResponse(serializers.serialize("json", pokemon), content_type="application/json")
+        data = OpenDonasi.objects.filter(user=user)
+        return HttpResponse(serializers.serialize("json", data), content_type="application/json")
     else:
         return JsonResponse({'status': 'failed', 'message': 'Method not allowed'})
         
@@ -89,5 +89,17 @@ def add_donasi_flutter(request):
 def delate_event(request, pk):
     if request.method == "POST":
         obj = OpenDonasi.objects.filter(pk=id)
-        obj.delete
+        obj.delete()
+        return JsonResponse({"status" : "success"}, status = 200)
+
+@csrf_exempt
+def edit_event_flutter(request, pk):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        event = OpenDonasi.objects.get(id=pk)
+        event.tema_kegiatan = data['tema_kegiatan']
+        event.deskripsi = data['deskripsi']
+        event.target_donasi = data['target_donasi']
+        event.save()
+       
         return JsonResponse({"status" : "success"}, status = 200)
