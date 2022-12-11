@@ -86,9 +86,9 @@ def username_available(request):
     username = request.GET.get('username')
     user = User.objects.filter(username = username).exists()
     if user:
-        return HttpResponse(False)
+        return JsonResponse(False)
     else:
-        return HttpResponse(True)
+        return JsonResponse(True)
 
 @login_required(login_url='/login/')
 def username_json(request):
