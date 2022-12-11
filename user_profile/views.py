@@ -127,6 +127,10 @@ def change_password(request):
 def is_organization(request):
     return HttpResponse(request.user.is_organization)
 
+
+
+# FOR FLUTTER
+
 @login_required(login_url='/login/')
 def profile_json(request):
     user = request.user
@@ -143,3 +147,39 @@ def profile_json(request):
         }, 
         status=200
     )
+
+@csrf_exempt
+def is_username_available(request):
+    username = request.GET.get('username')
+    user = User.objects.filter(username = username).exists()
+    if user:
+        return JsonResponse({"available": False}, status=200)
+    else:
+        return JsonResponse({"available": True}, status=200)
+
+@login_required(login_url='/login/')
+def change_username_flutter(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        # Update username
+        user = request.user
+        user.username = username
+        user.save()
+        messages.success(request, 'Your username was successfully updated!')
+    return JsonResponse({"username": user.username}, status=200)
+
+@login_required(login_url='/login/')
+def change_contact_flutter(request):
+    contact = request.POST.get('contact')
+    profile = UserProfile.objects.get(user=request.user)
+    profile.contact = contact
+    profile.save()
+    return JsonResponse({"contact": contact}, status=200)
+
+@login_required(login_url='/login/')
+def change_email_flutter(request):
+    email = request.POST.get('email')
+    user = request.user
+    user.email = email
+    user.save()
+    return JsonResponse({"email": email}, status=200)
