@@ -115,3 +115,9 @@ def edit_question_flutter(request, pk):
         faq.answer = data['answer']
         faq.save()
         return JsonResponse({"status" : "success"}, status = 200)
+
+@csrf_exempt
+def delete_flutter(request, pk):
+    faq = Faq.objects.get(id=pk)
+    faq.delete()
+    return JsonResponse({"status" : "success"}, status = 200)
