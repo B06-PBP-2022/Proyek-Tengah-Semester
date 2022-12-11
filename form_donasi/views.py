@@ -86,17 +86,17 @@ def add_donasi_flutter(request):
     return JsonResponse({"status" : "success"}, status = 200)
 
 @csrf_exempt
-def delate_event(request, pk):
+def delate_event(request, id):
     if request.method == "POST":
         obj = OpenDonasi.objects.filter(pk=id)
         obj.delete()
         return JsonResponse({"status" : "success"}, status = 200)
 
 @csrf_exempt
-def edit_event_flutter(request, pk):
+def edit_event_flutter(request, id):
     if request.method == "POST":
         data = json.loads(request.body)
-        event = OpenDonasi.objects.get(id=pk)
+        event = OpenDonasi.objects.get(pk=id)
         event.tema_kegiatan = data['tema_kegiatan']
         event.deskripsi = data['deskripsi']
         event.target_donasi = int(data['target_donasi'])
