@@ -150,12 +150,12 @@ def profile_json(request):
 
 @csrf_exempt
 def is_username_available(request):
-    username = request.POST.get('username')
+    username = request.GET.get('username')
     user = User.objects.filter(username = username).exists()
     if user:
-        return JsonResponse({"available": "false"}, status=200)
+        return JsonResponse({"available": False}, status=200)
     else:
-        return JsonResponse({"available": "true"}, status=200)
+        return JsonResponse({"available": True}, status=200)
 
 @login_required(login_url='/login/')
 def change_username_flutter(request):
