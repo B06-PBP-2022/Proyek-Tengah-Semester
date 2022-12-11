@@ -99,7 +99,7 @@ def edit_event_flutter(request, pk):
         event = OpenDonasi.objects.get(id=pk)
         event.tema_kegiatan = data['tema_kegiatan']
         event.deskripsi = data['deskripsi']
-        event.target_donasi = data['target_donasi']
+        event.target_donasi = int(data['target_donasi'])
         event.save()
        
         return JsonResponse({"status" : "success"}, status = 200)
