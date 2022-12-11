@@ -1,5 +1,5 @@
 from django.urls import path
-from user_profile.views import show_profile, change_username, username_available, change_contact, change_email, is_organization, profile_data
+from user_profile.views import show_profile, change_username, username_available, change_contact, change_email, is_organization, profile_json
 
 app_name = 'user_profile'
 
@@ -10,5 +10,5 @@ urlpatterns = [
     path('change-contact/', change_contact, name='change_contact'),
     path('change-email/', change_email, name='change_email'),
     path('is-organization/', is_organization, name='is_organization'),
-    path('profile-data/', profile_data, name='profile_data')
+    path('profile-json/', profile_json, name='profile_json')
 ]

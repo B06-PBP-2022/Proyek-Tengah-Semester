@@ -128,7 +128,7 @@ def is_organization(request):
     return HttpResponse(request.user.is_organization)
 
 @login_required(login_url='/login/')
-def profile_data(request):
+def profile_json(request):
     user = request.user
     profile = UserProfile.objects.get(user=request.user)
     return JsonResponse(
