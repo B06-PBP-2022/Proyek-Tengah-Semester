@@ -47,15 +47,12 @@ def pembayaran(request,id):
     new_ikutdonasi.save()
     return render(request,'pembayaran.html')
 
-@csrf_exempt
+
 def get_json(request, pk):
     if request.method == "POST":
-        data = json.loads(request.body)
-        event = OpenDonasi.objects.get(id=pk)
-        event.tema_kegiatan = data['tema_kegiatan']
-        event.save()
-    
-    return JsonResponse({"status" : "success"}, status = 200)
+        data = OpenDonasi.objects.filter(pk=id)
+        data.save()
+        return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def add_nominal(request, id):
     obj = OpenDonasi.objects.get(pk=id)
