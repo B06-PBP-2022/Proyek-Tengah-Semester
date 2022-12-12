@@ -54,7 +54,7 @@ def get_json(request, pk):
         event.tema_kegiatan = data['tema_kegiatan']
         event.save()
     
-    return HttpResponse(serializers.serialize("json", data))
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def add_nominal(request, id):
     obj = OpenDonasi.objects.get(pk=id)
