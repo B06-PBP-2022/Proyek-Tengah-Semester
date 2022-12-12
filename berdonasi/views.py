@@ -3,6 +3,7 @@ from sre_constants import SUCCESS
 from urllib import request
 from django.shortcuts import render
 from .models import ikutdonasi
+from form_donasi.models import OpenDonasi
 
 from .forms import formPembayaran
 from django.contrib.auth.forms import UserCreationForm
@@ -12,6 +13,8 @@ from django.http import HttpResponse
 from django.contrib import admin
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
+import json
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 
 
 def show_masukkan_nominal(request, id):
@@ -44,9 +47,14 @@ def pembayaran(request,id):
     return render(request,'pembayaran.html')
 
 
-def get_json(request, id):
-    data = ikutdonasi.objects.all()
-    return HttpResponse(serializers.serialize("json", data))
+def get_json(request, pk):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        event = OpenDonasi.objects.get(id=pk)
+        event.tema_kegiatan = data['tema_kegiatan']
+        event.save()
+    
+    return JsonResponse({"status" : "success"}, status = 200)
 
 def add_nominal(request, id):
     obj = OpenDonasi.objects.get(pk=id)
