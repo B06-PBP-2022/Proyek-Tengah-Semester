@@ -13,6 +13,7 @@ from django.contrib import messages
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect,HttpResponse,JsonResponse
+from django.core import serializers
 
 from user_profile.forms import PasswordChangingForm
 from user_profile.models import LastEdited
@@ -198,7 +199,7 @@ def carbon_history_flutter(request):
             histori_karbon.save()
 
         detail_karbon = CarbonDetail.objects.filter(histori_karbon = histori_karbon)
-        histori_berdonasi = ikutdonasi.objects.filter(user = request.user)
+        # histori_berdonasi = ikutdonasi.objects.filter(user = request.user)
         context = {
             'carbon_history': histori_karbon,
             'carbon_detail': detail_karbon,
@@ -207,7 +208,15 @@ def carbon_history_flutter(request):
             # 'last_edited': last_edited,
         }
 
-        return JsonResponse(context, status=200)
+        data = {{'total_carbon': histori_karbon.carbon_print_total}, {'carbon_detail': {}}}
+        for detail in detail_karbon:
+            for key, value in detail.__dict__.items():
+                if key == '_state':
+                    continue
+                data['carbon_detail'].add({key: value})
+        
+        # return JsonResponse(serializers.serialize("json", data), content_type="application/json")
+        return JsonResponse(data, status=200)
     else :
         return JsonResponse({'message':'You must logged in with a personal account'},status=404)
 
