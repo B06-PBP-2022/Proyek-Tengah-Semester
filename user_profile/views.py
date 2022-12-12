@@ -185,4 +185,4 @@ def change_email_flutter(request):
     user = request.user
     user.email = email
     user.save()
-    return JsonResponse({"email": email}, status=200)
+    return JsonResponse({"email": request.user.email}, status=200)
