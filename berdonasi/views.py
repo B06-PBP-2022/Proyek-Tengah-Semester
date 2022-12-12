@@ -49,9 +49,11 @@ def pembayaran(request,id):
 
 
 def get_json(request, id):
-        # dat = json.loads(request.body)
-        data = OpenDonasi.objects.filter(pk=id)
+    if request.method == "POST":
+        dat = json.loads(request.body)
+        data = OpenDonasi.objects.get(pk=id)
         # data.total_donasi_terkumpul = data['total_donasi_terkumpul']
+        data.total_donasi_terkumpul = int(dat['total_donasi_terkumpul'])
         return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def add_nominal(request, id):
