@@ -209,10 +209,11 @@ def carbon_history_flutter(request):
         }
 
         data_total_carbon = {'total_carbon': histori_karbon.carbon_print_total}
-        data_carbon_detail = {'carbon_detail': {}}
+        detailSet = set()
+        data_carbon_detail = {'carbon_detail': detailSet}
 
 
-        set = data_carbon_detail['carbon_detail']
+        detailSet = data_carbon_detail['carbon_detail']
         for detail in detail_karbon:
             # for key, value in detail.__dict__.items():
             #     # if key == '_state':
@@ -221,7 +222,7 @@ def carbon_history_flutter(request):
             usage = detail.usage
             date_input = detail.date_input.strftime("%d/%m/%Y")
             carbon_print = detail.carbon_print
-            set.add({'usage':usage, 'date_input':date_input, 'carbon_print':carbon_print})
+            detailSet.add({'usage':usage, 'date_input':date_input, 'carbon_print':carbon_print})
 
         
         # return JsonResponse(serializers.serialize("json", data), content_type="application/json")
@@ -256,7 +257,8 @@ def donation_history_flutter(request):
             # 'last_edited': last_edited,
         }
 
-        return JsonResponse(context, status=200)
+        # return JsonResponse(context, status=200)
+        return JsonResponse(serializers.serialize("json", histori_berdonasi), content_type="application/json")
     else :
         return JsonResponse({'message':'You must logged in with a personal account'},status=404)
 
@@ -273,6 +275,7 @@ def opened_donation_flutter(request):
             # 'last_edited': last_edited,
         }
 
-        return JsonResponse(context, status=200)
+        # return JsonResponse(context, status=200)
+        return JsonResponse(serializers.serialize("json", daftar_donasi), content_type="application/json")
     else :
         return JsonResponse({'message':'You must logged in with an organizational account'},status=404)
