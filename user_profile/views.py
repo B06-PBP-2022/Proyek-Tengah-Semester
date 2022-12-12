@@ -166,7 +166,7 @@ def change_username_flutter(request):
         user.username = username
         user.save()
         messages.success(request, 'Your username was successfully updated!')
-    return JsonResponse({"username": user.username}, status=200)
+    return JsonResponse({"username": request.user.username}, status=200)
 
 @login_required(login_url='/login/')
 def change_contact_flutter(request):
