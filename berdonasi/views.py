@@ -15,6 +15,7 @@ from django.core import serializers
 from django.contrib.auth.decorators import login_required
 import json
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 def show_masukkan_nominal(request, id):
@@ -46,7 +47,7 @@ def pembayaran(request,id):
     new_ikutdonasi.save()
     return render(request,'pembayaran.html')
 
-
+@csrf_exempt
 def get_json(request, pk):
     if request.method == "POST":
         data = json.loads(request.body)
@@ -54,7 +55,7 @@ def get_json(request, pk):
         event.tema_kegiatan = data['tema_kegiatan']
         event.save()
     
-    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+    return JsonResponse({"status" : "success"}, status = 200)
 
 def add_nominal(request, id):
     obj = OpenDonasi.objects.get(pk=id)
