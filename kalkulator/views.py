@@ -180,7 +180,7 @@ def add_carbon_listrik_flutter(request):
 
         print("ADD CARBON LISTRIK")
 
-        kilowatt_hour = request.POST.get('kilowatt_hour')
+        kilowatt_hour = float(request.POST.get('kilowatt_hour'))
 
         #  make KomponenKalkulator instance
         komponen_kalkulasi = KomponenKalkulator(kilowatt_hour=kilowatt_hour)
