@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 from faq.views import get_json
 from .models import ikutdonasi
-from form_donasi.models import OpenDonasi
+
 from .forms import formPembayaran
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
@@ -37,13 +37,12 @@ def show_masukkan_nominal(request, id):
 
 @login_required(login_url='/login/')
 def pembayaran(request,id):
-    if request.method=='POST':
+    
  
-        nominal = request.POST['nominal']
-        pesan = request.POST['pesan']
-        new_ikutdonasi = ikutdonasi(user=user,nominal=nominal,pesan=pesan)
-        new_ikutdonasi.save()
-        success = 'User' + nominal + pesan
+    nominal = request.POST['nominal']
+    pesan = request.POST['pesan']
+    new_ikutdonasi = ikutdonasi(user=user,nominal=nominal,pesan=pesan)
+    new_ikutdonasi.save()
     return render(request,'pembayaran.html')
 
 
@@ -60,7 +59,6 @@ def add_nominal(request, id):
         if form.is_valid():
             nominal = request.POST['nominal']
             pesan = request.POST['pesan']
-
 
             new_ikutdonasi = ikutdonasi(user=request.user,nominal=nominal,pesan=pesan)
             obj.total_donasi_terkumpul += int(nominal)
