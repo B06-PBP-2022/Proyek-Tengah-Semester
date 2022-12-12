@@ -227,7 +227,7 @@ def carbon_history_flutter(request):
         # return JsonResponse(serializers.serialize("json", data), content_type="application/json")
         # data = {**data_total_carbon, **data_carbon_detail
 
-        data = {}
+        data = set()
         data.add(data_total_carbon)
         data.add(data_carbon_detail)
         
