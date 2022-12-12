@@ -173,6 +173,7 @@ def carbon_detail_json(request):
     data = CarbonDetail.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
+@csrf_exempt
 def add_carbon_listrik_flutter(request):
     if request.method == "POST":
         request_data = json.load(request.body)
@@ -218,6 +219,7 @@ def add_carbon_listrik_flutter(request):
             "message": "Ada kesalahan. Mohon coba lagi!"
             }, status=304)
 
+@csrf_exempt
 def add_carbon_kendaraan_flutter(request):
     if request.method == "POST":
         request_data = json.load(request.body)
