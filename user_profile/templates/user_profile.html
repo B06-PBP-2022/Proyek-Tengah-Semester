@@ -17,14 +17,14 @@
 
     <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none flex-column">
       <img class="card-img" src="{% static 'image/user.png' %}" class="img-fluid rounded-start">
-      <h3 class="name-header" id="id-name-header">{{user.userprofile.name}}</h3>
+      <h3 class="name-header" id="id-name-header" style="margin-top: 20px;">{{user.userprofile.name}}</h3>
       {% if user.userprofile.organization %}
-      <h6 class="role-subtitle" id="id-role-subtitle">Organisasi</h6>
+      <p class="role-subtitle" id="id-role-subtitle">Organisasi</p>
       {% else %}
-      <h6 class="role-subtitle" id="id-role-subtitle">Pengguna</h6>
+      <p class="role-subtitle" id="id-role-subtitle">Pengguna</p>
       {% endif %}
     </a>
-    <hr>
+    <hr style="margin-bottom: 30px;">
 
     {% if user.userprofile.organization %}
       <div class="nav flex-column nav-pills nav-fill me-3" id="pills-tab" role="tablist" aria-orientation="vertical">
@@ -80,7 +80,7 @@
                   {% csrf_token %}
                     <label for="username" class="form-label">Username baru</label>
                     <input type="text" class="form-control" id="id-username" name="username" placeholder="Username baru">
-                  <button id="submit-username-button" class="btn btn-green container-top2-button" type="button">Submit</button>
+                  <button id="submit-username-button" class="btn btn-green container-top2-button" type="button" style="margin-top: 0px; margin-left: 0px;">Submit</button>
                 </form>
               </div>
             </div>
@@ -113,7 +113,7 @@
                   {% csrf_token %}
                     <label for="contact" class="form-label">Nomor telepon baru</label>
                     <input type="text" class="form-control" id="id-contact" name="contact" placeholder="Nomor telepon baru">
-                  <button id="submit-contact-button" class="btn btn-green container-top2-button" type="button">Submit</button>
+                  <button id="submit-contact-button" class="btn btn-green container-top2-button" type="button" style="margin-top: 0px; margin-left: 0px;">Submit</button>
                 </form>
               </div>
             </div>
@@ -145,7 +145,7 @@
                   {% csrf_token %}
                     <label for="email" class="form-label">Email baru</label>
                     <input type="text" class="form-control" id="id-email" name="email" placeholder="Email baru">
-                  <button id="submit-email-button" class="btn btn-green container-top2-button" type="button">Submit</button>
+                  <button id="submit-email-button" class="btn btn-green container-top2-button" type="button" style="margin-top: 0px; margin-left: 0px;">Submit</button>
                 </form>
               </div>
             </div>
@@ -246,7 +246,7 @@
                   {% csrf_token %}
                     <label for="username" class="form-label">Username baru</label>
                     <input type="text" class="form-control" id="id-username" name="username" placeholder="Username baru">
-                  <button id="submit-username-button" class="btn btn-green container-top2-button" type="button">Submit</button>
+                  <button id="submit-username-button" class="btn btn-green container-top2-button" type="button" style="margin-top: 0px; margin-left: 0px;">Submit</button>
                 </form>
               </div>
             </div>
@@ -279,7 +279,7 @@
                   {% csrf_token %}
                     <label for="contact" class="form-label">Nomor telepon baru</label>
                     <input type="text" class="form-control" id="id-contact" name="contact" placeholder="Nomor telepon baru">
-                  <button id="submit-contact-button" class="btn btn-green container-top2-button" type="button">Submit</button>
+                  <button id="submit-contact-button" class="btn btn-green container-top2-button" type="button" style="margin-top: 0px; margin-left: 0px;">Submit</button>
                 </form>
               </div>
             </div>
@@ -311,7 +311,7 @@
                   {% csrf_token %}
                     <label for="email" class="form-label">Email baru</label>
                     <input type="text" class="form-control" id="id-email" name="email" placeholder="Email baru">
-                  <button id="submit-email-button" class="btn btn-green container-top2-button" type="button">Submit</button>
+                  <button id="submit-email-button" class="btn btn-green container-top2-button" type="button" style="margin-top: 0px; margin-left: 0px;">Submit</button>
                 </form>
               </div>
             </div>
@@ -335,9 +335,10 @@
                 <div class="card mb-3">
                   <img class="card-img" src="{% static 'image/jkwork.png' %}" class="img-fluid rounded-start">
                   <div class="card-body">
-                    <h5 class="text card-title">{{histori.nominal}}</h5>
+                    <h5 class="text card-title">Rp{{histori.nominal}}</h5>
                     <!-- <p class="text card-text">Dari: {{histori.pesan}}</p> -->
                     <hr class="divider-card">
+                    <p class="text card-text">Pesan : </p>
                     <p class="text card-text">{{histori.pesan}}</p>
                   </div>
                 </div>

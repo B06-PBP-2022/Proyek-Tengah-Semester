@@ -27,5 +27,5 @@ urlpatterns = [
     path('faq/', include('faq.urls')),
     path('berdonasi/',include('berdonasi.urls')),
     path('kalkulator/',include('kalkulator.urls')),
-    
+    path('auth/', include('authentication.urls')),   
 ]
