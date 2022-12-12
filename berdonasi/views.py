@@ -48,10 +48,10 @@ def pembayaran(request,id):
     return render(request,'pembayaran.html')
 
 
-def get_json(request, pk):
-    if request.method == "POST":
+def get_json(request, id):
+        # dat = json.loads(request.body)
         data = OpenDonasi.objects.filter(pk=id)
-        data.save()
+        # data.total_donasi_terkumpul = data['total_donasi_terkumpul']
         return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def add_nominal(request, id):
