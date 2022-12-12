@@ -54,7 +54,7 @@ def get_json(request, id):
         data = OpenDonasi.objects.get(pk=id)
         # data.total_donasi_terkumpul = data['total_donasi_terkumpul']
         data.total_donasi_terkumpul = int(dat['total_donasi_terkumpul'])
-        return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+        return JsonResponse({"status" : "success"}, status = 200)
 
 def add_nominal(request, id):
     obj = OpenDonasi.objects.get(pk=id)
