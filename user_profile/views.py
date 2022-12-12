@@ -199,40 +199,8 @@ def carbon_history_flutter(request):
             histori_karbon.save()
 
         detail_karbon = CarbonDetail.objects.filter(histori_karbon = histori_karbon)
-        # histori_berdonasi = ikutdonasi.objects.filter(user = request.user)
-        context = {
-            'carbon_history': histori_karbon,
-            'carbon_detail': detail_karbon,
-            # 'histori_berdonasi': histori_berdonasi,
-            # 'passform': passform,
-            # 'last_edited': last_edited,
-        }
-
-        data_total_carbon = {'total_carbon': histori_karbon.carbon_print_total}
-        detailSet = set()
-        data_carbon_detail = {'carbon_detail': detailSet}
-
-
-        detailSet = data_carbon_detail['carbon_detail']
-        for detail in detail_karbon:
-            # for key, value in detail.__dict__.items():
-            #     # if key == '_state':
-            #     #     continue
-            #     data['carbon_detail'].add({key: value})
-            usage = detail.usage
-            date_input = detail.date_input.strftime("%d/%m/%Y")
-            carbon_print = detail.carbon_print
-            detailSet.add({'usage':usage, 'date_input':date_input, 'carbon_print':carbon_print})
-
         
-        # return JsonResponse(serializers.serialize("json", data), content_type="application/json")
-        # data = {**data_total_carbon, **data_carbon_detail
-
-        data = set()
-        data.add(data_total_carbon)
-        data.add(data_carbon_detail)
-        
-        return JsonResponse(data, status=200)
+        return HttpResponse(serializers.serialize("json", detail_karbon), content_type="application/json")
     else :
         return JsonResponse({'message':'You must logged in with a personal account'},status=404)
 
@@ -241,24 +209,8 @@ def carbon_history_flutter(request):
 def donation_history_flutter(request):
     profile = UserProfile.objects.get(user=request.user)
     if not profile.organization:
-        # try:
-        #     histori_karbon = CarbonPrintHistory.objects.get(user = profile)
-        # except:
-        #     histori_karbon = CarbonPrintHistory(user = profile)
-        #     histori_karbon.save()
-
-        # detail_karbon = CarbonDetail.objects.filter(histori_karbon = histori_karbon)
         histori_berdonasi = ikutdonasi.objects.filter(user = request.user)
-        context = {
-            # 'histori_karbon': histori_karbon,
-            # 'detail_karbon': detail_karbon,
-            'donation_history': histori_berdonasi,
-            # 'passform': passform,
-            # 'last_edited': last_edited,
-        }
-
-        # return JsonResponse(context, status=200)
-        return JsonResponse(serializers.serialize("json", histori_berdonasi), content_type="application/json")
+        return HttpResponse(serializers.serialize("json", histori_berdonasi), content_type="application/json")
     else :
         return JsonResponse({'message':'You must logged in with a personal account'},status=404)
 
@@ -268,14 +220,8 @@ def donation_history_flutter(request):
 def opened_donation_flutter(request):
     profile = UserProfile.objects.get(user=request.user)
     if profile.organization:
-        daftar_donasi = OpenDonasi.objects.filter(user = request.user)
-        context = {
-            'opened_donation': daftar_donasi,
-            # 'passform': passform,
-            # 'last_edited': last_edited,
-        }
-
-        # return JsonResponse(context, status=200)
-        return JsonResponse(serializers.serialize("json", daftar_donasi), content_type="application/json")
+        daftar_donasi = OpenDonasi.objects.all()
+        print(daftar_donasi)
+        return HttpResponse(serializers.serialize("json", daftar_donasi), content_type="application/json")
     else :
         return JsonResponse({'message':'You must logged in with an organizational account'},status=404)
