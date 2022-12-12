@@ -208,14 +208,29 @@ def carbon_history_flutter(request):
             # 'last_edited': last_edited,
         }
 
-        data = {{'total_carbon': histori_karbon.carbon_print_total}, {'carbon_detail': {}}}
+        data_total_carbon = {'total_carbon': histori_karbon.carbon_print_total}
+        data_carbon_detail = {'carbon_detail': {}}
+
+
+        set = data_carbon_detail['carbon_detail']
         for detail in detail_karbon:
-            for key, value in detail.__dict__.items():
-                if key == '_state':
-                    continue
-                data['carbon_detail'].add({key: value})
+            # for key, value in detail.__dict__.items():
+            #     # if key == '_state':
+            #     #     continue
+            #     data['carbon_detail'].add({key: value})
+            usage = detail.usage
+            date_input = detail.date_input.strftime("%d/%m/%Y")
+            carbon_print = detail.carbon_print
+            set.add({'usage':usage, 'date_input':date_input, 'carbon_print':carbon_print})
+
         
         # return JsonResponse(serializers.serialize("json", data), content_type="application/json")
+        # data = {**data_total_carbon, **data_carbon_detail
+
+        data = {}
+        data.add(data_total_carbon)
+        data.add(data_carbon_detail)
+        
         return JsonResponse(data, status=200)
     else :
         return JsonResponse({'message':'You must logged in with a personal account'},status=404)
