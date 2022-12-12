@@ -2,8 +2,6 @@ import email
 from sre_constants import SUCCESS
 from urllib import request
 from django.shortcuts import render
-
-from faq.views import get_json
 from .models import ikutdonasi
 
 from .forms import formPembayaran
@@ -41,7 +39,7 @@ def pembayaran(request,id):
  
     nominal = request.POST['nominal']
     pesan = request.POST['pesan']
-    new_ikutdonasi = ikutdonasi(user=user,nominal=nominal,pesan=pesan)
+    new_ikutdonasi = ikutdonasi(user=request.user,nominal=nominal,pesan=pesan)
     new_ikutdonasi.save()
     return render(request,'pembayaran.html')
 

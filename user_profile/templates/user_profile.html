@@ -13,24 +13,31 @@
 <div class="content d-flex flex-row" style="width: 100%;">
 
   <!-- Sidebar -->
-  <div class="d-flex flex-column flex-shrink-0 p-3 bg-green" style="width: 300px; height: 150vh;">
+  <div id="id-sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-green" style="width: 300px; height: 150vh;">
 
-    <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-      <h3 class="name-header" id="id-name-header">{{user}}</h3>
+    <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none flex-column">
+      <img class="card-img" src="{% static 'image/user.png' %}" class="img-fluid rounded-start">
+      <h3 class="name-header" id="id-name-header" style="margin-top: 20px;">{{user.userprofile.name}}</h3>
+      {% if user.userprofile.organization %}
+      <p class="role-subtitle" id="id-role-subtitle">Organisasi</p>
+      {% else %}
+      <p class="role-subtitle" id="id-role-subtitle">Pengguna</p>
+      {% endif %}
     </a>
-    <hr>
+    <hr style="margin-bottom: 30px;">
 
     {% if user.userprofile.organization %}
       <div class="nav flex-column nav-pills nav-fill me-3" id="pills-tab" role="tablist" aria-orientation="vertical">
         <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="true">Data Profil</button>
         <button class="nav-link" id="pills-donation-tab" data-bs-toggle="pill" data-bs-target="#pills-donation" type="button" role="tab" aria-controls="pills-donation" aria-selected="false">Donasi yang Dibuka</button>
-        <button class="nav-link" id="pills-carbon-tab" data-bs-toggle="pill" data-bs-target="#pills-carbon" type="button" role="tab" aria-controls="pills-carbon" aria-selected="false">Produksi Karbon</button>
+        <button class="nav-link" id="pills-security-tab" data-bs-toggle="pill" data-bs-target="#pills-security" type="button" role="tab" aria-controls="pills-carbon" aria-selected="false">Keamanan Akun</button>
       </div>
     {% else %}
       <div class="nav flex-column nav-pills nav-fill me-3" id="pills-tab" role="tablist" aria-orientation="vertical">
         <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="true">Data Profil</button>
         <button class="nav-link" id="pills-history-tab" data-bs-toggle="pill" data-bs-target="#pills-history" type="button" role="tab" aria-controls="pills-history" aria-selected="false">Histori Donasi</button>
         <button class="nav-link" id="pills-carbon-tab" data-bs-toggle="pill" data-bs-target="#pills-carbon" type="button" role="tab" aria-controls="pills-carbon" aria-selected="false">Produksi Karbon</button>
+        <button class="nav-link" id="pills-security-tab" data-bs-toggle="pill" data-bs-target="#pills-security" type="button" role="tab" aria-controls="pills-carbon" aria-selected="false">Keamanan Akun</button>
       </div>
     {% endif %}
 
@@ -44,22 +51,20 @@
 
       {% if user.userprofile.organization %}
 
-      <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">a</div>
-      <div class="tab-pane fade" id="pills-donation" role="tabpanel" aria-labelledby="pills-donation-tab" tabindex="1">b</div>
-      <div class="tab-pane fade" id="pills-carbon" role="tabpanel" aria-labelledby="pills-carbon-tab" tabindex="2">c</div>
-
-      {% else %}
-
       <!-- Tab content profile -->
       <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
         <div class="profile-tab-content" style="padding: 30px;">
 
           <!-- Username div -->
-          <div class="username-box" style="margin: 0px 0px 30px 0px;">
-            <p class="username-title green-jk">Username :</p>
-            <h3 id="username-content" class="username-text darkgreen-jk">{{user}}</h3>
+          <div class="username-box d-flex flex-row" style="margin: 0px 0px 30px 0px;">
+            <div>
+              <p class="username-title green-jk">Username :</p>
+              <h3 id="id-username-content" class="username-text darkgreen-jk">{{user}}</h3>
+            </div>
             <!-- Edit username button -->
-            <button id="edit-username-button" type="button" class="btn btn-primary" onclick="edit_username_button()">Edit Username</button>
+            <a>
+              <button id="edit-username-button" type="button" class="btn btn-green container-top2-button" onclick="edit_username_button()">Edit Username</button>
+            </a>
             <!-- End edit username button -->
           </div>
           <!-- End username div -->
@@ -75,7 +80,7 @@
                   {% csrf_token %}
                     <label for="username" class="form-label">Username baru</label>
                     <input type="text" class="form-control" id="id-username" name="username" placeholder="Username baru">
-                  <button id="submit-username-button" class="btn btn-primary" type="button">Submit</button>
+                  <button id="submit-username-button" class="btn btn-green container-top2-button" type="button" style="margin-top: 0px; margin-left: 0px;">Submit</button>
                 </form>
               </div>
             </div>
@@ -84,11 +89,15 @@
           <!-- <p class="tes-aja" id="id-tes-aja">tes aja</p> -->
 
           <!-- Contact div -->
-          <div class="contact-box" style="margin: 30px 0px 30px 0px;">
-            <p class="contact-title green-jk">Contact :</p>
-            <h3 id="contact-content" class="contact-text darkgreen-jk">{{user.userprofile.contact}}</h3>
+          <div class="contact-box d-flex flex-row" style="margin: 30px 0px 30px 0px;">
+            <div>
+              <p class="contact-title green-jk">Contact :</p>
+              <h3 id="id-contact-content" class="contact-text darkgreen-jk">{{user.userprofile.contact}}</h3>
+            </div>
             <!-- Edit contact button -->
-            <button id="edit-contact-button" type="button" class="btn btn-primary" onclick="edit_contact_button()">Edit Contact</button>
+            <a>
+              <button id="edit-contact-button" type="button" class="btn btn-green container-top2-button" onclick="edit_contact_button()">Edit Contact</button>
+            </a>
             <!-- End edit contact button -->
           </div>
           <!-- End contact div -->
@@ -104,7 +113,7 @@
                   {% csrf_token %}
                     <label for="contact" class="form-label">Nomor telepon baru</label>
                     <input type="text" class="form-control" id="id-contact" name="contact" placeholder="Nomor telepon baru">
-                  <button id="submit-contact-button" class="btn btn-primary" type="button">Submit</button>
+                  <button id="submit-contact-button" class="btn btn-green container-top2-button" type="button" style="margin-top: 0px; margin-left: 0px;">Submit</button>
                 </form>
               </div>
             </div>
@@ -112,11 +121,15 @@
           <!-- End edit contact div -->
 
           <!-- Email div -->
-          <div class="email-box" style="margin: 30px 0px 30px 0px;">
-            <p class="email-title green-jk">Email :</p>
-            <h3 id="email-content" class="email-text darkgreen-jk">{{user.email}}</h3>
+          <div class="email-box d-flex flex-row" style="margin: 30px 0px 30px 0px;">
+            <div>
+              <p class="email-title green-jk">Email :</p>
+              <h3 id="id-email-content" class="email-text darkgreen-jk">{{user.email}}</h3>
+            </div>
             <!-- Edit email button -->
-            <button id="edit-email-button" type="button" class="btn btn-primary" onclick="edit_email_button()">Edit Email</button>
+            <a>
+              <button id="edit-email-button" type="button" class="btn btn-green container-top2-button" onclick="edit_email_button()">Edit Email</button>
+            </a>
             <!-- End edit email button -->
           </div>
           <!-- End email div -->
@@ -132,7 +145,173 @@
                   {% csrf_token %}
                     <label for="email" class="form-label">Email baru</label>
                     <input type="text" class="form-control" id="id-email" name="email" placeholder="Email baru">
-                  <button id="submit-email-button" class="btn btn-primary" type="button">Submit</button>
+                  <button id="submit-email-button" class="btn btn-green container-top2-button" type="button" style="margin-top: 0px; margin-left: 0px;">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- End edit username div -->
+
+        </div>
+      </div>
+      <!-- End tab content profile -->
+
+
+      <!-- Tab content donation opened by organization -->
+      <div class="tab-pane fade" id="pills-donation" role="tabpanel" aria-labelledby="pills-donation-tab" tabindex="1">
+        <div class="donation-tab-content" style="padding: 30px;">
+          <div class="container" id="container-data">
+            <h4 class="subtitle">Donasi yang Anda Buka</h4>
+            <div class="row row-cols-2 justify-content-center cards-donate" id="content">
+              <!-- each row has 2 cards -->
+              {% for donasi in daftar_donasi %}
+              <div class="col sec-card">
+                <div class="card mb-3">
+                  <img class="card-img" src="{% static 'image/donating_card.png' %}" class="img-fluid rounded-start">
+                  <div class="card-body">
+                    <h5 class="text card-title">{{donasi.tema_kegiatan}}</h5>
+                    <p class="text card-text">Dari: {{donasi.pencetus_donasi}}</p>
+                    <span style="color: #75C270; background-color: white;" class="badge text-wrap text-truncate"> {{donasi.total_donasi_terkumpul}} / {{donasi.target_donasi}}</span>
+                    <hr class="divider-card">
+                    <p class="text card-text">{{donasi.deskripsi}}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End tab content donation opened by organization -->
+
+
+      <!-- Tab security content -->
+      <div class="tab-pane fade" id="pills-security" role="tabpanel" aria-labelledby="pills-security-tab" tabindex="2">
+        <div class="security-tab-content" style="padding: 30px;">
+          {% if passform.errors %}
+          <ul>
+            {% for key,value in passform.errors.items %} 
+            <div class="alert">
+              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+              <li>{{ value|escape }}</li>
+            </div>
+            {% endfor %}
+          </ul>
+          {% endif %}  
+          <form method="post">
+            {% csrf_token %}
+            {{ passform.as_div }}
+            <a>
+              <button type="button" id="id-submit-password" class="btn btn-green container-top2-button">Simpan Password</button>
+            </a>
+          </form>          
+        </div>
+      </div>
+      <!-- End tab security content -->
+
+
+      <!-- <div class="tab-pane fade" id="pills-carbon" role="tabpanel" aria-labelledby="pills-carbon-tab" tabindex="2">c</div> -->
+
+
+      {% else %}
+
+      <!-- Tab content profile -->
+      <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+        <div class="profile-tab-content" style="padding: 30px;">
+
+          <!-- Username div -->
+          <div class="username-box d-flex flex-row" style="margin: 0px 0px 30px 0px;">
+            
+            <div>
+              <p class="username-title green-jk">Username :</p>
+              <h3 id="id-username-content" class="username-text darkgreen-jk">{{user}}</h3>
+            </div>
+
+            <!-- Edit username button -->
+            <a>
+              <button id="edit-username-button" type="button" class="btn btn-green container-top2-button" onclick="edit_username_button()">Edit Username</button>
+            </a>
+            <!-- End edit username button -->
+          </div>
+          <!-- End username div -->
+
+          <!-- Edit username div -->
+          <div id="edit-username-div" style="display:none">
+            <div class="edit-username-content">
+              <div class="edit-username-header">
+                <button type="button" class="btn-close" aria-label="Close" onclick="close_edit_username()"></button>
+              </div>
+              <div class="edit-username-body">
+                <form action="" method="POST">
+                  {% csrf_token %}
+                    <label for="username" class="form-label">Username baru</label>
+                    <input type="text" class="form-control" id="id-username" name="username" placeholder="Username baru">
+                  <button id="submit-username-button" class="btn btn-green container-top2-button" type="button" style="margin-top: 0px; margin-left: 0px;">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- End edit username div -->
+          <!-- <p class="tes-aja" id="id-tes-aja">tes aja</p> -->
+
+          <!-- Contact div -->
+          <div class="contact-box d-flex flex-row" style="margin: 30px 0px 30px 0px;">
+            <div>
+              <p class="contact-title green-jk">Contact :</p>
+              <h3 id="id-contact-content" class="contact-text darkgreen-jk">{{user.userprofile.contact}}</h3>
+            </div>
+            <a>
+              <!-- Edit contact button -->
+              <button id="edit-contact-button" type="button" class="btn btn-green container-top2-button" onclick="edit_contact_button()">Edit Contact</button>
+              <!-- End edit contact button -->
+            </a>
+          </div>
+          <!-- End contact div -->
+
+          <!-- Edit contact div -->
+          <div id="edit-contact-div" style="display:none">
+            <div class="edit-contact-content">
+              <div class="edit-contact-header">
+                <button type="button" class="btn-close" aria-label="Close" onclick="close_edit_contact()"></button>
+              </div>
+              <div class="edit-contact-body">
+                <form action="" method="POST">
+                  {% csrf_token %}
+                    <label for="contact" class="form-label">Nomor telepon baru</label>
+                    <input type="text" class="form-control" id="id-contact" name="contact" placeholder="Nomor telepon baru">
+                  <button id="submit-contact-button" class="btn btn-green container-top2-button" type="button" style="margin-top: 0px; margin-left: 0px;">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- End edit contact div -->
+
+          <!-- Email div -->
+          <div class="email-box d-flex flex-row" style="margin: 30px 0px 30px 0px;">
+            <div>
+              <p class="email-title green-jk">Email :</p>
+              <h3 id="id-email-content" class="email-text darkgreen-jk">{{user.email}}</h3>
+            </div>
+            <!-- Edit email button -->
+            <a>
+              <button id="edit-email-button" type="button" class="btn btn-green container-top2-button" onclick="edit_email_button()">Edit Email</button>
+            </a>
+            <!-- End edit email button -->
+          </div>
+          <!-- End email div -->
+
+          <!-- Edit email div -->
+          <div id="edit-email-div" style="display:none">
+            <div class="edit-email-content">
+              <div class="edit-email-header">
+                <button type="button" class="btn-close" aria-label="Close" onclick="close_edit_email()"></button>
+              </div>
+              <div class="edit-email-body">
+                <form action="" method="POST">
+                  {% csrf_token %}
+                    <label for="email" class="form-label">Email baru</label>
+                    <input type="text" class="form-control" id="id-email" name="email" placeholder="Email baru">
+                  <button id="submit-email-button" class="btn btn-green container-top2-button" type="button" style="margin-top: 0px; margin-left: 0px;">Submit</button>
                 </form>
               </div>
             </div>
@@ -147,7 +326,26 @@
       <!-- Tab content donation history -->
       <div class="tab-pane fade" id="pills-history" role="tabpanel" aria-labelledby="pills-history-tab" tabindex="1">
         <div class="donation-history-tab-content" style="padding: 30px;">
-        
+          <div class="container" id="container-data">
+            <h4 class="subtitle">Donasi yang telah Kamu Ikuti</h4>
+            <div class="row row-cols-2 justify-content-center cards-donate" id="content">
+              <!-- each row has 2 cards -->
+              {% for histori in histori_berdonasi %}
+              <div class="col sec-card">
+                <div class="card mb-3">
+                  <img class="card-img" src="{% static 'image/jkwork.png' %}" class="img-fluid rounded-start">
+                  <div class="card-body">
+                    <h5 class="text card-title">Rp{{histori.nominal}}</h5>
+                    <!-- <p class="text card-text">Dari: {{histori.pesan}}</p> -->
+                    <hr class="divider-card">
+                    <p class="text card-text">Pesan : </p>
+                    <p class="text card-text">{{histori.pesan}}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
         </div>
       </div>
       <!-- End tab content donation history -->
@@ -155,12 +353,15 @@
 
       <!-- Tab content carbon production -->
       <div class="tab-pane fade" id="pills-carbon" role="tabpanel" aria-labelledby="pills-carbon-tab" tabindex="2">
-        <div class="carbon-production-tab-content" style="padding: 30px; background-color: rgb(233, 207, 172);">
+        <div class="carbon-production-tab-content" style="padding: 30px;">
+
+          <h4 class="subtitle">Karbon yang Kamu Hasilkan</h4>
           <div class="carbon-production-box" style="margin: 0px 0px 30px 0px;">
             <p class="carbon-production-title green-jk">Produksi karbon :</p>
             <h3 id="carbon-production-content" class="carbon-production-text darkgreen-jk">{{histori_karbon.carbon_print_total|floatformat:2}} Kilogram</h3>
           </div>
-          <div class="carbon-history-cards-box" style="flex-direction: row; flex-wrap:wrap; align-content:flex-start; background-color: aquamarine;">
+
+          <!-- <div class="carbon-history-cards-box" style="flex-direction: row; flex-wrap:wrap; align-content:flex-start; background-color: aquamarine;">
             {% for detail in detail_karbon %}
             <div class="card" style="width: 18rem;">
               <div class="card-header">
@@ -174,11 +375,62 @@
               </div>
             </div>
             {% endfor %}
+          </div> -->
+
+          <div class="container" id="container-data">
+            <div class="row row-cols-3 justify-content-center cards-donate" id="content">
+              <!-- each row has 2 cards -->
+              {% for detail in detail_karbon %}
+              <div class="col sec-card">
+                <div class="card mb-3">
+                  <img class="card-img" src="{% static 'image/pollution.png' %}" class="img-fluid rounded-start">
+                  <div class="card-body">
+                    <h5 class="text card-title">{{detail.usage}}</h5>
+                    <p class="text card-text">Dari: {{detail.date_input}}</p>
+                    <span style="color: #75C270; background-color: white;" class="badge text-wrap text-truncate"> {{detail.carbon_print|floatformat:2}} Kilogram </span>
+                    <!-- <hr class="divider-card"> -->
+                    <!-- <p class="text card-text">  </p> -->
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
           </div>
+
         </div>
       </div>
       <!-- End tab content carbon history -->
+
+
+      <!-- Tab security content -->
+      <div class="tab-pane fade" id="pills-security" role="tabpanel" aria-labelledby="pills-security-tab" tabindex="3">
+        <div class="security-tab-content" style="padding: 30px;">
+
+          {% if last_edited.password_edited %}
+          <h6 class="text-muted">Terakhir diubah: {{last_edited.last_password_edited}}</h6>
+          {% endif %}
+
+          {% if passform.errors %}
+          <ul>
+            {% for key,value in passform.errors.items %} 
+            <div class="alert">
+              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+              <li>{{ value|escape }}</li>
+            </div>
+            {% endfor %}
+          </ul>
+          {% endif %}  
+          <form method="post">
+            {% csrf_token %}
+            {{ passform.as_div }}
+            <button type="submit" id="id-submit-password">Simpan Password</button>
+          </form>          
+        </div>
+      </div>
+      <!-- End tab security content -->
+
       {% endif %}
+
     </div>
   </div>
   <!-- End sidebar content -->
