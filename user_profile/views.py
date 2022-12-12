@@ -157,6 +157,7 @@ def is_username_available(request):
     else:
         return JsonResponse({"available": True}, status=200)
 
+@csrf_exempt
 @login_required(login_url='/login/')
 def change_username_flutter(request):
     if request.method == 'POST':
@@ -168,6 +169,7 @@ def change_username_flutter(request):
         messages.success(request, 'Your username was successfully updated!')
     return JsonResponse({"username": request.user.username}, status=200)
 
+@csrf_exempt
 @login_required(login_url='/login/')
 def change_contact_flutter(request):
     contact = request.POST.get('contact')
@@ -176,6 +178,7 @@ def change_contact_flutter(request):
     profile.save()
     return JsonResponse({"contact": contact}, status=200)
 
+@csrf_exempt
 @login_required(login_url='/login/')
 def change_email_flutter(request):
     email = request.POST.get('email')
