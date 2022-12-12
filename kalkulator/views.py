@@ -77,17 +77,6 @@ def show_json_carbon_detail(request):
     data = CarbonDetail.objects.filter(histori_karbon=histori)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
-def show_json_histori_carbon(request):
-    userprofile = UserProfile.objects.get(user=request.user)
-
-    try:
-        histori = CarbonPrintHistory.objects.get(user=userprofile)
-    except CarbonPrintHistory.DoesNotExist:
-        histori = CarbonPrintHistory(user=userprofile)
-        histori.save()
-
-    return JsonResponse(histori)
-
 # add login required untuk individual user
 @login_required(login_url='/login/')
 @csrf_exempt
