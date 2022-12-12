@@ -20,7 +20,6 @@ from user_profile.models import LastEdited
 @login_required(login_url='/login/')
 def show_profile(request):
 
-    # todo: PERLU HANDLE SUPERUSER
     profile = UserProfile.objects.get(user=request.user)
     passform = PasswordChangingForm(request.user, request.POST)
 
@@ -186,3 +185,70 @@ def change_email_flutter(request):
     user.email = email
     user.save()
     return JsonResponse({"email": request.user.email}, status=200)
+
+@csrf_exempt
+@login_required(login_url='/login/')
+def carbon_history_flutter(request):
+    profile = UserProfile.objects.get(user=request.user)
+    if not profile.organization:
+        try:
+            histori_karbon = CarbonPrintHistory.objects.get(user = profile)
+        except:
+            histori_karbon = CarbonPrintHistory(user = profile)
+            histori_karbon.save()
+
+        detail_karbon = CarbonDetail.objects.filter(histori_karbon = histori_karbon)
+        histori_berdonasi = ikutdonasi.objects.filter(user = request.user)
+        context = {
+            'carbon_history': histori_karbon,
+            'carbon_detail': detail_karbon,
+            # 'histori_berdonasi': histori_berdonasi,
+            # 'passform': passform,
+            # 'last_edited': last_edited,
+        }
+
+        return JsonResponse(context, status=200)
+    else :
+        return JsonResponse({'message':'You must logged in with a personal account'},status=404)
+
+@csrf_exempt
+@login_required(login_url='/login/')
+def donation_history_flutter(request):
+    profile = UserProfile.objects.get(user=request.user)
+    if not profile.organization:
+        # try:
+        #     histori_karbon = CarbonPrintHistory.objects.get(user = profile)
+        # except:
+        #     histori_karbon = CarbonPrintHistory(user = profile)
+        #     histori_karbon.save()
+
+        # detail_karbon = CarbonDetail.objects.filter(histori_karbon = histori_karbon)
+        histori_berdonasi = ikutdonasi.objects.filter(user = request.user)
+        context = {
+            # 'histori_karbon': histori_karbon,
+            # 'detail_karbon': detail_karbon,
+            'donation_history': histori_berdonasi,
+            # 'passform': passform,
+            # 'last_edited': last_edited,
+        }
+
+        return JsonResponse(context, status=200)
+    else :
+        return JsonResponse({'message':'You must logged in with a personal account'},status=404)
+
+
+@csrf_exempt
+@login_required(login_url='/login/')
+def opened_donation_flutter(request):
+    profile = UserProfile.objects.get(user=request.user)
+    if profile.organization:
+        daftar_donasi = OpenDonasi.objects.filter(user = request.user)
+        context = {
+            'opened_donation': daftar_donasi,
+            # 'passform': passform,
+            # 'last_edited': last_edited,
+        }
+
+        return JsonResponse(context, status=200)
+    else :
+        return JsonResponse({'message':'You must logged in with an organizational account'},status=404)
