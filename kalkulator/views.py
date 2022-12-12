@@ -183,3 +183,99 @@ def add_carbon_kendaraan(request):
 def carbon_detail_json(request):
     data = CarbonDetail.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def add_carbon_listrik_flutter(request):
+    if request.method == "POST":
+        request_data = json.load(request.body)
+        usage = request.data['usage']
+        kilowatt_hour = request_data['kilowatt_hour']
+
+        #  make KomponenKalkulator instance
+        komponen_kalkulasi = KomponenKalkulator(kilowatt_hour=kilowatt_hour)
+        komponen_kalkulasi.save()
+
+        userprofile = UserProfile.objects.get(user=request.user)
+
+        try:
+            histori = CarbonPrintHistory.objects.get(user=userprofile)
+            print("masuk try")
+        except CarbonPrintHistory.DoesNotExist:
+            histori = CarbonPrintHistory(user=userprofile)
+            histori.save()
+            print("masuk except")
+
+        carbon_print = float(kilowatt_hour)/0.794
+        histori.carbon_print_total += carbon_print
+        histori.save()
+
+        # make DetailCarbon instance
+        detail = CarbonDetail(
+            histori_karbon=histori,
+            usage=usage,
+            carbon_print=carbon_print,
+            komponen_kalkulasi=komponen_kalkulasi)
+        detail.save()
+
+        print(histori.carbon_print_total)
+
+        data = {"pk": detail.pk}
+        return JsonResponse({
+            "status": True,
+            "message": "Cek carbon print Anda!"
+            # Insert any extra data if you want to pass data to Flutter
+        }, status=200)
+    return JsonResponse({
+            "status": False,
+            "message": "Ada kesalahan. Mohon coba lagi!"
+            }, status=304)
+
+def add_carbon_kendaraan_flutter(request):
+    if request.method == "POST":
+        request_data = json.load(request.body)
+        usage = request_data['usage']
+        fuel_type = request_data['fuel_type']
+        kilometer_jarak = request_data['kilometer_jarak']
+        litre_per_km =request_data['litre_per_km']
+        #  make KomponenKalkulator instance
+        komponen_kalkulasi = KomponenKalkulator(
+            fuel_type=fuel_type,
+            kilometer_jarak=kilometer_jarak,
+            litre_per_km=litre_per_km)
+        komponen_kalkulasi.save()
+        
+
+        userprofile = UserProfile.objects.get(user=request.user)
+
+        try:
+            histori = CarbonPrintHistory.objects.get(user=userprofile)
+            print("masuk try")
+        except CarbonPrintHistory.DoesNotExist:
+            histori = CarbonPrintHistory(user=userprofile)
+            histori.save()
+            print("masuk except")
+
+        carbon_print = float(kilometer_jarak)/float(litre_per_km)/0.794
+        histori.carbon_print_total += carbon_print
+        histori.save()
+
+        # make DetailCarbon instance
+        detail = CarbonDetail(
+            histori_karbon=histori,
+            usage=usage,
+            carbon_print=carbon_print,
+            komponen_kalkulasi=komponen_kalkulasi)
+        detail.save()
+
+        print(histori.carbon_print_total)
+
+        data = {"pk": detail.pk}
+        return JsonResponse({
+            "status": True,
+            "message": "Cek carbon print Anda!"
+            # Insert any extra data if you want to pass data to Flutter
+        }, status=200)
+    return JsonResponse({
+            "status": False,
+            "message": "Ada kesalahan. Mohon coba lagi!"
+            }, status=304)
+
