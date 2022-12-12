@@ -220,7 +220,7 @@ def donation_history_flutter(request):
 def opened_donation_flutter(request):
     profile = UserProfile.objects.get(user=request.user)
     if profile.organization:
-        daftar_donasi = OpenDonasi.objects.all()
+        daftar_donasi = OpenDonasi.objects.filter(user=request.user)
         print(daftar_donasi)
         return HttpResponse(serializers.serialize("json", daftar_donasi), content_type="application/json")
     else :
