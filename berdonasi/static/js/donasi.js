@@ -32,8 +32,8 @@ function showNominal(){
             document.getElementById("forms").style.display = "none";
             data.forEach(e => {
                 str= `
-                <div class="nominal">
-                    <h3 class="bayar">
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
                         Total pembayaran <br>
                         <br>
                         Rp ${e.fields.nominal}
@@ -45,7 +45,7 @@ function showNominal(){
                 </div>`
                 ;
             });
-            $('#ajax').html(str);
+            $('#accordionPanelsStayOpenExample').html(str);
             
             
         }
