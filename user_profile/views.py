@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, authenticate
 from django.contrib import messages
 
 from django.shortcuts import render, redirect
@@ -225,3 +225,17 @@ def opened_donation_flutter(request):
         return HttpResponse(serializers.serialize("json", daftar_donasi), content_type="application/json")
     else :
         return JsonResponse({'message':'You must logged in with an organizational account'},status=404)
+
+@csrf_exempt
+@login_required(login_url='/login/')
+def change_password(request):
+    old_password = request.POST.get('old_password')
+    new_password = request.POST.get('new_password')
+    username = request.user.username
+    user = authenticate(request, username=username, password=old_password)
+    if user is not None:
+        request.user.set_password(new_password)
+        update_session_auth_hash(request, request.user) 
+        return JsonResponse({'message':'success'},status=200)
+    else:
+        return JsonResponse({'message':'wrong password'},status=404)
