@@ -234,7 +234,7 @@ def change_password_flutter(request):
     username = request.user.username
     user = authenticate(request, username=username, password=old_password)
     if user is not None:
-        user.set_password(new_password)
+        User.objects.get(username=username).set_password(new_password)
         update_session_auth_hash(request, request.user) 
         return JsonResponse({'message':'success'},status=200)
     else:
