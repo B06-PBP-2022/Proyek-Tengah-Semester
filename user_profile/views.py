@@ -232,7 +232,7 @@ def change_password_flutter(request):
     old_password = request.POST.get('old_password')
     new_password = request.POST.get('new_password')
     username = request.user.username
-    user = authenticate(request, username=username, password=new_password)
+    user = authenticate(request, username=username, password=old_password)
     if user is not None:
         request.user.set_password(new_password)
         update_session_auth_hash(request, request.user) 
