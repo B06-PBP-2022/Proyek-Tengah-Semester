@@ -9,6 +9,6 @@ app_name = 'berdonasi'
 urlpatterns = [
     path('<int:id>/',show_masukkan_nominal, name='show_masukkan_nominal'),
     path('<int:id>/pembayaran/',pembayaran, name='pembayaran'),
-    path('<int:id>/json/',get_json, name='get_json'),
+    path('<str:id>/json/',get_json, name='get_json'),
     path('<int:id>/add/',add_nominal, name='add_nominal'),
 ]
