@@ -228,7 +228,7 @@ def opened_donation_flutter(request):
 
 @csrf_exempt
 @login_required(login_url='/login/')
-def change_password(request):
+def change_password_flutter(request):
     old_password = request.POST.get('old_password')
     new_password = request.POST.get('new_password')
     username = request.user.username

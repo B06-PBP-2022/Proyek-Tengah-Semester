@@ -1,5 +1,5 @@
 from django.urls import path
-from user_profile.views import show_profile, change_username, username_available, change_contact, change_email, is_organization, profile_json, is_username_available, change_username_flutter, change_contact_flutter, change_email_flutter, carbon_history_flutter, donation_history_flutter, opened_donation_flutter
+from user_profile.views import show_profile, change_username, username_available, change_contact, change_email, is_organization, profile_json, is_username_available, change_username_flutter, change_contact_flutter, change_email_flutter, carbon_history_flutter, donation_history_flutter, opened_donation_flutter, change_password_flutter
 
 app_name = 'user_profile'
 
@@ -18,4 +18,5 @@ urlpatterns = [
     path('carbon-history-flutter/', carbon_history_flutter, name='carbon_history_flutter'),
     path('donation-history-flutter/', donation_history_flutter, name='donation_history_flutter'),
     path('opened-donation-flutter/', opened_donation_flutter, name='opened_donation_flutter'),
+    path('change-password-flutter/', change_password_flutter, name='change_password_flutter'),
 ]
